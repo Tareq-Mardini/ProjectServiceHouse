@@ -1,0 +1,430 @@
+:root {
+  --blue: #4b70dd;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+  --font-family-sans-serif: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+* {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.containerr {
+  position: relative;
+  width: 100%;
+}
+
+.navigation {
+  position: fixed;
+  width: 280px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 1s;
+  overflow: hidden;
+  
+}
+
+.navigation.active {
+  width: 100px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  left: -31px;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.main {
+  position: absolute;
+  width: calc(100% - 283px);
+  left: 283px;
+  min-height: 100vh;
+  background-color: var(--white);
+  transition: 1s;
+  border-radius: 3px;
+}
+
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  padding: 0 10px;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  font-size: 2.5rem;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.Logo-website {
+    width: 132px;
+    height: 84px;
+    margin-left: 63px;
+    margin-top: 8px;
+}
+
+.form-admin {
+  background-color: rgb(204, 164, 164);
+  margin: auto;
+  max-width: 600px;
+  height: 500px;
+}
+
+.form-containerr {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(222, 223, 224, 0.1);
+  height: 500px;
+  margin-top: 30px;
+  border-style: solid;
+  border-width: 1px;
+  border-color:#ccc;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  margin: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color:#007bff;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none; 
+}
+
+button:focus {
+  outline: none; 
+  box-shadow: 0 0 5px 1px #007bff;
+}
+
+.Admin-data {
+  color:#007bff;
+  text-align: center;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+
+.bottom-create {
+  background-color: #007bff;
+  margin-top: 10px;
+  text-decoration: none;
+  height: 40px;
+  display: flex;
+  padding-right: 10px;
+  padding-left: 10px;
+  align-items: center;
+  border-radius: 5px;
+  color: #fffffd;
+}
+
+.table-view-section {
+  text-align: center;
+}
+
+.main .custom-btn-primary {
+  background-color: #007bff;
+  color: white;
+  margin-left:0px;
+  border-radius: 0%;
+}
+
+.main .custom-btn-danger {
+  background-color: red;
+  color: white;
+  border-radius: 0%;
+  margin-left: 10px;
+}
+
+.main .btn2 {
+  background-color: rgb(224, 46, 46);
+}
+
+.main .btn2:hover{
+  background-color: red;
+}
+
+.main .btn1 {
+  background-color: rgb(46, 117, 224);
+  margin-right: 7px;
+}
+
+.main .btn1:hover{
+  background-color: rgb(0, 68, 255);
+}
+
+.table-view-section {
+  table-layout: fixed; 
+}
+
+.table-view-section td.description {
+  max-width: 200px; 
+  word-wrap: break-word; 
+}
+
+.table-view-section tbody tr {
+  height: 50px; 
+}
+
+.table-view-section {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table-view-section td {
+  vertical-align: middle; 
+  text-align: center; 
+}
+
+.table-view-section td.description {
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.table-view-section tbody tr {
+  height: 50px;
+}
+
+.table-view-section thead th {
+  color: #007bff;
+}
+
+.main .btn-delete {
+  background-color: red;
+  box-shadow: none;
+}
+
+.main .btn-yes {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 5px;
+
+}
+
+.main .btn-yes:hover {
+  background-color: #007bff;
+}
+
+
+@media (max-width: 1024px) {
+  .navigation {
+    width: 100px; /* Adjust navigation width for medium screens */
+  }
+
+  .main {
+    width: calc(100% - 100px);
+    left: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    width: 80px; /* Adjust navigation width for small screens */
+  }
+
+  .main {
+    width: calc(100% - 80px);
+    left: 80px;
+  }
+
+  /* Ensure table is scrollable horizontally */
+  .table-view-section {
+    overflow-x: auto;
+    display: block;
+  }
+}
+
+.navigation {
+  width: 250px;
+  height: 100%;
+  overflow-y: auto; /* إضافة هذه الخاصية لجعل القائمة قابلة للتمرير عموديًا */
+
+}
+
+.main {
+  width: calc(100% - 250px);
+  left: 250px;
+  
+}
+
+/* للأجهزة اللوحية */
+@media (max-width: 1024px) {
+  .navigation {
+      width: 100px; /* ضبط عرض التنقل للأجهزة اللوحية */
+  }
+
+  .main {
+      width: calc(100% - 100px);
+      left: 100px;
+  }
+
+  .table-view-section {
+      width: 100%; /* عرض الجدول ممتلئ */
+  }
+}
+
+/* للشاشات المتوسطة */
+@media (max-width: 768px) {
+  .navigation {
+      width: 80px; /* ضبط عرض التنقل للشاشات المتوسطة */
+  }
+
+  .main {
+      width: calc(100% - 80px);
+      left: 80px;
+  }
+
+  /* ضمان أن يكون الجدول قابلاً للتمرير أفقيًا */
+  .table-view-section {
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+  }
+}
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+  .navigation {
+      width: 60px; /* ضبط عرض التنقل للشاشات الصغيرة جداً */
+  }
+
+  .main {
+      width: calc(100% - 60px);
+      left: 60px;
+  }
+
+  .table-view-section {
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+  }
+
+  /* ضمان أن تكون القائمة قابلة للتمرير عموديًا */
+  .navigation ul {
+      overflow-y: auto;
+      height: calc(100vh - 20px); /* ضبط الارتفاع ليكون داخل الشاشة */
+  }
+
+  /* تحسين عرض الأيقونات والعناوين */
+  .navigation ul li a .title {
+      display: none; /* إخفاء العناوين للحفاظ على مساحة */
+  }
+
+  .navigation ul li a .icon {
+      margin: 0 auto; /* مركز الأيقونات */
+  }
+}
