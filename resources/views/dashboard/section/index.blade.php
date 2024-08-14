@@ -109,7 +109,7 @@
             <table class="table table-view-section">
                 <thead>
                     <tr>
-                        <th scope="col">Namee</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Description</th>
                         <th scope="col">image</th>
                         <th scope="col">Action</th>
