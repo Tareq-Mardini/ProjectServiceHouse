@@ -21,12 +21,12 @@
     background-color: #616c7ca8;
     padding: 30px;
     border-radius: 10px;
-    color: #7e4444;
+    color: #ffffff;
 }
 
 .btn2 {
   background-color: rgb(225 63 63);
-  border-color: rgb(106, 0, 255);
+  border-color: red;
 
 }
 
