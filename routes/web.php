@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminSection;
 use App\Models\Admin;
 use App\Http\Controllers\AdminServiceController;
 use App\Http\Controllers\AuthClientController;
+use App\Http\Controllers\AuthLogin;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
@@ -41,3 +42,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
 
 Route::get('Client/Register',[AuthClientController::class,'ViewRegister'])->name('register.client');
 Route::post('Client/Register',[AuthClientController::class,'Store'])->name('Store.account.client');
+
+//هون ساويت واجهة للدخول للزبون والمقدم 
+Route::get('ServiceHouse/Login',[AuthLogin::class,'View'])->name('AuthLogin');
+Route::post('ServiceHouse/Login',[AuthLogin::class,'LoginClient'])->name('LoginClient');

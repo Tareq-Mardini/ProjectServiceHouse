@@ -10,7 +10,6 @@ class AuthClientController extends Controller
   public function ViewRegister() {
     return view('Client.AuthClient.Register');
   }
-
   public function Store(Request $request) {
     $validatedData = $request->validate([
         'email' => 'required|email|unique:clients,email',
