@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Http\Controllers\AdminServiceController;
 use App\Http\Controllers\AuthClientController;
 use App\Http\Controllers\AuthLogin;
+use App\Http\Controllers\AuthSupplierController;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
@@ -46,3 +47,8 @@ Route::post('Client/Register',[AuthClientController::class,'Store'])->name('Stor
 //هون ساويت واجهة للدخول للزبون والمقدم 
 Route::get('ServiceHouse/Login',[AuthLogin::class,'View'])->name('AuthLogin');
 Route::post('ServiceHouse/Login',[AuthLogin::class,'LoginClient'])->name('LoginClient');
+Route::put('ServiceHouse/Login',[AuthLogin::class,'LoginSupplier'])->name('LoginSupplier');
+
+// هلأ لح نشتغل على الراوتات مقدمين الخدمات 
+Route::get('Supplier/Register',[AuthSupplierController::class,'ViewRegister'])->name('register.Supplier');
+Route::post('Supplier/Register',[AuthSupplierController::class,'Store'])->name('Store.account.Supplier');

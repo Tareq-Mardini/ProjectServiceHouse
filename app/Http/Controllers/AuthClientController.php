@@ -12,9 +12,9 @@ class AuthClientController extends Controller
   }
   public function Store(Request $request) {
     $validatedData = $request->validate([
-        'email' => 'required|email|unique:clients,email',
+        'email' => 'required|email|unique:clients,email',   //هون بكتب اسم الجدول هامممممم جدا  
         'password' => 'required|min:8|confirmed',
-        'name' => 'required|string|unique:clients,name|max:255',
+        'name' => 'required|string|unique:clients,name|max:255',  //لما يكون عندي تحقيق شرط بتعامل دغري بالعمود قواعد البيانات مو بالموديل 
         'phone_number' => 'required|string|max:20',
         'address' => 'required|string|in:Algeria,Bahrain,Comoros,Djibouti,Egypt,Iraq,Jordan,Kuwait,Lebanon,Libya,Mauritania,Morocco,Oman,Palestine,Qatar,Saudi Arabia,Somalia,South Sudan,Sudan,Syria,Tunisia,United Arab Emirates,Yemen',
         'gender' => 'required|in:male,female',

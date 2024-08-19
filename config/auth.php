@@ -7,22 +7,28 @@ return [
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
+    'guards' => [       // هون انا بحط كلشي حراس بدي ياهن 
+        'web' => [      // هون عندي هاد الافتراضي بيجي من لارفيل 
+            'driver' => 'session',     // هون طريقة يلي بدي ياها عن الجلسة (تسجيل جلسة )
+            'provider' => 'users',     // هون عملت تزويد هي بأسم اليوسر 
         ],
 
         // حارس مخصص للأدمن
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
+        'admin' => [        // هون ساويت حارس ادمن
+            'driver' => 'session',   // كمان نفس يلي فوق طريقة التحقق الجلسة 
+            'provider' => 'admins',    // سميتو اسم الادمنز
         ],
 
         // حارس مخصص للعميل
         'Client' => [
             'driver' => 'session',
             'provider' => 'Clients',
+        ],
+
+        // حارس مخصص مقدم
+        'Supplier' => [
+            'driver' => 'session',
+            'provider' => 'Suppliers',
         ],
     ],
 
@@ -42,6 +48,12 @@ return [
         'Clients' => [
             'driver' => 'eloquent',
             'model' => App\Models\Client::class,
+        ],
+
+        // مزود مخصص مقدم 
+        'Suppliers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Supplier::class,
         ],
     ],
 
