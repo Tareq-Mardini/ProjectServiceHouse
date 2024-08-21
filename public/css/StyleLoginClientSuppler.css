@@ -44,6 +44,10 @@ body{
 .img img{
 	width: 500px;
 }
+.supplier img{
+	width: 340px;
+	margin-top: 70px;
+}
 
 form{
 	width: 360px;

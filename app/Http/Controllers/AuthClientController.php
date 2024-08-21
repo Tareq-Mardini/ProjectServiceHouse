@@ -57,6 +57,6 @@ class AuthClientController extends Controller
     ]);
     $validatedData['password'] = Hash::make($validatedData['password']);
     $client = Client::create($validatedData);
-    return back();
+    return redirect()->route('AuthLogin');
   }
 }

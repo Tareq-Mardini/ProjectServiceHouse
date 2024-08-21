@@ -62,6 +62,6 @@ class AuthSupplierController extends Controller
         ]);
         $validatedData['password'] = Hash::make($validatedData['password']);
         $supplier = Supplier::create($validatedData);
-        return back();
+        return redirect()->route('AuthLoginn');
     }
 }

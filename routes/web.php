@@ -4,12 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminLogin;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminSection;
-use App\Models\Admin;
 use App\Http\Controllers\AdminServiceController;
 use App\Http\Controllers\AuthClientController;
 use App\Http\Controllers\AuthLogin;
 use App\Http\Controllers\AuthSupplierController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\SupplierController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,17 +39,21 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('admin/dashboard/service/Archive/Delete/{id}',[AdminServiceController::class,'ForceDelete'])->name('admin.service.Archive.ForceDelete');
     Route::get('adminlogout',[AdminLogin::class,'logout'])->name('adminlogout');
 });
-
+//=============================================================================================================//
 // هلأ لح نشتغل على الراوتات الزبائن 
-
-Route::get('Client/Register',[AuthClientController::class,'ViewRegister'])->name('register.client');
-Route::post('Client/Register',[AuthClientController::class,'Store'])->name('Store.account.client');
-
+Route::get('ServiceHouse/Register/Client',[AuthClientController::class,'ViewRegister'])->name('register.client');
+Route::post('ServiceHouse/Register/Client',[AuthClientController::class,'Store'])->name('Store.account.client');
+// هي مشان فوت على صفحة الرئيسية للزبون 
+Route::get('ServiceHouse/Home/Client',[ClientController::class,'View'])->name('ServiceHouse.Home.Client');
+//=============================================================================================================//
 //هون ساويت واجهة للدخول للزبون والمقدم 
-Route::get('ServiceHouse/Login',[AuthLogin::class,'View'])->name('AuthLogin');
-Route::post('ServiceHouse/Login',[AuthLogin::class,'LoginClient'])->name('LoginClient');
-Route::put('ServiceHouse/Login',[AuthLogin::class,'LoginSupplier'])->name('LoginSupplier');
-
+Route::get('ServiceHouse/Login/Client',[AuthLogin::class,'ViewClient'])->name('AuthLogin');
+Route::post('ServiceHouse/Login/Client',[AuthLogin::class,'LoginClient'])->name('LoginClient');
+Route::get('ServiceHouse/Login/Supplier',[AuthLogin::class,'ViewSupplier'])->name('AuthLoginn');
+Route::post('ServiceHouse/Login/Supplier',[AuthLogin::class,'LoginSupplier'])->name('LoginSupplier');
+//=============================================================================================================//
 // هلأ لح نشتغل على الراوتات مقدمين الخدمات 
-Route::get('Supplier/Register',[AuthSupplierController::class,'ViewRegister'])->name('register.Supplier');
-Route::post('Supplier/Register',[AuthSupplierController::class,'Store'])->name('Store.account.Supplier');
+Route::get('ServiceHouse/Register/Supplier',[AuthSupplierController::class,'ViewRegister'])->name('register.Supplier');
+Route::post('ServiceHouse/Register/Supplier',[AuthSupplierController::class,'Store'])->name('Store.account.Supplier');
+// هي مشان فوت على صفحة الرئيسية للمقدم 
+Route::get('ServiceHouse/Home/Supplier',[SupplierController::class,'View'])->name('ServiceHouse.Home.Supplier');
