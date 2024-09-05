@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthSupplierController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\VisitorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,3 +58,6 @@ Route::get('ServiceHouse/Register/Supplier',[AuthSupplierController::class,'View
 Route::post('ServiceHouse/Register/Supplier',[AuthSupplierController::class,'Store'])->name('Store.account.Supplier');
 // هي مشان فوت على صفحة الرئيسية للمقدم 
 Route::get('ServiceHouse/Home/Supplier',[SupplierController::class,'View'])->name('ServiceHouse.Home.Supplier');
+//=============================================================================================================//
+// هلأ هون لواجهة الزائر ^_^ 
+Route::get('ServiceHouse',[VisitorController::class,'View'])->name('ServiceHouse');
