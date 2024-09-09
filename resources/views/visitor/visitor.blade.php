@@ -205,11 +205,7 @@
             </p>
             <ul class="about-list">
               <li class="about-item">
-<<<<<<< HEAD
                 <ion-icon name="checkmark-done-outline" aria-hidden="true"></ion-icon>
-=======
-                <ion-icon name="checkmark-done-outline" aria-hidden="true"></ion-icon
->>>>>>> 70cc37ff999927d17c4b9f0cf95447df44ea9be6
                 <span class="span">Connect Freelancers with High-Quality Clients</span>
               </li>
               <li class="about-item">
