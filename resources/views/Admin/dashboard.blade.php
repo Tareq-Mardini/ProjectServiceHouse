@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('css/toster.css')}}">
 </head>
 <body>
+    <l1>test</l1>
     <div class="containerr">
         <div class="navigation">
             <ul>
