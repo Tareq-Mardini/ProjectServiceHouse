@@ -1341,26 +1341,6 @@
       right: -60px;
       z-index: -1;
     }
-  
-  
-  
-    /**
-     * VIDEO
-     */
-  
-    .video-shape-1 {
-      top: -50px;
-      left: 0;
-    }
-  
-    .video-shape-2 {
-      top: -80px;
-      right: 120px;
-      z-index: 1;
-    }
-  
-  
-  
     /**
      * BLOG
      */
@@ -1370,4 +1350,89 @@
       left: 0;
     }
   
+  }
+
+  .modal {
+    display: none; /* مخفي افتراضيًا */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* خلفية شفافة */
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width:350px;
+    text-align: center;
+  }
+  
+  .close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .option-btn {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    background-color: #1ab79d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 7px;
+  }
+  
+  .option-btn:hover {
+    background-color: #1ab79d;
+  }
+  .modal-window {
+    display: none; /* مخفي افتراضيًا */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* خلفية شفافة */
+  }
+  
+  .modal-content-register {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 350px;
+    text-align: center;
+  }
+  
+  .close-register {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .register-option-btn {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    background-color: #1ab79d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 7px;
+  }
+  
+  .register-option-btn:hover {
+    background-color: #1ab79d;
   }

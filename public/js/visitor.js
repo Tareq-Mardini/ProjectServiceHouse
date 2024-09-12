@@ -59,5 +59,47 @@ const activeElem = function () {
     backTopBtn.classList.remove("active");
   }
 }
-
 addEventOnElem(window, "scroll", activeElem);
+
+// هلأ هون مشان الزرار تسجيل الدخول وانشاء الحساب والموديل 
+var modal = document.getElementById("loginModal");
+var loginBtn = document.getElementById("loginBtn");
+var closeModal = document.getElementsByClassName("close")[0];
+
+// عند الضغط على زر تسجيل الدخول
+loginBtn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// عند الضغط على X لإغلاق النافذة
+closeModal.onclick = function() {
+  modal.style.display = "none";
+}
+
+// عند الضغط خارج النافذة لإغلاقها
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+var registerModalWindow = document.getElementById("registerModalWindow");
+var openRegisterModal = document.getElementById("openRegisterModal");
+var closeRegisterModal = document.getElementsByClassName("close-register")[0];
+
+// عند الضغط على زر تسجيل حساب
+openRegisterModal.onclick = function() {
+  registerModalWindow.style.display = "block";
+}
+
+// عند الضغط على X لإغلاق النافذة
+closeRegisterModal.onclick = function() {
+  registerModalWindow.style.display = "none";
+}
+
+// عند الضغط خارج النافذة لإغلاقها
+window.onclick = function(event) {
+  if (event.target == registerModalWindow) {
+    registerModalWindow.style.display = "none";
+  }
+}

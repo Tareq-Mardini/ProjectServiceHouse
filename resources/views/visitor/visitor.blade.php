@@ -5,43 +5,32 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-  <!-- 
-    - favicon
-  -->
   <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
-
-  <!-- 
-    - custom css link
-  -->
   <link rel="stylesheet" href="{{asset('css/visitor.css')}}">
-
-  <!-- 
-    - google font link
-  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap"
     rel="stylesheet">
-
-  <!-- 
-    - preload images
-  -->
+  <link rel="preload" as="image" href="./assets/images/visitor/logo-3.png">
+  <link rel="preload" as="image" href="./assets/images/visitor/logo.png">
   <link rel="preload" as="image" href="./assets/images/hero-bg.svg">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-1.jpg">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-2.jpg">
-  <link rel="preload" as="image" href="./assets/images/hero-shape-1.svg">
+  <link rel="preload" as="image" href="./assets/images/hero-banner-3.webp">
+  <link rel="preload" as="image" href="./assets/images/hero-banner-4.jpg">
   <link rel="preload" as="image" href="./assets/images/hero-shape-2.png">
-
+  <link rel="preload" as="image" href="./assets/images/category-1.svg">
+  <link rel="preload" as="image" href="./assets/images/category-2.svg">
+  <link rel="preload" as="image" href="./assets/images/category-3.svg">
+  <link rel="preload" as="image" href="./assets/images/category-5.png">
+  <link rel="preload" as="image" href="./assets/images/about-banner33.jpg">
+  <link rel="preload" as="image" href="./assets/images/blog-bg.svg">
+  <link rel="preload" as="image" href="./assets/images/blog-4.jpg">
+  <link rel="preload" as="image" href="./assets/images/blog-bg.svg">
+  <link rel="preload" as="image" href="./assets/images/blog-5.jpg">
+  <link rel="preload" as="image" href="./assets/images/blog-6.jpg">
 </head>
 
 <body id="top">
-  <!-- 
-    - #HEADER
-  -->
   <header class="header" data-header>
     <div class="container">
       <a href="#" class="logo">
@@ -75,15 +64,30 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <a href="#" class="btn has-before">
+        <a href="#" class="btn has-before" id="loginBtn">
           <span class="span">Login</span>
           <ion-icon name="log-in-outline" aria-hidden="true" style="height: 32px; width:22px"></ion-icon>
         </a>
-
-        <a href="#" class="btn has-before" >
+        <div id="loginModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Choose The Account Type</h3>
+            <button class="option-btn" id="customerBtn"><a href="{{route('AuthLogin')}}">Client</a></button>
+            <button class="option-btn" id="serviceProviderBtn"><a href="{{route('AuthLoginn')}}">Supplier</a></button>
+          </div>
+        </div>
+        <a href="#" class="btn register-btn" id="openRegisterModal">
           <span class="span">Register</span>
           <ion-icon name="create-outline" aria-hidden="true" style="height: 32px; width:22px"></ion-icon>
         </a>
+        <div id="registerModalWindow" class="modal-window">
+          <div class="modal-content-register">
+            <span class="close-register">&times;</span>
+            <h3>Choose The Account Type</h3>
+            <button class="register-option-btn" id="registerCustomerOption"><a href="{{route('register.client')}}">Client</a></button>
+            <button class="register-option-btn" id="registerServiceProviderOption"><a href="{{route('register.Supplier')}}">Supplier</a></button>
+          </div>
+        </div>
         <button class="header-action-btn" aria-label="open menu" data-nav-toggler>
           <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
         </button>
@@ -324,4 +328,5 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
