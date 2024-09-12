@@ -50,16 +50,16 @@
             <a href="#home" class="navbar-link" data-nav-link>Home</a>
           </li>
           <li class="navbar-item">
-            <a href="#about" class="navbar-link" data-nav-link>Benefits</a>
+            <a href="#Benefit" class="navbar-link" data-nav-link>Benefits</a>
           </li>
           <li class="navbar-item">
-            <a href="#courses" class="navbar-link" data-nav-link>About</a>
+            <a href="#about" class="navbar-link" data-nav-link>About</a>
           </li>
           <li class="navbar-item">
             <a href="#blog" class="navbar-link" data-nav-link>Sections</a>
           </li>
           <li class="navbar-item">
-            <a href="#" class="navbar-link" data-nav-link>Contact</a>
+            <a href="#footer" class="navbar-link" data-nav-link>Contact</a>
           </li>
         </ul>
       </nav>
@@ -123,7 +123,7 @@
           </figure>
         </div>
       </section>
-      <section class="section category" aria-label="category">
+      <section id="Benefit" class="section category" aria-label="category">
         <div class="container">
           <p class="section-subtitle">Benefits</p>
           <h2 style="margin-bottom: 25px;" class="h2 section-title">
@@ -289,7 +289,7 @@
       </section>
     </article>
   </main>
-  <footer class="footer" style="background-image: url('./assets/images/footer-bg.png');  ">
+  <footer id="footer" class="footer" style="background-image: url('./assets/images/footer-bg.png');  ">
     <div class="container">
       <div style="padding: 30px;" class="footer-top section">
         <div style="margin: auto;" class="footer-brand">
@@ -328,5 +328,4 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>
