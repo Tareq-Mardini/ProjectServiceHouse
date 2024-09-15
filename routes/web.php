@@ -61,3 +61,4 @@ Route::get('ServiceHouse/Home/Supplier',[SupplierController::class,'View'])->nam
 //=============================================================================================================//
 // هلأ هون لواجهة الزائر ^_^ 
 Route::get('ServiceHouse',[VisitorController::class,'View'])->name('ServiceHouse');
+Route::get('ServiceHouse/Sections',[VisitorController::class,'ViewSections'])->name('ViewSections');

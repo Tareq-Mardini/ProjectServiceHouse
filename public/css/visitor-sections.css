@@ -1,0 +1,19 @@
+.Section {
+ 
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap:30px;
+    align-items: center;
+}
+
+@media (max-width:768px){
+    .Section{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width:500px){
+    .Section{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
