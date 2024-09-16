@@ -77,21 +77,23 @@
     </div>
   </header>
   <div class="container" style="margin-top: 160px;">
+  <h2 class="h2 section-title"><span class="span">Sections </span></h2>
     <div class="Section">
       @foreach ($data as $section)
       <div class="content-section">
-        <img src="{{ asset($section->image) }}" alt="" style="width: 120px; height: 80px;border-radius: 5px;">
+        <img src="{{ asset($section->image) }}" alt="" >
         <div class="text">
-          <h5>{{$section->name}}</h5>
+          <h3>{{$section->name}}</h3>
           <p>{{$section->description}}
           </p>
-          <button>butt1</button>
+          <a href="{{ route('ViewServices', ['id' => $section->id]) }}" >
+        <button>View Services</button>
+      </a>
         </div>
       </div>
       @endforeach
     </div>
   </div>
-
 
   <a href="#top" class="back-top-btn" aria-label="back top top" data-back-top-btn>
     <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
