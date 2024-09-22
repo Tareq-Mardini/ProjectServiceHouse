@@ -76,7 +76,7 @@
             <button class="option-btn" id="serviceProviderBtn"><a href="{{route('AuthLoginn')}}">Supplier</a></button>
           </div>
         </div>
-        <a href="#" class="btn register-btn" id="openRegisterModal">
+        <a style="margin-left: -10px;" href="#" class="btn register-btn" id="openRegisterModal">
           <span class="span">Register</span>
           <ion-icon name="create-outline" aria-hidden="true" style="height: 32px; width:22px"></ion-icon>
         </a>

@@ -45,7 +45,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
 Route::get('ServiceHouse/Register/Client',[AuthClientController::class,'ViewRegister'])->name('register.client');
 Route::post('ServiceHouse/Register/Client',[AuthClientController::class,'Store'])->name('Store.account.client');
 // هي مشان فوت على صفحة الرئيسية للزبون 
-Route::get('ServiceHouse/Home/Client',[ClientController::class,'View'])->name('ServiceHouse.Home.Client');
+Route::get('ServiceHouse/Client',[ClientController::class,'View'])->name('ServiceHouse.Home.Client');
 //=============================================================================================================//
 //هون ساويت واجهة للدخول للزبون والمقدم 
 Route::get('ServiceHouse/Login/Client',[AuthLogin::class,'ViewClient'])->name('AuthLogin');
@@ -57,7 +57,7 @@ Route::post('ServiceHouse/Login/Supplier',[AuthLogin::class,'LoginSupplier'])->n
 Route::get('ServiceHouse/Register/Supplier',[AuthSupplierController::class,'ViewRegister'])->name('register.Supplier');
 Route::post('ServiceHouse/Register/Supplier',[AuthSupplierController::class,'Store'])->name('Store.account.Supplier');
 // هي مشان فوت على صفحة الرئيسية للمقدم 
-Route::get('ServiceHouse/Home/Supplier',[SupplierController::class,'View'])->name('ServiceHouse.Home.Supplier');
+Route::get('ServiceHouse/Supplier',[SupplierController::class,'View'])->name('ServiceHouse.Home.Supplier');
 //=============================================================================================================//
 // هلأ هون لواجهة الزائر ^_^ 
 Route::get('ServiceHouse',[VisitorController::class,'View'])->name('ServiceHouse');

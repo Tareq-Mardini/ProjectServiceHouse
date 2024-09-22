@@ -23,7 +23,7 @@ class AuthLogin extends Controller
         if ($client) {
             if (Auth::guard('Client')->attempt($credentials)) {
                 session()->flash('success_login', 'Success login cc.');
-                return view('Client.Home.Home');
+                return redirect()->route('ServiceHouse.Home.Client');
             } else {
                 return back()->withErrors([
                     'password' => 'The provided password is incorrect.',
@@ -42,7 +42,7 @@ class AuthLogin extends Controller
         if ($supplier) {
             if (Auth::guard('Supplier')->attempt($credentials)) {
                 session()->flash('success_login', 'Success login cc.');
-                return view('Supplier.Home.Home');
+                return redirect()->route('ServiceHouse.Home.Supplier');
             } else {
                 return back()->withErrors([
                     'password' => 'The provided password is incorrect.',
