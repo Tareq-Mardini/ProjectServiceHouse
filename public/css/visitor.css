@@ -1389,7 +1389,16 @@
     cursor: pointer;
     font-size: 16px;
     border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
+  .option-btn a {
+    margin-right: 8px; 
+    text-decoration: none; 
+    color: inherit;
+}
   
   .option-btn:hover {
     background-color: #1ab79d;

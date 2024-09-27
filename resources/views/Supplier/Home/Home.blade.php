@@ -12,6 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap"
     rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
   <link rel="preload" as="image" href="./assets/images/visitor/logo-3.png">
   <link rel="preload" as="image" href="./assets/images/visitor/logo.png">
   <link rel="preload" as="image" href="./assets/images/hero-bg.svg">
@@ -61,10 +62,15 @@
           <li class="navbar-item">
             <a href="#footer" class="navbar-link" data-nav-link>Contact</a>
           </li>
+          <li class="navbar-item">
+            <button class="option-btn" id="customerBtn">
+              <a href="{{route('ServiceHouse.Supplier.Dashboard')}}">Dashboard</a>
+              <i class='bx bxs-dashboard bx-spin' ></i>
+            </button>
+          </li>
         </ul>
       </nav>
       <div class="header-actions">
-
         <button class="header-action-btn" aria-label="open menu" data-nav-toggler>
           <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
         </button>
@@ -72,10 +78,10 @@
       <div class="overlay" data-nav-toggler data-overlay></div>
     </div>
   </header>
-  <main> 
+  <main>
     <article>
       <section class="section hero has-bg-image" id="home" aria-label="home"
-      style="background-image: url('../assets/images/hero-bg.svg')">
+        style="background-image: url('../assets/images/hero-bg.svg')">
         <div class="container">
           <div class="hero-content">
             <h1 class="h1 section-title">
@@ -200,9 +206,9 @@
             </ul>
           </div>
         </div>
-      </section> 
+      </section>
       <section class="section blog has-bg-image" id="blog" aria-label="blog"
-      style="background-image: url('../assets/images/blog-bg.svg')">
+        style="background-image: url('../assets/images/blog-bg.svg')">
         <div class="container">
           <p class="section-subtitle">Sections</p>
           <h2 class="h2 section-title">The most <span class="span">important </span> sections on the site</h2>
@@ -305,4 +311,5 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
