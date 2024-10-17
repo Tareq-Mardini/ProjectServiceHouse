@@ -9,7 +9,4 @@ class SupplierController extends Controller
     public function View() {
         return view('Supplier.Home.Home');
     }
-
-
-
 }
