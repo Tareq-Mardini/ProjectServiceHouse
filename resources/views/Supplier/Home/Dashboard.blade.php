@@ -14,17 +14,14 @@
   <link
     href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap"
     rel="stylesheet">
-
 </head>
 
 <body>
-
-
   <!-- SIDEBAR -->
   <section id="sidebar">
-  <a href="#" class="logo">
-        <img src="{{asset('images/visitor/logo-3.png')}}" width="150" height="100" alt="EduWeb logo" style="margin-left: 70px; margin-top:20px">
-      </a>
+    <a href="#" class="logo">
+      <img src="{{asset('images/visitor/logo-3.png')}}" width="150" height="100" alt="EduWeb logo" style="margin-left: 70px; margin-top:20px">
+    </a>
     <ul style="margin-top:0px" class="side-menu top">
       <li class="active">
         <a href="#">
@@ -69,34 +66,24 @@
         </a>
       </li>
     </ul>
-
   </section>
   <!-- SIDEBAR -->
-
-
-
   <!-- CONTENT -->
   <section id="content">
     <!-- NAVBAR -->
     <nav>
       <i class='bx bx-menu'></i>
       <div>
-      <a style="color: white;" class="home-page" href="{{route('ServiceHouse.Home.Supplier')}}">Home Page <i class='bx bx-right-arrow-alt'></i> </a>
-
+        <a style="color: white;" class="home-page" href="{{route('ServiceHouse.Home.Supplier')}}">Home Page <i class='bx bx-right-arrow-alt'></i> </a>
       </div>
-
     </nav>
     <!-- NAVBAR -->
-
     <!-- MAIN -->
     <main>
-     
     </main>
     <!-- MAIN -->
   </section>
   <!-- CONTENT -->
-
-
   <script src="{{asset('js/supplier-dashboard.js')}}"></script>
 </body>
 
