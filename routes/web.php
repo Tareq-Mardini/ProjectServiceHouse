@@ -58,6 +58,7 @@ Route::get('ServiceHouse/Register/Supplier',[AuthSupplierController::class,'View
 Route::post('ServiceHouse/Register/Supplier',[AuthSupplierController::class,'Store'])->name('Store.account.Supplier');
 // هي مشان فوت على صفحة الرئيسية للمقدم 
 Route::get('ServiceHouse/Supplier',[SupplierController::class,'View'])->name('ServiceHouse.Home.Supplier');
+Route::get('ServiceHouse/Supplier/Section',[SupplierController::class,'ShowSection'])->name('Servicehouse.Section.Show.Supplier');
 //=============================================================================================================//
 // هلأ هون لواجهة الزائر ^_^ 
 Route::get('ServiceHouse',[VisitorController::class,'View'])->name('ServiceHouse');
