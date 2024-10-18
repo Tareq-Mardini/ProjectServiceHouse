@@ -59,7 +59,11 @@ Route::post('ServiceHouse/Register/Supplier',[AuthSupplierController::class,'Sto
 // هي مشان فوت على صفحة الرئيسية للمقدم 
 Route::get('ServiceHouse/Supplier',[SupplierController::class,'View'])->name('ServiceHouse.Home.Supplier');
 Route::get('ServiceHouse/Supplier/Dashboard',[SupplierController::class,'ViewDashboard'])->name('ServiceHouse.Supplier.Dashboard');
-Route::get('ServiceHouse/Supplier/Section',[SupplierController::class,'ShowSection'])->name('Servicehouse.Section.Show.Supplier');
+//عرض الاقسام للمقدم
+Route::get('ServiceHouse/Supplier/Section',[SupplierController::class,'ShowSections'])->name('Servicehouse.Sections.Show.Supplier');
+//عرض الخدمات للمقدم 
+Route::get('ServiceHouse/Section/Services/{id}', [SupplierController::class, 'ViewServices'])->name('Servicehouse.Services.Show.Supplier');
+//انشاء عمل
 
 //=============================================================================================================//
 // هلأ هون لواجهة الزائر ^_^ 

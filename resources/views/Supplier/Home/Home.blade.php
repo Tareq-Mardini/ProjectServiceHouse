@@ -265,7 +265,7 @@
           <img src="../assets/images/blog-shape.png" width="186" height="186" loading="lazy" alt=""
             class="shape blog-shape">
           <div>
-            <a style="margin: auto; margin-top:20px" href="{{route('ViewSections')}}" class="btn has-before"><span class="span">More Sections</span>
+            <a style="margin: auto; margin-top:20px" href="{{route('Servicehouse.Sections.Show.Supplier')}}" class="btn has-before"><span class="span">More Sections</span>
               <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon></a>
           </div>
         </div>
