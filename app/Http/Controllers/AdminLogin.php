@@ -17,8 +17,12 @@ class AdminLogin extends Controller
     public function checkLogin(Request $request)
     {
         $credentials = $request->only('email', 'password');
+        
+        // Attempt to log in using the 'admin' guard
         if (Auth::guard('admin')->attempt($credentials)) {
             session()->flash('success_login', 'Success login admin.'); 
+            $user = Auth::guard('admin')->user();
+            session(['user_id' => $user->id]);
             return redirect()->route('admin.dashboard');
         } else {
             return redirect()->route('admin.login')->withErrors(['loginError' => 'Invalid credentials, try again']);
