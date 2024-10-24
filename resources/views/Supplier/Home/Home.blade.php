@@ -34,6 +34,9 @@
 <body id="top">
   <header class="header" data-header>
     <div class="container">
+    @if(session('user_id'))
+            <p>User ID: {{ session('supplier_user_id') }}</p>
+        @endif
       <a href="#" class="logo">
         <img src="{{asset('images/visitor/logo-3.png')}}" width="150" height="40" alt="EduWeb logo" style="margin-left: 70px;">
       </a>

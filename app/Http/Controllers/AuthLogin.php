@@ -44,8 +44,8 @@ class AuthLogin extends Controller
         if ($supplier) {
             if (Auth::guard('Supplier')->attempt($credentials)) {
                 session()->flash('success_login', 'Success login cc.');
-                $user = Auth::user();
-                session(['user_id' => $user->id]);
+                $user = Auth::guard('Supplier')->user();
+                session(['supplier_user_id' => $user->id]);
                 return redirect()->route('ServiceHouse.Home.Supplier');
             } else {
                 return back()->withErrors([

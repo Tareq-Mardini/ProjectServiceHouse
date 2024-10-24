@@ -164,7 +164,12 @@
                 </div>
             </div>
         </div>
+        @if(session('admin_user_id'))
+            <p>User ID: {{ session('admin_user_id') }}</p>
+        @endif
     </div>
+
+    
     <script src="{{asset('js/jqure.js')}}"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
