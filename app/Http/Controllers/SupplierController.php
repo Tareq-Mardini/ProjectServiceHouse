@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Section;
 use App\Models\services;
-use App\Models\Service;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -18,12 +17,12 @@ class SupplierController extends Controller
 
     public function ShowSections(){
         $data = Section::all();
-        return view('Supplier.Home.Sections', compact('data') );
+        return view('Supplier.Home.Sections', compact('data'));
     }
     
-    public function ViewServices(){
-        $data = services::all();
-        return view('Supplier.Home.Services',compact('data'));
+    public function ShowServices($id){
+        $data = services::where('section_id', $id)->get();
+        return view('Supplier.Home.Services', compact('data'));
     }
 
     

@@ -23,4 +23,18 @@ class services extends Model
     {
         return $this->belongsTo(Section::class, 'section_id', 'id');
     }
+
+    public function works()
+    {
+        return $this->hasMany(Work::class);
+    }
+    
+    protected static function booted()
+    {
+        static::deleting(function ($services) {
+            $services->works()->each(function ($work) {
+                $work->delete();
+            });
+        });
+    }
 }

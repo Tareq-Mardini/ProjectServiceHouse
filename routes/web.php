@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthSupplierController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\SupplierWorkController;
 use App\Http\Controllers\VisitorController;
 
 Route::get('/', function () {
@@ -62,9 +63,14 @@ Route::get('ServiceHouse/Supplier/Dashboard',[SupplierController::class,'ViewDas
 //عرض الاقسام للمقدم
 Route::get('ServiceHouse/Supplier/Section',[SupplierController::class,'ShowSections'])->name('Servicehouse.Sections.Show.Supplier');
 //عرض الخدمات للمقدم 
-Route::get('ServiceHouse/Section/Services/{id}', [SupplierController::class, 'ViewServices'])->name('Servicehouse.Services.Show.Supplier');
-//انشاء عمل
-
+Route::get('ServiceHouse/Supplier/Section/Services/{id}', [SupplierController::class, 'ShowServices'])->name('Servicehouse.Services.Show.Supplier');
+//عرض جميع الاعمال من الخدمات
+Route::get('ServiceHouse/Supplier/Section/Services/{id}/works', [SupplierWorkController::class, 'ViewWorks'])->name('Works.Show.Supplier');
+//عرض الاعمال الخاصة بالمقدم
+Route::get('ServiceHouse/Supplier/Dashboard/Myworks',[SupplierWorkController::class],'ViewMyWork')->name('Supplier.Show.Myworks');
+//انشاء عمل 
+Route::get('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class,'CreateWork'])->name('Works.Create.Supplier');
+Route::post('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class,'StoreWork'])->name('Works.Store.Supplier');
 //=============================================================================================================//
 // هلأ هون لواجهة الزائر ^_^ 
 Route::get('ServiceHouse',[VisitorController::class,'View'])->name('ServiceHouse');

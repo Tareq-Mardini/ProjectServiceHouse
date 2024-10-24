@@ -30,9 +30,9 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="{{route('Supplier.Show.Myworks')}}">
           <i class='bx bxs-shopping-bag-alt'></i>
-          <span class="text">My services</span>
+          <span class="text">My works</span>
         </a>
       </li>
       <li>
