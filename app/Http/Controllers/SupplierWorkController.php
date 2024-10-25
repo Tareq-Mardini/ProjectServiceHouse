@@ -18,7 +18,7 @@ class SupplierWorkController extends Controller
     }   
     //عرض اعمال المقدم
     public function ViewMyWork(){
-        $userId = session('user_id');
+        $userId = session('supplier_user_id');
         $supplier = Supplier::findOrFail($userId);
         $works = $supplier->works;
         return view('Supplier.Home.Works.Myworks', compact('works'));
@@ -29,37 +29,57 @@ class SupplierWorkController extends Controller
         return view('Supplier.Home.Works.Create',compact('data'));
     }
     //تخزين
-    public function StoreWork(Request $request , services $serviceId){
+    public function StoreWork(Request $request){
 
          $validator = $request->validate([
-            'title' => 'required|string|max:255',
+            'service_id'=> 'required|integer|exists:services,id',
+            'supplier_id'=>'required|integer|exists:supplier,id',
+            'title'=>'required|string|max:255',
             'description' => 'required|string',
-            'price' => 'required|numeric',
-            'attachment' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048', 
-            'service_id' => 'required|integer|exists:services,id', 
-            'section_id' => 'required|integer|exists:sections,id', 
+            'price'=> 'required|numeric',
+            'image'=>'required|nullable|mimes:png,jpg,jpeg,webp',
+            'attachments' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048'
         ],);
        
-        $path = $request->file('image')->store('images', 'public');
+        $path ="";
+        $filename="";
+        $file="";
 
-        if($request->has('Attachment')){
-            $file = $request->file('Attachment');
+        $path1 ="";
+        $filename1="";
+        $file1="";
+        if($request->has('image')){
+            $file = $request->file('image');
             $extension =$file->getClientOriginalExtension();
             $filename = time().'.'.$extension;
             $path = 'uplod/images/';
             $file->move($path,$filename);
+        }else{
+            if($filename === 'c:\Users\DELL\Desktop\mob\pic\495460.png');
+        }
 
+        if($request->has('attachments')){
+            $file1 = $request->file('attachments');
+            $extension =$file1->getClientOriginalExtension();
+            $filename1 = time().'.'.$extension;
+            $path1 = 'uplod/images/';
+            $file->move($path1,$filename1);
+        }else{
+            if($filename1 === 'c:\Users\DELL\Desktop\mob\pic\495460.png');
+        }
+
+        $userId = session('supplier_user_id');
         Work::create([
+            'service_id'=>$request->input('service_id'),
+            'supplier_id' => $userId ,
             'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'attachment' => $path,
-            'service_id' => $request->input('service_id'),
-            'section_id' => $request->input('section_id'),
+            'description'=> $request->input('description'),
+            'price'=> $request->input('price'),
+            'image'=> $path.$filename,
+            'attachments'=> $path1.$filename1
         ]);
     
         session()->flash('success', 'Success create work.');
-        return redirect()->route('Works.Show.Supplier', compact('serviceId'));
-    }
+        return redirect()->route('Supplier.Show.Myworks');
 }
 }
