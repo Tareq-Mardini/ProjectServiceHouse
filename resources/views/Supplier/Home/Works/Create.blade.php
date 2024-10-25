@@ -35,16 +35,7 @@
                 <label for="price">Price:</label>
                 <input type="number" id="price" name="price" required>
             </div>
-        
-            <div>
-                <label for="image">Image:</label>
-                <input type="file" id="image" name="image" accept="image/*" required>
-            </div>
 
-            <div>
-                <label for="attachmens">Attachment:</label>
-                <input type="file" id="image" name="image" accept="image/*, video/*" required>
-            </div>
         
             <button type="submit">Create Work</button>
         </form>

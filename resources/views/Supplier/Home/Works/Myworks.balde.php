@@ -8,8 +8,6 @@
 </head>
 
 <body>
-    <span class="text">My Profile</span>
-    <span class="text">My works</span>
     <div>
         <a class="home-page" href="{{route('ServiceHouse.Home.Supplier')}}">Home Page <i class='bx bx-right-arrow-alt'></i> </a>
     </div>
@@ -20,31 +18,19 @@
                 <th scope="col">Service</th>
                 <th scope="col">Description</th>
                 <th scope="col">Price</th>
-                <th scope="col">Image</th>
-                <th scope="col">Attachment</th>
-                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $datas)
+            <div>
+            @foreach ($works as $work)
             <tr>
-                <td>{{$datas->title}}</td>
-                <td>{{$datas->service->name}}</td>
-                <td>{{$datas->description}}</td>
-                <td>{{$datas->price}}</td>
-                <td><img src="{{ asset($datas->attachment) }}" alt="" style="width: 120px; height: 80px;border-radius: 5px;"></td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="{{route('update_data', $datas->id)}}">Update</a>
-                        <form action="{{route('delete_data', $datas->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
-                </td>
+                <td>{{$work->title}}</td>
+                <td>{{$work->service->name}}</td>
+                <td>{{$work->description}}</td>
+                <td>{{$work->price}}</td>
             </tr>
             @endforeach
+            </div>
         </tbody>
     </table>
 </body>

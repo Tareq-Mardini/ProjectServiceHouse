@@ -32,6 +32,12 @@
       <li>
         <a href="{{route('Works.Create.Supplier')}}">
           <i class='bx bxs-shopping-bag-alt'></i>
+          <span class="text">create works</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{route('Supplier.Show.Myworks')}}">
+          <i class='bx bxs-shopping-bag-alt'></i>
           <span class="text">My works</span>
         </a>
       </li>
