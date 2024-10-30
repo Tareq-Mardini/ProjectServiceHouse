@@ -10,27 +10,23 @@ class Work extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable=[
+    protected $fillable = [
         'service_id',
         'supplier_id',
         'title',
         'description',
         'price',
-        'image',
-        'attachments'
+        'thumbnail',
+        'youtube_link'
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function service()
     {
-        return $this->belongsTo(services::class);
+        return $this->belongsTo(services::class, 'service_id', 'id');
     }
-    public function supplier()
-    {
-        return $this->belongsTo(Supplier::class);
-    }
-
 }
-
 
 
 

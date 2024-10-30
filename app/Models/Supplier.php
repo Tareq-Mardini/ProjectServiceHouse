@@ -20,10 +20,7 @@ class Supplier extends Authenticatable
         'image',
         'status',
     ];
-    public function works()
-    {
-        return $this->hasMany(Work::class);
-    }
+
 
     protected $casts = [
         'date_of_birth' => 'date',

@@ -10,7 +10,8 @@ class services extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable=[
+
+    protected $fillable = [
         'section_id',
         'name',
         'description',
@@ -19,6 +20,7 @@ class services extends Model
 
     protected $dates = ['deleted_at'];
 
+
     public function section()
     {
         return $this->belongsTo(Section::class, 'section_id', 'id');
@@ -26,13 +28,13 @@ class services extends Model
 
     public function works()
     {
-        return $this->hasMany(Work::class);
+        return $this->hasMany(Work::class, 'service_id', 'id');
     }
-    
+
     protected static function booted()
     {
-        static::deleting(function ($services) {
-            $services->works()->each(function ($work) {
+        static::deleting(function ($service) {
+            $service->works()->each(function ($work) {
                 $work->delete();
             });
         });

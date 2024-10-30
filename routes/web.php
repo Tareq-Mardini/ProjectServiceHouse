@@ -73,8 +73,8 @@ Route::get('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Info',[SupplierWorkCont
 Route::get('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class,'CreateWork'])->name('Works.Create.Supplier');
 Route::post('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class,'StoreWork'])->name('Works.Store.Supplier');
 //تعديل العمل
-Route::get('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Update',[SupplierWorkController::class,'EditeWork'])->name('Supplier.Edite.Myworks');
-Route::put('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Update',[SupplierWorkController::class,'UpdateWork'])->name('Supplier.Update.Myworks');
+Route::post('ServiceHouse/Supplier/Dashboard/Myworks/Update',[SupplierWorkController::class,'EditeWork'])->name('Supplier.Edite.Myworks');
+Route::put('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Update', [SupplierWorkController::class, 'UpdateWork'])->name('Supplier.Update.Myworks');
 //حذف عمل
 Route::delete('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Delete',[SupplierWorkController::class,'DeleteWork'])->name('Supplier.Delete.Work');
 //=============================================================================================================//

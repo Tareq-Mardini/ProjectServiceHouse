@@ -12,20 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('works', function (Blueprint $table) {
-                $table->id();
-                $table->unsignedBigInteger('service_id');
-                $table->foreign('services')->references('id')->on('services')->onDelete('cascade');
-                $table->unsignedBigInteger('supplier_id');
-                $table->foreign('supplier')->references('id')->on('suppliers')->onDelete('cascade');
-                $table->string('title');
-                $table->string('description');
-                $table->float('price');
-                $table->string('image')->nullable();
-                $table->string('attachments')->nullable();
-                $table->softDeletes();
-                $table->timestamps();
-        });
-    }
+            $table->id();
+            
+            $table->unsignedBigInteger('service_id');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->unsignedBigInteger('supplier_id');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            $table->string('title');
+            $table->string('description');
+            $table->float('price');
+            $table->string('thumbnail')->nullable();
+            $table->string('youtube_link')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+            
+        });}
 
     /**
      * Reverse the migrations.
