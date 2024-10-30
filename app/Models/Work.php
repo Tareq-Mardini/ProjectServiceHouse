@@ -18,7 +18,6 @@ class Work extends Model
         'price',
         'image',
         'attachments'
-        
     ];
 
     public function service()

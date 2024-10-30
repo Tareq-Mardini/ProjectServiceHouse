@@ -10,14 +10,14 @@
 <body>
     <div>
         <a class="home-page" href="{{route('ServiceHouse.Home.Supplier')}}">Home Page <i class='bx bx-right-arrow-alt'></i> </a>
+        <a class="home-page" href="{{route('Works.Create.Supplier')}}">Create Work <i class='bx bx-right-arrow-alt'></i> </a>
     </div>
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th scope="col">Title</th>
-                <th scope="col">Service</th>
                 <th scope="col">Description</th>
-                <th scope="col">Price</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -25,9 +25,14 @@
             @foreach ($works as $work)
             <tr>
                 <td>{{$work->title}}</td>
-                <td>{{$work->service->name}}</td>
                 <td>{{$work->description}}</td>
-                <td>{{$work->price}}</td>
+                <td><a href="{{route('Supplier.Edite.Myworks', $work->id)}}"><button>Update</button></a>
+                    <a href="{{route('Supplier.Work.Info', $work->id)}}"><button>View</button></a>
+                    <form action="{{ route('Supplier.Delete.Work', $work->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')  <button type="submit" style="background-color: red; margin-left: 0; margin-right:0;" class="btn1 btn custom-btn-danger">Delete</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
             </div>

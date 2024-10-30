@@ -67,10 +67,16 @@ Route::get('ServiceHouse/Supplier/Section/Services/{id}', [SupplierController::c
 //عرض جميع الاعمال من الخدمات
 Route::get('ServiceHouse/Supplier/Section/Services/{id}/works', [SupplierWorkController::class, 'ViewWorks'])->name('Works.Show.Supplier');
 //عرض الاعمال الخاصة بالمقدم
-Route::get('ServiceHouse/Supplier/Dashboard/Myworks',[SupplierWorkController::class],'ViewMyWork')->name('Supplier.Show.Myworks');
+Route::get('ServiceHouse/Supplier/Dashboard/Myworks',[SupplierWorkController::class,'ViewMyWork'])->name('Supplier.Show.Myworks');
+Route::get('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Info',[SupplierWorkController::class,'ViewWorkInfo'])->name('Supplier.Work.Info');
 //انشاء عمل 
 Route::get('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class,'CreateWork'])->name('Works.Create.Supplier');
 Route::post('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class,'StoreWork'])->name('Works.Store.Supplier');
+//تعديل العمل
+Route::get('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Update',[SupplierWorkController::class,'EditeWork'])->name('Supplier.Edite.Myworks');
+Route::put('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Update',[SupplierWorkController::class,'UpdateWork'])->name('Supplier.Update.Myworks');
+//حذف عمل
+Route::delete('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Delete',[SupplierWorkController::class,'DeleteWork'])->name('Supplier.Delete.Work');
 //=============================================================================================================//
 // هلأ هون لواجهة الزائر ^_^ 
 Route::get('ServiceHouse',[VisitorController::class,'View'])->name('ServiceHouse');
