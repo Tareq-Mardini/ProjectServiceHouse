@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
-            
             $table->unsignedBigInteger('service_id');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->unsignedBigInteger('supplier_id');
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->float('price');
             $table->string('thumbnail')->nullable();
             $table->string('youtube_link')->nullable();
+            $table->string('Average_delivery_time');
+            $table->string('Average_speed_of_response');
             $table->softDeletes();
             $table->timestamps();
-            
         });}
 
     /**

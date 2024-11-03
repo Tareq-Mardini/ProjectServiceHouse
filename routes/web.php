@@ -68,7 +68,7 @@ Route::get('ServiceHouse/Supplier/Section/Services/{id}', [SupplierController::c
 Route::get('ServiceHouse/Supplier/Section/Services/{id}/works', [SupplierWorkController::class, 'ViewWorks'])->name('Works.Show.Supplier');
 //عرض الاعمال الخاصة بالمقدم
 Route::get('ServiceHouse/Supplier/Dashboard/Myworks',[SupplierWorkController::class,'ViewMyWork'])->name('Supplier.Show.Myworks');
-Route::get('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Info',[SupplierWorkController::class,'ViewWorkInfo'])->name('Supplier.Work.Info');
+Route::get('ServiceHouse/Supplier/Dashboard/Myworks/InfoWork/{id}',[SupplierWorkController::class,'ViewWorkInfo'])->name('Supplier.Work.Info');
 //انشاء عمل 
 Route::get('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class,'CreateWork'])->name('Works.Create.Supplier');
 Route::post('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class,'StoreWork'])->name('Works.Store.Supplier');
