@@ -13,6 +13,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplierWorkController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\SupplierPortfolioController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -77,6 +78,8 @@ Route::post('ServiceHouse/Supplier/Dashboard/Myworks/Update',[SupplierWorkContro
 Route::put('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Update', [SupplierWorkController::class, 'UpdateWork'])->name('Supplier.Update.Myworks');
 //حذف عمل
 Route::delete('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Delete',[SupplierWorkController::class,'DeleteWork'])->name('Supplier.Delete.Work');
+//عرض بوتفوليو 
+Route::get('ServiceHouse/Supplier/Dashboard/MyPortfolio',[SupplierPortfolioController::class,'ViewMyPortfoloio'])->name('Supplier.Show.Portfolio');
 //=============================================================================================================//
 // هلأ هون لواجهة الزائر ^_^ 
 Route::get('ServiceHouse',[VisitorController::class,'View'])->name('ServiceHouse');
