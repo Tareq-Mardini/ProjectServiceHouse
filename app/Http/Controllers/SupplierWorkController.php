@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Section;
 use App\Models\services;
 use Illuminate\Http\Request;
-use App\Models\Supplier;
-use Symfony\Component\HttpFoundation\File\File;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Work;
 use App\Models\WorkImage;
@@ -15,12 +12,8 @@ use App\Models\WorkImage;
 
 class SupplierWorkController extends Controller
 {
-  //عرض جميع الاعمال
-  public function ViewWorks()
-  {
-    $data = Work::all();
-    return view('Supplier.Home.Works.Works', compact('data'));
-  }
+  
+
   //========================================================================================
   //عرض اعمال المقدم
   public function ViewMyWork()

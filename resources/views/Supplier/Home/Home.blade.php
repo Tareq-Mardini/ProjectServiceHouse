@@ -29,6 +29,8 @@
   <link rel="preload" as="image" href="./assets/images/blog-bg.svg">
   <link rel="preload" as="image" href="./assets/images/blog-5.jpg">
   <link rel="preload" as="image" href="./assets/images/blog-6.jpg">
+  <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+  <title>Service House</title>
 </head>
 
 <body id="top">

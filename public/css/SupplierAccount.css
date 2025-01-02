@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+
+  
+  .card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+    width: 100%;
+    animation: fadeIn 1.2s ease;
+    margin: auto;
+   
+  }
+  
+  .card-header {
+    background: linear-gradient(135deg, #1ab79d, #6be8c9, #ffe29f);
+
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+   
+  }
+  
+  .card-header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    
+  }
+  
+  .card-header h1 {
+    font-size: 1.8rem;
+    margin-top: 60px;
+  }
+  
+  .card-header p {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+  
+  .card-body {
+    padding: 20px;
+    margin-top: 20px;
+    background: #f9f9f9;
+    padding-bottom: 0px;
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .info-item i {
+    font-size: 1.5rem;
+    color: #1ab79d;
+    margin-right: 15px;
+  }
+  
+  .info-item .info-text {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .info-item .info-text span {
+    font-weight: 600;
+    color:#1ab79d
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+ }
+ .card-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    padding-top: 0px;
+}
+
+.update-btn {
+    background: linear-gradient(135deg, #1ab79d, #2a94f6);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.update-btn:hover {
+    background: linear-gradient(135deg, #2a94f6, #1ab79d);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.update-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* تنسيق الـ Modal */
+.modal {
+  display: none; /* مخفي افتراضياً */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6); /* خلفية مظللة */
+}
+
+/* محتوى الـ Modal */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+}
+
+/* زر الإغلاق */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}
+
+
+/* تنسيق حقول الإدخال */
+.modal-content input[type="password"] {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* أزرار الإجراءات */
+.modal-actions button {
+  cursor: pointer;
+}
+
+.modal-actions button:hover {
+  opacity: 0.9;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* خلفية مظلمة */
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #f8d7da;
+  margin: 5% auto;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 40%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #721c24;
+  margin-bottom: 15px;
+}
+
+.modal-body {
+  margin-bottom: 20px;
+  color: #721c24;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-start; /* محاذاة الأزرار إلى اليسار */
+  gap: 10px; /* مسافة بين الأزرار */
+}
+
+.modal-footer button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.modal-body input[type="password"] {
+  width: 100%; /* يجعل الحقل يمتد بعرض الموديل */
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 20px; /* مسافة سفلية */
+  margin-top: 10px;
+}
+
+/* تنسيق الحقل بشكل عام */
+.modal-content input[type="password"] {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%; /* الحقل يمتد بعرض الموديل */
+  box-sizing: border-box;
+  margin-bottom: 20px; /* مسافة سفلية */
+  background-color: #f9f9f9; /* خلفية فاتحة */
+  transition: all 0.3s ease; /* تأثير الانتقال عند التفاعل */
+}
+
+/* التأثير عند التركيز على الحقل (focus) */
+.modal-content input[type="password"]:focus {
+  outline: none; /* إزالة حدود التركيز الافتراضية */
+  border-color: #dc3545; /* تغيير لون الحدود إلى الأحمر */
+  background-color: #fff5f5; /* خلفية فاتحة عند التركيز */
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.5); /* تأثير الظل لإبراز الحقل */
+}
+
+/* التأثير عند الكتابة داخل الحقل */
+.modal-content input[type="password"]:valid {
+  border-color: #28a745; /* لون الحدود يصبح أخضر عند الكتابة الصحيحة */
+}
+
+.modal-content input[type="password"]:invalid {
+  border-color: #dc3545; /* لون الحدود يصبح أحمر عند الكتابة الخاطئة */
+}
+

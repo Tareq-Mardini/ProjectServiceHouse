@@ -1,0 +1,128 @@
+.Section .content-section img {
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+
+
+.Section .content-section .info-supplier .image-supplier{
+    width: 30px;
+    height: 30px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    
+}
+
+/* تصميم معلومات المورد */
+.info-supplier {
+    display: flex; /* استخدام Flexbox لمحاذاة العناصر أفقيًا */
+    align-items: center; /* محاذاة العناصر عموديًا في المنتصف */
+    gap: 10px; /* مسافة بين الصورة والنص */
+    margin-top: 10px; /* مسافة أعلى */
+    margin-bottom: 3px;
+}
+
+.image-supplier {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* جعل الصورة دائرية */
+    object-fit: cover; /* ضمان تغطية الصورة للمساحة بالكامل */
+    border: 2px solid #ddd; /* إطار خفيف حول الصورة */
+}
+
+.supplier-name {
+    font-size: 1.5rem; /* حجم النص */
+    font-weight: bold; /* جعل النص عريضًا */
+    color: #333; /* لون النص */
+}
+
+.text h3,p {
+    text-align: left;
+    margin-top: 3px;
+    
+}
+
+.container .small-box .title  {
+    font-size: 30px;
+}
+
+.small-box .title i {
+    font-size: 30px;
+
+}
+.small-box .product-details .detail{
+font-size: 19px;
+
+}
+
+.small-box .detail .label h2{
+    font-size: 19px;
+}
+
+.large-box {
+    flex: 2;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content:flex-start;
+    align-items: flex-start;
+    margin-top: 40px;  
+}
+
+.portfolio-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #549fef, #00c4ff); /* ألوان متدرجة */
+    color: white;
+    font-size: 16px;
+    
+    padding: 12px 25px;
+    border-radius: 50px; /* حواف دائرية بالكامل */
+    text-decoration: none;
+    transition: all 0.3s ease; /* تأثير الانتقال */
+    box-shadow: 0px 5px 15px rgba(47, 136, 232, 0.4); /* ظل جميل */
+}
+
+.portfolio-btn:hover {
+    background: linear-gradient(90deg, #0056b3, #0099cc); /* ألوان مختلفة عند التمرير */
+    box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.6); /* زيادة الظل */
+    transform: translateY(-3px); /* تحريك الزر للأعلى */
+}
+
+.portfolio-btn:active {
+    transform: translateY(1px); /* عند الضغط */
+    box-shadow: 0px 5px 10px rgba(0, 123, 255, 0.3); /* تقليل الظل */
+}
+
+.media-container iframe,
+.media-container img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: none;
+    border-radius: 15px;
+    transition: opacity 0.5s ease;
+}
+
+.arrow {
+    position: absolute;
+    top: 43%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: #fff;
+    background: #1ab79d;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+   
+}

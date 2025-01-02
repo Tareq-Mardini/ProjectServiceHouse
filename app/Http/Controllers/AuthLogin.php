@@ -58,4 +58,10 @@ class AuthLogin extends Controller
             ])->withInput();
         }
     }
+
+    public function LogoutSupplier()
+    {
+        Auth::guard('Supplier')->logout();
+        return redirect()->route('AuthLoginn')->with('success', 'Logged out successfully.');
+    }
 }

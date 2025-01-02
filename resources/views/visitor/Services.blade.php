@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="{{asset('css/visitor.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +11,10 @@
         href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/visitor-sections.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <title>Service House</title>
 </head>
 
 <body>
@@ -31,16 +34,16 @@
                 </div>
                 <ul class="navbar-list">
                     <li class="navbar-item">
-                        <a href="#home" class="navbar-link" data-nav-link>Home</a>
+                        <a href="{{route('ServiceHouse')}}" class="navbar-link" data-nav-link>Home</a>
                     </li>
                     <li class="navbar-item">
-                        <a href="#Benefit" class="navbar-link" data-nav-link>Benefits</a>
+                        <a href="{{route('ServiceHouse')}}"class="navbar-link" data-nav-link>Benefits</a>
                     </li>
                     <li class="navbar-item">
-                        <a href="#about" class="navbar-link" data-nav-link>About</a>
+                        <a href="{{route('ServiceHouse')}}" class="navbar-link" data-nav-link>About</a>
                     </li>
                     <li class="navbar-item">
-                        <a href="#footer" class="navbar-link" data-nav-link>Contact</a>
+                        <a href="{{route('ServiceHouse')}}" class="navbar-link" data-nav-link>Contact</a>
                     </li>
                 </ul>
             </nav>
@@ -77,20 +80,25 @@
         </div>
     </header>
     <div class="container" style="margin-top: 160px;">
-    <h2 class="h2 section-title"><span class="span">Services </span></h2>
-        <div class="Section">
-            @foreach ($data as $service)
-            <div class="content-section">
-                <img src="{{ asset($service->image) }}" alt="">
-                <div class="text">
-                    <h3>{{$service->name}}</h3>
-                    <p>{{$service->description}}
-                    </p>
+                <h2 class="h2 section-title"><span class="span">Services <i class="fa fa-briefcase" aria-hidden="true"></i>
+
+                </span></h2>
+                <div class="Section">
+                    @foreach ($data as $service)
+                    <div class="content-section">
+                        <img src="{{ asset($service->image) }}" alt="">
+                        <div class="text">
+                            <h3>{{$service->name}}</h3>
+                            <p>{{$service->description}}
+                            </p>
+                            <a href="{{route('Works.Show.Visitor',['id' => $service->id])}}">
+                                <button>View Works</button>
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
-            @endforeach
-        </div>
-    </div>
 
     <a href="#top" class="back-top-btn" aria-label="back top top" data-back-top-btn>
         <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>

@@ -14,6 +14,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap"
     rel="stylesheet">
+    <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <title>Service House</title>
 </head>
 
 <body>
@@ -23,16 +25,22 @@
       <img src="{{asset('images/visitor/logo-3.png')}}" width="150" height="100" alt="EduWeb logo" style="margin-left: 70px; margin-top:20px">
     </a>
     <ul style="margin-top:0px" class="side-menu top">
-      <li class="active">
-        <a href="#">
-          <i class='bx bxs-dashboard'></i>
-          <span class="text">My Profile</span>
+      <li class="">
+        <a href="{{route('Supplier.View.Portfolio')}}">
+          <i class='bx bxs-user-circle'></i>
+          <span class="text">My Portfolio</span>
         </a>
       </li>
       <li>
         <a href="{{route('Supplier.Show.Myworks')}}">
           <i class='bx bxs-shopping-bag-alt'></i>
           <span class="text">My works</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{route('Supplier.View.Account')}}">
+          <i class='bx bx-user'></i>
+          <span class="text">My Account</span>
         </a>
       </li>
       <li>
@@ -60,7 +68,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="logout">
+        <a href="{{route('Logout.supplier')}}" class="logout">
           <i class='bx bxs-log-out-circle'></i>
           <span class="text">Logout</span>
         </a>

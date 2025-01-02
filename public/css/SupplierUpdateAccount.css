@@ -1,0 +1,70 @@
+form .form-group {
+    margin-bottom: 15px;
+}
+
+form .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #1ab79d;
+}
+
+form .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+form .form-group input:focus {
+    border-color: #1ab79d;
+    box-shadow: 0 0 5px rgba(26, 183, 157, 0.5);
+}
+
+.update-btn {
+    background: linear-gradient(135deg, #1ab79d, #2a94f6);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.update-btn:hover {
+    background: linear-gradient(135deg, #2a94f6, #1ab79d);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+form .form-group input[type="file"] {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    color: #333;
+}
+
+form .form-group input[type="file"]:focus {
+    border-color: #1ab79d;
+    box-shadow: 0 0 5px rgba(26, 183, 157, 0.5);
+    background-color: #fff;
+}
+
+form .form-group label {
+    font-size: 1rem;
+    color: #1ab79d;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+form .form-group {
+    margin-bottom: 20px;
+}
+.text-danger strong{
+    color: red;
+}

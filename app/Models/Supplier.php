@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class Supplier extends Authenticatable
 {
     use Notifiable;
@@ -29,4 +30,13 @@ class Supplier extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function portfolio()
+{
+    return $this->hasOne(Portfolio::class, 'supplier_id');
+}
+
+public function works()
+{
+    return $this->hasMany(Work::class, 'supplier_id', 'id');
+}
 }

@@ -34,6 +34,11 @@ class Work extends Model
     {
         return $this->hasMany(WorkImage::class,'work_id','id'); // علاقة `hasMany` تربط العمل بالصور المتعددة.
     }
+
+    public function supplier()
+{
+    return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
+}
 }
 
 

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Section;
 use App\Models\services;
+use App\Models\Work;
+use App\Models\WorkImage;
+use App\Models\Supplier;
+use App\Models\Portfolio;
 
 class VisitorController extends Controller {
   public function view() {
@@ -19,6 +23,32 @@ class VisitorController extends Controller {
   public function ViewServices($id) {
     $data = services::where('section_id', $id)->get();
     return view('visitor.Services', compact('data'));
+  }
+
+  public function ViewWorks($id)
+  {
+      $data = Work::where('service_id', $id)->get();
+      return view('visitor.Works', compact('data'));
+  }
+
+  public function ViewinfoWorks($id)
+  {
+      $works = Work::where('id', $id)->first();
+      $image = WorkImage::where('work_id', $id)->get('image_path');
+      return view('visitor.WorkInfo', compact('works', 'image'));
+  }
+
+  public function ViewPortfolio($id)
+  {
+      $works = Work::where('supplier_id', $id)->get();
+      $data = Supplier::select('name', 'image')->where('id', $id)->first();
+      $portfolio = Portfolio::with(['skills', 'educations', 'experiences', 'galleries'])
+          ->where('supplier_id', $id)
+          ->first();
+      if (!$portfolio) {
+          return view('visitor.NullPortfolio');
+      }
+      return view('visitor.portfolio', compact('portfolio','data','works'));
   }
 
 }
