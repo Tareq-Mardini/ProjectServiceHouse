@@ -50,7 +50,7 @@
           </li>
           <li class="navbar-item">
             <button style="width: 120px;" class="option-btn" id="customerBtn">
-              <a href="">Settings</a>
+              <a href="{{route('ServiceHouse.Client.Settings')}}">Settings</a>
               <i class='bx bx-cog bx-spin'></i>
             </button>
           </li>
