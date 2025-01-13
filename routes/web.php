@@ -103,5 +103,14 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
 
 // هلأ لح نشتغل على الراوتات الزبائن ^_^
 Route::get('ServiceHouse/Client', [ClientController::class, 'View'])->name('ServiceHouse.Home.Client');
+Route::get('ServiceHouse/Client/Sections', [ClientController::class, 'ShowSections'])->name('Servicehouse.Sections.Show.Client');
+Route::get('ServiceHouse/Client/Section/Services/{id}', [ClientController::class, 'ShowServices'])->name('Servicehouse.Services.Show.Client');
+Route::get('ServiceHouse/Client/Section/Service/{id}/works', [ClientController::class, 'ViewWorks'])->name('Works.Show.Client');
+Route::get('ServiceHouse/Client/Section/Service/work/info{id}', [ClientController::class, 'ViewinfoWorks'])->name('Works.info.Client');
+Route::get('ServiceHouse/Client/Section/Service/WorkInfo/portfolio{id}', [ClientController::class, 'ViewPortfolio'])->name('view.portfolio.Client');
+Route::get('ServiceHouse/Client/Settings', [ClientController::class, 'ViewSettings'])->name('ServiceHouse.Client.Settings');
+Route::get('ServiceHouse/Client/Settings/MyAccount', [ClientController::class, 'ViewAccount'])->name('Client.View.Account');
+Route::get('ServiceHouse/Client/Settings/MyAccount/Update', [ClientController::class, 'UpdateAccount'])->name('Client.Update.Account');
+Route::post('/update-Account-client', [ClientController::class, 'EditAccount'])->name('Client.Edit.Account');
 
 //===================================================================================================================================================//

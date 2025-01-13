@@ -123,13 +123,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
         </nav>
         <!-- NAVBAR -->
         <!-- MAIN -->

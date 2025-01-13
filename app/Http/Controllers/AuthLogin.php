@@ -23,8 +23,8 @@ class AuthLogin extends Controller
         if ($client) {
             if (Auth::guard('Client')->attempt($credentials)) {
                 session()->flash('success_login', 'Success login cc.');
-                $user = Auth::user();
-                session(['user_id' => $user->id]);
+                $user = Auth::guard('Client')->user();
+                session(['Client_user_id' => $user->id]);
                 return redirect()->route('ServiceHouse.Home.Client');
             } else {
                 return back()->withErrors([
