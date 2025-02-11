@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('css/portfolio.css')}}">
     <link rel="stylesheet" href="{{asset('css/MyPortfolio.css')}}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
     <title>Service House</title>
 </head>
@@ -93,20 +94,19 @@
                     <a style="color: white; background-color:#007c92" class="home-page" href="{{route('Supplier.Edit.Portfolio')}}">Update Portfolio <i class="fa fa-edit"></i></a>
                 </div>
                 <div>
-                    <a style="color: white; background-color:red" class="home-page" href="javascript:void(0)" class="delete-button" id="deleteBtn">Delete Portfolio <i class="fa fa-trash"></i></a>
+                    <a style="color: white; background-color:red" class="home-page" href="javascript:void(0)" class="delete-button" id="openDeleteModal">Delete Portfolio <i class="fa fa-trash"></i></a>
                 </div>
-
-                <!-- الموديل الخاص بتأكيد الحذف -->
-                <div id="myModal" class="modal">
+                <div id="deletePortfolioModal" class="modal">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            Are you sure you want to delete this portfolio?
+                        <span class="close-modal">&times;</span>
+                        <div style="color: red; font-size:18px" class="modal-header">
+                            <i class='bx bx-error-alt bx-tada' style='color:red ;margin-right: 3px;'></i> Are you sure you want to delete this portfolio?
                         </div>
                         <div class="modal-body">
                             This action cannot be undone. Please confirm if you want to delete your portfolio.
                         </div>
                         <div class="modal-footer">
-                            <button class="btn-secondary" id="cancelBtn">Cancel</button>
+                            <button class="btn-secondary" id="cancelDeleteBtn">Cancel</button>
                             <a style="color: white;" href="{{ route('Supplier.Delete.Portfolio') }}" class="btn-danger">Yes, Delete</a>
                         </div>
                     </div>
@@ -120,21 +120,16 @@
                         <div class="profile-picture">
                             <img src="{{ Storage::url($data->image) }}" alt="Tareq Profile Picture">
                         </div>
-
                     </div>
                 </section>
-
                 <section id="about">
                     <div class="about-container">
-                        <!-- القسم الأيسر: النص -->
                         <div class="about-left">
                             <h2 class="section-title">About Me</h2>
                             <p>
                                 {{$portfolio->about_me}}
                             </p>
                         </div>
-
-                        <!-- القسم الأيمن: الأزرار والمحتوى -->
                         <div class="about-right">
                             <!-- التبويبات -->
                             <div class="tabs">
@@ -142,24 +137,20 @@
                                 <button class="tab-button" data-tab="experience">Experience</button>
                                 <button class="tab-button" data-tab="education">Education</button>
                                 <button class="tab-button" data-tab="language">Languages</button>
-
                             </div>
-
-                            <!-- محتوى التبويبات -->
                             <div class="tab-content">
                                 <div id="skills" class="tab-pane active">
                                     <h3 class="section-title">Skills</h3>
                                     <ul class="styled-list">
                                         @foreach ($portfolio->skills as $data)
                                         <li>
-                                            <i class="fas fa-tools icon"></i> <!-- أيقونة المهارات -->
+                                            <i class="fas fa-tools icon"></i>
                                             <strong class="item-title">{{$data->title}}:</strong>
                                             <span class="item-description">{{$data->description}}</span>
                                         </li>
                                         @endforeach
                                     </ul>
                                 </div>
-
                                 <div id="experience" class="tab-pane">
                                     <h3 class="section-title">Experience</h3>
                                     <ul class="styled-list">
@@ -254,7 +245,21 @@
                 </section>
                 <script src="{{asset('js/supplier-dashboard.js')}}"></script>
             </main>
+            <script src="{{asset('js/Loading.js')}}"></script>
             <script src="{{asset('js/supplier-dashboard.js')}}"></script>
             <script src="{{asset('js/portfolio.js')}}"></script>
+
+            @if(session('Success_Create'))
+            <script>
+                Notiflix.Notify.success("{{ session('Success_Create') }}");
+            </script>
+            @endif
+            @if(session('Success_Update'))
+            <script>
+                Notiflix.Notify.success("{{ session('Success_Update') }}");
+            </script>
+            @endif
+
     </body>
+
 </html>

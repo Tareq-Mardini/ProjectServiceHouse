@@ -74,7 +74,7 @@ class SupplierWorkController extends Controller
         $work->images()->create(['image_path' => $path]);
       }
     }
-    session()->flash('success', 'تم إنشاء العمل بنجاح.');
+    session()->flash('Success_Create', 'Success Create Work'); 
     return redirect()->route('Supplier.Show.Myworks');
   }
   //========================================================================================
@@ -135,7 +135,7 @@ class SupplierWorkController extends Controller
       }
     }
     $work->save();
-    session()->flash('success_update_work', 'تم تحديث العمل بنجاح.');
+    session()->flash('Success_Update', 'Success Update Work'); 
     return redirect()->route('Supplier.Show.Myworks');
   }
   //========================================================================================
@@ -152,7 +152,7 @@ class SupplierWorkController extends Controller
         $image->delete(); // حذف السجل المرتبط بالصورة من قاعدة البيانات
       }
       $work->forceDelete();
-      session()->flash('success_delete_work', 'Success Delete work.');
+      session()->flash('Success_Delete', 'Success Delete Work'); 
     } else {
       session()->flash('error_delete_work', 'Work not found.');
     }

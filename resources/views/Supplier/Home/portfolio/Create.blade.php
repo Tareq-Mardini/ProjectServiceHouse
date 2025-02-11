@@ -14,9 +14,11 @@
   <link
     href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap"
     rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/CreateWork.css')}}">
   <link rel="stylesheet" href="{{asset('css/MyWorks.css')}}">
   <link rel="stylesheet" href="{{asset('css/portfolio.css')}}">
   <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
   <title>Service House</title>
 </head>
 
@@ -177,7 +179,7 @@
             @enderror
             <label for="galleries_platform_1">Platform</label>
             <div class="form-group">
-              <select name="galleries[0][platform]" id="galleries_platform_1" >
+              <select name="galleries[0][platform]" id="galleries_platform_1">
                 <option value="" disabled selected>Select Platform</option>
                 <option value="GitHub" {{ old('galleries.0.platform') == 'GitHub' ? 'selected' : '' }}>GitHub</option>
                 <option value="Behance" {{ old('galleries.0.platform') == 'Behance' ? 'selected' : '' }}>Behance</option>
@@ -211,7 +213,39 @@
         <button type="submit" class="submit-button">Submit</button>
       </form>
     </main>
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <div style="color: #1ab79d;" class="modal-title"> <i class='bx bx-error-alt bx-tada' style='color:#1ab79d ;margin-right: 8px;'></i>Form Entry Instructions</div>
+          <span class="modal-close" onclick="closeModal()">×</span>
+        </div>
+        <div class="modal-content">
+          <p><span>1-</span> Enter information about yourself that does not exceed three lines.</p>
+          <p><span>2-</span> Enter the languages ​​you are proficient in and speak.</p>
+          <p><span>3-</span> Enter the skills you know, such as programming languages ​​or any skill you have. This field is optional.</p>
+          <p><span>4-</span> Enter the experience that you have, enter the date it was obtained and what it is.</p>
+          <p><span>5-</span> Enter the academic certificates you obtained, whether baccalaureate, university, etc.</p>
+          <p><span>6-</span> Enter the business exhibition information, including the name, platform link, and thumbnail of the exhibition.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-button" onclick="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.onload = function() {
+        setTimeout(function() {
+          document.getElementById('modal-overlay').classList.add('show');
+        }, 1000);
+      };
+
+      function closeModal() {
+        document.getElementById('modal-overlay').classList.remove('show');
+      }
+    </script>
+    <script src="{{asset('js/Loading.js')}}"></script>
     <script src="{{asset('js/supplier-dashboard.js')}}"></script>
     <script src="{{asset('js/portfolio.js')}}"></script>
 </body>
+
 </html>

@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('css/portfolio.css')}}">
     <link rel="stylesheet" href="{{asset('css/MyPortfolio.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title>Service House</title>
 
 </head>
@@ -78,3 +79,4 @@
         <section style="margin-top: 170px;" id="content">
             <main>
                 <h1  style="text-align: center; color:#ee4962"><i class="fas fa-sad-tear" style="color: gray; margin-right: 5px;"></i> He/she does not have a portfolio.</h1>
+                <script src="{{asset('js/Loading.js')}}"></script>

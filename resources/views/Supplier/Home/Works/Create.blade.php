@@ -15,6 +15,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/CreateWork.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title>Service House</title>
 </head>
 
@@ -190,6 +191,7 @@
         }
     </script>
     <script src="{{asset('js/supplier-dashboard.js')}}"></script>
+    <script src="{{asset('js/Loading.js')}}"></script>
 </body>
 
 </html>

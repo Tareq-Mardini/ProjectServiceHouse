@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/style-section.css')}}">
     <link rel="stylesheet" href="{{asset('css/style-section-edit.css')}}">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title> Admin Dashboard </title>
 </head>
 <body>
@@ -51,5 +52,6 @@
             </div>
         </div>
     </div>
+    <script src="{{asset('js/Loading.js')}}"></script>
     </body>
 </html>

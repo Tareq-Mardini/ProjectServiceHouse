@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/StyleLoginClientSuppler.css')}}">
     <link rel="stylesheet" href="{{asset('css/all.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -51,6 +52,7 @@
         </form>
     </div>
 </div>
+<script src="{{asset('js/Loading.js')}}"></script>
   <script type="text/javascript" src="{{asset('js/LoginClientSuppler.js')}}"></script>
   <script type="text/javascript" src="{{asset('js/AllAwsame.js')}}"></script>
 </body>

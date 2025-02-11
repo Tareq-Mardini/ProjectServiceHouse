@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('css/style-section.css')}}">
     <link rel="stylesheet" href="{{asset('css/style-section-edit.css')}}">
-    
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title> Admin Dashboard </title>
 </head>
 <body>
@@ -48,5 +48,6 @@
             </div>
         </div>
     </div>
+    <script src="{{asset('js/Loading.js')}}"></script>
     </body>
 </html>

@@ -96,6 +96,7 @@ class SupplierController extends Controller
             $supplier->password = Hash::make($request->new_password);
         }
         $supplier->save();
+        session()->flash('Success_Update', 'Success Update Account'); 
         return redirect()->route('Supplier.View.Account')->with('success', 'Account updated successfully.');
     }
     //============================================================================================================

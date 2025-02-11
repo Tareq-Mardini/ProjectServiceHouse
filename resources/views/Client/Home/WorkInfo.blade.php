@@ -18,6 +18,7 @@
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{asset('css/SupplierWork.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title>Service House</title>
 </head>
 
@@ -54,7 +55,7 @@
                     </li>
                     <li class="navbar-item">
                         <button style="width: 120px;" class="option-btn" id="customerBtn">
-                            <a href="">Settings</a>
+                            <a href="{{route('ServiceHouse.Client.Settings')}}">Settings</a>
                             <i class='bx bx-cog bx-spin'></i>
                         </button>
                     </li>
@@ -128,10 +129,7 @@
                                 <i class="fa fa-folder-open" aria-hidden="true" style="margin-right: 8px;"></i> View Portfolio
                             </a>
                         </div>
-
-
                     </div>
-
                 </div>
                 <div class="discription detail">
                     <span class="label">
@@ -141,10 +139,10 @@
                     </p>
                 </div>
             </div>
-
         </main>
     </section>
     <!-- CONTENT -->
+    <script src="{{asset('js/Loading.js')}}"></script>
     <script src="{{asset('js/InfoWork.js')}}"></script>
     <script src="{{asset('js/supplier-dashboard.js')}}"></script>
 </body>

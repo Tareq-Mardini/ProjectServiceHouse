@@ -115,6 +115,7 @@ class ClientController extends Controller
             $Client->password = Hash::make($request->new_password);
         }
         $Client->save();
+        session()->flash('Success_Update', 'Success Update Account'); 
         return redirect()->route('Client.View.Account')->with('success', 'Account updated successfully.');
     }
 

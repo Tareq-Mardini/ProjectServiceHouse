@@ -22,9 +22,9 @@ class AuthLogin extends Controller
         $client = Client::where('email', $request->email)->first();
         if ($client) {
             if (Auth::guard('Client')->attempt($credentials)) {
-                session()->flash('success_login', 'Success login cc.');
                 $user = Auth::guard('Client')->user();
                 session(['Client_user_id' => $user->id]);
+                session()->flash('Success_Login_Client', 'Success Login'); 
                 return redirect()->route('ServiceHouse.Home.Client');
             } else {
                 return back()->withErrors([
@@ -43,9 +43,9 @@ class AuthLogin extends Controller
         $supplier = Supplier::where('email', $request->email)->first();
         if ($supplier) {
             if (Auth::guard('Supplier')->attempt($credentials)) {
-                session()->flash('success_login', 'Success login cc.');
                 $user = Auth::guard('Supplier')->user();
                 session(['supplier_user_id' => $user->id]);
+                session()->flash('Success_Login_Supplier', 'Success Login'); 
                 return redirect()->route('ServiceHouse.Home.Supplier');
             } else {
                 return back()->withErrors([
@@ -63,5 +63,11 @@ class AuthLogin extends Controller
     {
         Auth::guard('Supplier')->logout();
         return redirect()->route('AuthLoginn')->with('success', 'Logged out successfully.');
+    }
+
+    public function LogoutClient()
+    {
+        Auth::guard('Client')->logout();
+        return redirect()->route('AuthLogin')->with('success', 'Logged out successfully.');
     }
 }

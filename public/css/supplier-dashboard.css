@@ -156,6 +156,7 @@ body {
 	min-width: calc(60px  - ((4px + 6px) * 2));
 	display: flex;
 	justify-content: center;
+	font-size: 25px;
 }
 /* SIDEBAR */
 
@@ -372,6 +373,7 @@ body {
 	display: flex;
 	align-items: center;
 	grid-gap: 24px;
+	
 }
 #content main .box-info li .bx {
 	width: 80px;

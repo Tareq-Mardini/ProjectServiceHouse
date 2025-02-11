@@ -114,6 +114,7 @@ class SupplierPortfolioController extends Controller
                 }
             }
         }
+        session()->flash('Success_Create', 'Success Create Portfolio');  
         return redirect()->route('Supplier.View.Portfolio');
     }
     //===================================================================================
@@ -197,6 +198,7 @@ class SupplierPortfolioController extends Controller
             }
         }
         $portfolio->save();
+        session()->flash('Success_Update', 'Success Update Portfolio'); 
         return redirect()->route('Supplier.View.Portfolio');
     }
     //===================================================================================
@@ -218,6 +220,7 @@ class SupplierPortfolioController extends Controller
         $userId = session('supplier_user_id');
         $portfolio = Portfolio::where('supplier_id', $userId)->first();
         $portfolio->delete();
+        session()->flash('Success_Delete', 'Success Delete Portfolio'); 
         return redirect()->route('Supplier.View.Portfolio');
     }
 }

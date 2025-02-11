@@ -110,50 +110,51 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 //=======================================================
-// التبديل بين التبويبات
-// Toggle Navbar for Mobile
 
-
-
-
-
-// JavaScript لتفعيل التبويبات
-// JavaScript لتفعيل التبويبات
 const tabButtons = document.querySelectorAll('.tab-button');
 const tabPanes = document.querySelectorAll('.tab-pane');
 
 tabButtons.forEach(button => {
   button.addEventListener('click', () => {
-    // إزالة التفعيل عن جميع الأزرار
     tabButtons.forEach(btn => btn.classList.remove('active'));
-    // إضافة التفعيل للزر الحالي
     button.classList.add('active');
-
-    // إخفاء جميع محتويات التبويبات
     tabPanes.forEach(pane => pane.classList.remove('active'));
-    // عرض المحتوى الخاص بالتبويب الحالي
     const tabId = button.getAttribute('data-tab');
     document.getElementById(tabId).classList.add('active');
   });
 });
 
-var modal = document.getElementById("myModal");
-var deleteBtn = document.getElementById("deleteBtn");
-var cancelBtn = document.getElementById("cancelBtn");
+//===============================================================
 
-// عندما يضغط المستخدم على "Delete Portfolio" يتم فتح الموديل
-deleteBtn.onclick = function() {
-    modal.style.display = "block";
+// ✅ تحديد العناصر بناءً على الأسماء الجديدة
+const deleteModal = document.getElementById("deletePortfolioModal");
+const openModalBtn = document.getElementById("openDeleteModal"); // الزر الذي يفتح المودال
+const closeModalBtn = document.querySelector(".close-modal"); // زر الإغلاق (X)
+const cancelBtn = document.getElementById("cancelDeleteBtn"); // زر الإلغاء
+
+// ✅ فتح المودال عند الضغط على زر الحذف
+if (openModalBtn) {
+    openModalBtn.addEventListener("click", function () {
+        deleteModal.classList.add("show");
+    });
 }
 
-// عندما يضغط المستخدم على "Cancel" يتم إغلاق الموديل
-cancelBtn.onclick = function() {
-    modal.style.display = "none";
+// ✅ إغلاق المودال عند الضغط على زر (X) أو إلغاء
+if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", function () {
+        deleteModal.classList.remove("show");
+    });
 }
 
-// إغلاق الموديل عند الضغط خارج الموديل
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+if (cancelBtn) {
+    cancelBtn.addEventListener("click", function () {
+        deleteModal.classList.remove("show");
+    });
+}
+
+// ✅ إغلاق المودال عند الضغط في أي مكان خارج المحتوى
+window.addEventListener("click", function (event) {
+    if (event.target === deleteModal) {
+        deleteModal.classList.remove("show");
     }
-}
+});

@@ -17,9 +17,9 @@
   <link rel="stylesheet" href="{{asset('css/MyWorks.css')}}">
   <link rel="stylesheet" href="{{asset('css/portfolio.css')}}">
   <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
   <title>Service House</title>
 </head>
-
 <body>
   <!-- SIDEBAR -->
   <section id="sidebar">
@@ -77,7 +77,6 @@
       </li>
     </ul>
   </section>
-
   <section id="content">
     <!-- NAVBAR -->
     <nav>
@@ -87,4 +86,14 @@
         <a style="color: white; margin-left:15px; background-color:#007c92" class="home-page" href="{{route('Supplier.Create.Portfolio')}}">Create Portfolio <i class='bx bx-add-to-queue' style='color:#ffffff'></i> </a>
       </div>
     </nav>
+    <main>
     <script src="{{asset('js/supplier-dashboard.js')}}"></script>
+    <script src="{{asset('js/Loading.js')}}"></script>
+    @if(session('Success_Delete'))
+    <script>
+      Notiflix.Notify.success("{{ session('Success_Delete') }}");
+    </script>
+    @endif
+  </section>
+</body>
+</html>

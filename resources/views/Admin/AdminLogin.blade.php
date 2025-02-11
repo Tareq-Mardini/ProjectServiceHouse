@@ -6,6 +6,7 @@
   <title>LoginAdmin</title>
   <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('css/styleLogin.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
 </head>
   <body>
     <div class="login-box">
@@ -25,5 +26,6 @@
           @endif
         </form>
       </div>
+      <script src="{{asset('js/Loading.js')}}"></script>
     </body>
 </html>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/style-register-client.css')}}" />
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
   </head>
   <body>
   <section class="container">
@@ -125,5 +126,6 @@
     <button type="submit">Register</button>
   </form>
 </section>
+    <script src="{{asset('js/Loading.js')}}"></script>
   </body>
 </html>

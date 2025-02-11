@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- My CSS -->
@@ -16,10 +15,10 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <link rel="stylesheet" href="{{asset('css/SupplierAccount.css')}}">
     <link rel="stylesheet" href="{{asset('css/SupplierUpdateAccount.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title>Service House</title>
 </head>
 <body>
@@ -29,14 +28,12 @@
       <img src="{{asset('images/visitor/logo-3.png')}}" width="150" height="100" alt="EduWeb logo" style="margin-left: 70px; margin-top:20px">
     </a>
     <ul style="margin-top:0px" class="side-menu top">
-
       <li>
         <a href="">
           <i class='bx bx-user'></i>
           <span class="text">My Account</span>
         </a>
       </li>
-
       <ul>
   <li>
     <a href="#">
@@ -57,10 +54,8 @@
     </a>
   </li>
 </ul>
-
-
       <li>
-        <a href="" class="logout">
+        <a href="{{route('Logout.client')}}" class="logout">
           <i class='bx bxs-log-out-circle'></i>
           <span class="text">Logout</span>
         </a>
@@ -96,7 +91,6 @@
                             </div>
                             @endif
                         </div>
-
                         <div class="form-group">
                             <label for="phone"><i class="fa fa-phone"></i> Phone Number</label>
                             <input type="text" id="phone" name="phone_number" value="{{ old('phone_number', $Client->phone_number) }}" required>
@@ -106,7 +100,6 @@
                             </div>
                             @endif
                         </div>
-
                         <div class="form-group">
                             <label for="address"><i class="fa fa-map-marker-alt"></i> Address</label>
                             <input type="text" id="address" name="address" value="{{ old('address', $Client->address) }}" required>
@@ -116,7 +109,6 @@
                             </div>
                             @endif
                         </div>
-
                         <div class="form-group">
                             <label for="date_of_birth"><i class="fa fa-calendar"></i> Date of Birth</label>
                             <input type="date" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth', $Client->date_of_birth) }}" required>
@@ -126,7 +118,6 @@
                             </div>
                             @endif
                         </div>
-
                         <div class="form-group">
                             <label for="image"><i class="fa fa-image"></i> Profile Image</label>
                             <input type="file" id="image" name="image" accept="image/*">
@@ -136,9 +127,7 @@
                             </div>
                             @endif
                         </div>
-
                         <hr>
-
                         <div class="form-group">
                             <label for="new_password"><i class="fa fa-lock"></i> New Password</label>
                             <input placeholder="optional" type="password" id="new_password" name="new_password">
@@ -148,7 +137,6 @@
                             </div>
                             @endif
                         </div>
-
                         <div class="form-group">
                             <label for="new_password_confirmation"><i class="fa fa-lock"></i> Confirm Password</label>
                             <input type="password" id="new_password_confirmation" name="new_password_confirmation">
@@ -158,7 +146,6 @@
                             </div>
                             @endif
                         </div>
-
                         <div class="form-group">
                             <label for="current_password"><i class="fa fa-lock"></i> Current Password</label>
                             <input placeholder="Enter the old password to complete the process" type="password" id="current_password" name="current_password" required>
@@ -168,16 +155,14 @@
                             </div>
                             @enderror
                         </div>
-
                         <div class="card-footer">
                             <button type="submit" class="update-btn">Save</button>
                         </div>
                 </form>
-
             </div>
         </main>
     </section>
+    <script src="{{asset('js/Loading.js')}}"></script>
     <script src="{{asset('js/supplier-dashboard.js')}}"></script>
 </body>
-
 </html>

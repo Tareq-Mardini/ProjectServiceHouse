@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('css/portfolio.css')}}">
     <link rel="stylesheet" href="{{asset('css/MyPortfolio.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title>Service House</title>
 </head>
 
@@ -60,7 +61,7 @@
                         </li>
                         <li class="navbar-item">
                             <button style="width: 120px;" class="option-btn" id="customerBtn">
-                                <a href="">Settings</a>
+                                <a href="{{route('ServiceHouse.Client.Settings')}}">Settings</a>
                                 <i class='bx bx-cog bx-spin'></i>
                             </button>
                         </li>
@@ -216,13 +217,12 @@
                 </section>
             </main>
         </section>
+        <script src="{{asset('js/Loading.js')}}"></script>
         <script src="{{asset('js/supplier-dashboard.js')}}"></script>
         <script src="{{asset('js/supplier-dashboard.js')}}"></script>
         <script src="{{asset('js/portfolio.js')}}"></script>
         <script src="{{asset('js/visitor.js')}}" defer></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
     </body>
-
 </html>

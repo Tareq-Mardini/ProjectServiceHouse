@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/CreateWork.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title>Service House</title>
 </head>
 
@@ -150,6 +151,7 @@
             </div>
         </main>
     </section>
+    <script src="{{asset('js/Loading.js')}}"></script>
     <script src="{{asset('js/supplier-dashboard.js')}}"></script>
 </body>
 

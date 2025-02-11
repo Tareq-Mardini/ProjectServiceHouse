@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title>Service House</title>
 
 </head>
@@ -104,9 +105,10 @@
                 <!-- Modal -->
                 <div id="deleteAccountModal" class="modal">
                     <div class="modal-content">
-                        <span class="close">&times;</span> <!-- زر الإغلاق -->
-                        <div class="modal-header">Are you sure you want to delete your account?</div>
-                        <div class="modal-body">
+                        <span class="close">&times;</span>
+                        <div style="color: red ;  font-size:18px" class="modal-header"><i class='bx bx-error-alt bx-tada' style='color:red ;margin-right: 3px;'></i>
+                            Are you sure you want to delete your account?</div>
+                        <div style="margin-top: 10px;" class="modal-body">
                             <p>This action cannot be undone. Please enter your password to confirm.</p>
 
                             <!-- نموذج الحذف -->
@@ -115,13 +117,13 @@
                                 <input style="width: 100%;" type="password" name="current_password" id="current_password" placeholder="Enter your password" required>
                         </div>
                         <div class="modal-footer">
-                            <!-- أزرار الإجراءات -->
                             <button class="btn-danger" type="submit">Confirm Delete</button>
-                            <button class="btn-secondary" id="cancelBtn" type="button">Cancel</button> <!-- زر الإلغاء -->
+                            <button class="btn-secondary" id="cancelBtn" type="button">Cancel</button>
                             </form>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </nav>
         <!-- NAVBAR -->
@@ -171,9 +173,14 @@
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
+    <script src="{{asset('js/Loading.js')}}"></script>
     <script src="{{asset('js/SupplierAccount.js')}}"></script>
     <script src="{{asset('js/supplier-dashboard.js')}}"></script>
-
+    @if(session('Success_Update'))
+    <script>
+        Notiflix.Notify.success("{{ session('Success_Update') }}");
+    </script>
+    @endif
 </body>
 
 </html>

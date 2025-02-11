@@ -16,6 +16,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/InfoWork.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title>Service House</title>
 </head>
 
@@ -156,6 +157,7 @@
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
+    <script src="{{asset('js/Loading.js')}}"></script>
     <script src="{{asset('js/InfoWork.js')}}"></script>
     <script src="{{asset('js/supplier-dashboard.js')}}"></script>
 </body>

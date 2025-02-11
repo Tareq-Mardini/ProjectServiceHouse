@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{asset('css/portfolio.css')}}">
     <link rel="stylesheet" href="{{asset('css/UpdatePortfolio.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <title>Service House</title>
 </head>
 
@@ -205,6 +206,7 @@
                 </form>
             </div>
         </main>
+        <script src="{{asset('js/Loading.js')}}"></script>
         <script src="{{asset('js/supplier-dashboard.js')}}"></script>
         <script src="{{asset('js/portfolio.js')}}"></script>
 </body>

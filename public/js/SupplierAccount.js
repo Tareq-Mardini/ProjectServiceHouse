@@ -1,31 +1,29 @@
-// العناصر
-const deleteAccountBtn = document.getElementById('deleteAccountBtn');
-const deleteAccountModal = document.getElementById('deleteAccountModal');
-const closeModal = document.querySelector('.close'); // زر الإغلاق
-const cancelBtn = document.getElementById('cancelBtn'); // زر الإلغاء
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("deleteAccountModal");
+    const openBtn = document.getElementById("deleteAccountBtn");
+    const closeBtn = modal.querySelector(".close");
+    const cancelBtn = document.getElementById("cancelBtn");
 
-// إظهار الـ Modal عند الضغط على زر "Delete My Account"
-deleteAccountBtn.onclick = function () {
-    deleteAccountModal.style.display = 'block';
-};
+    openBtn.addEventListener("click", function () {
+        modal.style.display = "block";
+        setTimeout(() => {
+            modal.classList.add("show");
+        }, 10);
+    });
 
-// إخفاء الـ Modal عند الضغط على زر الإغلاق (X)
-if (closeModal) {
-    closeModal.onclick = function () {
-        deleteAccountModal.style.display = 'none';
-    };
-}
-
-// إخفاء الـ Modal عند الضغط على زر "Cancel"
-if (cancelBtn) {
-    cancelBtn.onclick = function () {
-        deleteAccountModal.style.display = 'none';
-    };
-}
-
-// إخفاء الـ Modal عند الضغط خارج المحتوى
-window.onclick = function (event) {
-    if (event.target == deleteAccountModal) {
-        deleteAccountModal.style.display = 'none';
+    function closeModal() {
+        modal.classList.remove("show");
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 500);
     }
-};
+
+    closeBtn.addEventListener("click", closeModal);
+    cancelBtn.addEventListener("click", closeModal);
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+});
