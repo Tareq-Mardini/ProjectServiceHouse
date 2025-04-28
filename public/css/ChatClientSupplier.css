@@ -1,0 +1,255 @@
+/* صندوق الشات */
+
+.chat-box {
+    background: 
+    linear-gradient(rgba(255, 255, 255, 0.808), rgba(255, 255, 255, 0.13)),
+    url('../images/ss.jpg');
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    max-height: 480px;
+    min-height: 480px;
+    overflow-y: auto;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+  }
+  
+  /* قائمة الرسائل */
+  .chat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* محاذاة */
+  .align-start { align-self: flex-start; }
+  .align-end { align-self: flex-end; }
+  .text-left { text-align: left; }
+  .text-right { text-align: right; }
+  
+  /* اسم المرسل */
+  .sender-name {
+    font-size: 13px;
+    color: #7c8ba1;
+  }
+  
+  /* فقاعات الرسائل */
+  .chat-bubble {
+    max-width: 75%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #2c3e50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    animation: fadeInUp 0.3s ease-in-out;
+    background: #f4f6fa;
+  }
+  
+  /* المرسل */
+  .bubble-sender {
+    background: linear-gradient(135deg, #d2f4ea, #baf5dc);
+  }
+  .bubble-sender::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    bottom: 8px;
+    border-width: 10px 0 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent #baf5dc;
+  }
+  
+  /* المستقبل */
+  .bubble-receiver {
+    background: #ecf0f6;
+  }
+  .bubble-receiver::after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    bottom: 8px;
+    border-width: 10px 10px 10px 0;
+    border-style: solid;
+    border-color: transparent #ecf0f6 transparent transparent;
+  }
+  
+  /* الرسوم المتحركة */
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* فورم الرسائل */
+  .message-form {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: #ffffffd0;
+    padding: 18px 22px;
+    border-radius: 22px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.04);
+    margin-top: -22px;
+    margin-bottom: 0px;
+  }
+  
+  /* حقل الرسالة */
+  .message-input {
+    flex: 1;
+    padding: 18px;
+    border: none;
+    outline: none;
+    border-radius: 16px;
+    font-size: 15px;
+    resize: none;
+    height: 70px;
+    background: #f9fbfdb7;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+    color: #2c3e50;
+  
+    
+  }
+  
+  .message-input:focus {
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(26, 183, 157, 0.15);
+  }
+  
+  /* زر الإرسال */
+  .send-btn {
+    padding: 13px 22px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1ab79d, #16a085);
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(26, 183, 157, 0.3);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  
+  .send-btn:hover {
+    background: linear-gradient(135deg, #16a085, #13967c);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(22, 160, 133, 0.35);
+  }
+  
+  .send-btn:active {
+    transform: scale(0.96);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* شريط تمرير مودرن */
+  #chat-box::-webkit-scrollbar {
+    width: 6px;
+  }
+  #chat-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 20px;
+  }
+  #chat-box::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 20px;
+  }
+  #chat-box::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+
+  .chat-image {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .chat-image:hover {
+    transform: scale(1.02);
+  }
+
+  /* تحسين نموذج الإرسال */
+  .message-form-container {
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .message-input-wrapper {
+    position: relative;
+  }
+
+  .message-input {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px 50px 10px 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+    box-sizing: border-box;
+  }
+
+  .image-upload-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+  }
+
+  .send-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  .send-btn {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .file-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .clear-image-btn {
+    background: none;
+    border: none;
+    color: #ff0000;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .image-preview {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+
+  .loading-spinner {
+    display: none;
+    color: #007bff;
+  }
+  

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function index(){
+        $AdminId = session('admin_user_id');
+       
         return view('admin/dashboard');
     }
 

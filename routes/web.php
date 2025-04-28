@@ -16,6 +16,10 @@ use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\SupplierPortfolioController;
 use App\Http\Middleware\SupplierMiddleware;
 use App\Http\Middleware\ClientMiddleware;
+use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\CustomerServiceController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\WalletController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,6 +51,11 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('admin/dashboard/section/Archive/Delete/{id}', [AdminSection::class, 'ForceDelete'])->name('admin.section.Archive.ForceDelete');
     Route::get('admin/dashboard/service/Archive/Delete/{id}', [AdminServiceController::class, 'ForceDelete'])->name('admin.service.Archive.ForceDelete');
     Route::get('adminlogout', [AdminLogin::class, 'logout'])->name('adminlogout');
+    Route::get('admin/dashboard/CustomerService', [CustomerServiceController::class, 'ViewCustomerService'])->name('admin.ViewCustomerService');
+    Route::get('admin/dashboard/CustomerService/Client/{clientId}', [CustomerServiceController::class, 'ViewChatClient'])->name('ViewChatClientForAdmin');
+    Route::post('/send-message-admin', [CustomerServiceController::class, 'SendMessageFromAdminToClient'])->name('send.message.admin.ToClient');
+    Route::get('admin/dashboard/CustomerService/Supplier/{supplierId}', [CustomerServiceController::class, 'ViewChatSupplier'])->name('ViewChatSupplierForAdmin');
+    Route::post('/send-message--admin', [CustomerServiceController::class, 'SendMessageFromAdminToSupplier'])->name('send.message.admin.ToSupplier');
 });
 
 //==================================================================================================================================================//
@@ -100,8 +109,20 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::get('ServiceHouse/logout-supplier', [AuthLogin::class, 'LogoutSupplier'])->name('Logout.supplier');
     Route::get('ServiceHouse/Supplier/Section/Service/work/info{id}', [SupplierController::class, 'ViewinfoWorks'])->name('Works.info.user');
     Route::get('ServiceHouse/Supplier/Section/Service/WorkInfo/portfolio{id}', [SupplierController::class, 'ViewPortfolio'])->name('view.portfolio.user');
+// هاد الراوت مشان نعرض كلشي عنا اسماء زبائن متواصلين معنا 
+    Route::get('ServiceHouse/Supplier/Dashboard/chat/clients', [ChatsController::class, 'ViewChats'])->name('ViewChats');
+// هاد الراوت مشان اعرض محادثة الزبون معين بعد ما اكبس على اسمو وبعدين بس ينعرض كمان بس يبعت الزبون رسالة منقدر نشوفها بالوقت الحقيقي
+    Route::get('ServiceHouse/Supplier/Dashboard/chat/{clientId}', [ChatsController::class, 'ViewChatClient'])->name('ViewChatClient');
+    Route::post('/send-message-supplier', [ChatsController::class, 'SendMessageFromSupplierToClient'])->name('send.message.supplier');
+    Route::get('ServiceHouse/Supplier/Dashboard/CustomerService', [CustomerServiceController::class, 'communicationSupplier'])->name('view.communication.supplier');
+    Route::post('/send-message-Supplier-To-Admin', [CustomerServiceController::class, 'SendMessageFromSupplierToAdmin'])->name('send.message.FromSupplier.To.Admin');
+    Route::get('ServiceHouse/Supplier/Dashboard/MyWallet', [WalletController::class, 'ViewWalletSupplier'])->name('View.wallet.supplier');
+    Route::get('ServiceHouse/Supplier/Dashboard/MyWallet/Create', [WalletController::class, 'CreateWalletSupplier'])->name('create.wallet.supplier');
+    Route::post('MyWallet/Create/Supplier', [WalletController::class, 'StoreWalletSupplier'])->name('store.wallet.supplier');
+    Route::get('/Supplier{wallet_id}', [WalletController::class, 'BalanceSupplier'])->name('Supplier.balance');
+    Route::get('ServiceHouse/Supplier/Dashboard/MyWallet/Update', [WalletController::class, 'UpdateWalletSupplier'])->name('edit.wallet.supplier');
+    Route::post('MyWallet/Update/Supplier', [WalletController::class, 'UpdateWalletPasswordSupplier'])->name('update.wallet.supplier');
 });
-
 //===================================================================================================================================================//
 
 // هلأ لح نشتغل على الراوتات الزبائن ^_^
@@ -117,5 +138,32 @@ Route::middleware(ClientMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Client/Settings/MyAccount', [ClientController::class, 'ViewAccount'])->name('Client.View.Account');
     Route::get('ServiceHouse/Client/Settings/MyAccount/Update', [ClientController::class, 'UpdateAccount'])->name('Client.Update.Account');
     Route::post('/update-Account-client', [ClientController::class, 'EditAccount'])->name('Client.Edit.Account');
+    Route::get('ServiceHouse/Client/Section/Service/WorkInfo/chat{id}', [ChatsController::class, 'ViewChat'])->name('view.chat.Client');
+    Route::post('/send-message', [ChatsController::class, 'SendMessageFromClientToSupplier'])->name('send.message');
+    Route::get('ServiceHouse/Client/Settings/Chats/Suppliers', [ChatsController::class, 'ViewChatsForClient'])->name('view.chat.Suppliers');
+    Route::get('ServiceHouse/Client/Settings/Chat/Supplier/{id}', [ChatsController::class, 'ViewChatSupplier'])->name('view.chat.supplier');
+    Route::get('ServiceHouse/Client/Settings/CustomerService', [CustomerServiceController::class, 'communication'])->name('view.communication');
+    Route::post('/send-message-Client-To-Admin', [CustomerServiceController::class, 'SendMessageFromClientToAdmin'])->name('send.message.To.Admin');
+    Route::get('ServiceHouse/Client/Settings/MyWallet', [WalletController::class, 'ViewWallet'])->name('View.wallet.clinet');
+    Route::get('ServiceHouse/Client/Settings/MyWallet/Create', [WalletController::class, 'CreateWallet'])->name('create.wallet.clinet');
+    Route::post('MyWallet/Create', [WalletController::class, 'StoreWallet'])->name('store.wallet.clinet');
+    Route::get('/client{wallet_id}', [WalletController::class, 'Balance'])->name('client.balance');
+    Route::get('ServiceHouse/Client/Settings/MyWallet/Update', [WalletController::class, 'Update'])->name('edit.wallet.clinet');
+    Route::post('MyWallet/Update', [WalletController::class, 'UpdateWalletPassword'])->name('update.wallet.client');
+
+
+
+
+
+
+    Route::get('ServiceHouse/Client/Section/Service/WorkInfo/order/{id}', [OrderController::class, 'Order'])->name('Order');
+
+
+
+
+    Route::post('MyWallet/order', [OrderController::class, 'test'])->name('test');
+
+
 });
 //===================================================================================================================================================//
+

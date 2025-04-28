@@ -14,20 +14,6 @@
     rel="stylesheet">
   <link rel="preload" as="image" href="./assets/images/visitor/logo-3.png">
   <link rel="preload" as="image" href="./assets/images/visitor/logo.png">
-  <link rel="preload" as="image" href="./assets/images/hero-bg.svg">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-3.webp">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-4.jpg">
-  <link rel="preload" as="image" href="./assets/images/hero-shape-2.png">
-  <link rel="preload" as="image" href="./assets/images/category-1.svg">
-  <link rel="preload" as="image" href="./assets/images/category-2.svg">
-  <link rel="preload" as="image" href="./assets/images/category-3.svg">
-  <link rel="preload" as="image" href="./assets/images/category-5.png">
-  <link rel="preload" as="image" href="./assets/images/about-banner33.jpg">
-  <link rel="preload" as="image" href="./assets/images/blog-bg.svg">
-  <link rel="preload" as="image" href="./assets/images/blog-4.jpg">
-  <link rel="preload" as="image" href="./assets/images/blog-bg.svg">
-  <link rel="preload" as="image" href="./assets/images/blog-5.jpg">
-  <link rel="preload" as="image" href="./assets/images/blog-6.jpg">
   <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
   <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
   <title>Service House</title>

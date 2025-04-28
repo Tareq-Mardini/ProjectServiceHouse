@@ -9,6 +9,7 @@ use App\Models\Work;
 use App\Models\WorkImage;
 use App\Models\Supplier;
 use App\Models\Portfolio;
+use App\Models\WorkExtra;
 
 class VisitorController extends Controller {
   public function view() {
@@ -35,7 +36,8 @@ class VisitorController extends Controller {
   {
       $works = Work::where('id', $id)->first();
       $image = WorkImage::where('work_id', $id)->get('image_path');
-      return view('visitor.WorkInfo', compact('works', 'image'));
+      $offers = WorkExtra::where('work_id', $id)->get();
+      return view('visitor.WorkInfo', compact('works', 'image','offers'));
   }
 
   public function ViewPortfolio($id)

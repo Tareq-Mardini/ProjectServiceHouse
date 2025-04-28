@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Work extends Model
 {
     use HasFactory;
-    
+
     use SoftDeletes;
 
     protected $fillable = [
@@ -32,13 +33,21 @@ class Work extends Model
 
     public function images()
     {
-        return $this->hasMany(WorkImage::class,'work_id','id'); // علاقة `hasMany` تربط العمل بالصور المتعددة.
+        return $this->hasMany(WorkImage::class, 'work_id', 'id'); // علاقة `hasMany` تربط العمل بالصور المتعددة.
     }
 
     public function supplier()
-{
-    return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
-}
-}
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
+    }
 
+    public function extras()
+    {
+        return $this->hasMany(WorkExtra::class);
+    }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+}

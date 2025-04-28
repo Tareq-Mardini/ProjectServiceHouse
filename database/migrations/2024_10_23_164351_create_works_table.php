@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->string('title');
             $table->text('description');
-            $table->float('price');
+            $table->decimal('price', 10, 2);
             $table->string('thumbnail')->nullable();
             $table->string('youtube_link')->nullable();
             $table->string('Average_delivery_time');

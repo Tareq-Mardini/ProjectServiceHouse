@@ -1,0 +1,163 @@
+/* Import Google Font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+.container {
+  position: relative;
+  background-image: url("/images/bg.png");
+  background-size: cover;
+  padding: 25px;
+  border-radius: 28px;
+
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  height: 240px;
+  margin-top: 50px;
+}
+header,
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+}
+header .chip {
+  width: 100px;
+  
+}
+h6 {
+  color: #fff;
+  font-size: 10px;
+  font-weight: 400;
+}
+h5.number {
+  margin-top: 4px;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+h5.name {
+  margin-top: 20px;
+}
+.container .card-details {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+body {
+    background: linear-gradient(135deg, #9b3516, #ffffff);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.wallet-form-wrapper {
+    max-width: 500px;
+    margin:  auto;
+    padding: 40px;
+    background: #ffffffe1;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+    margin: 0;
+}
+
+h2 {
+    color: #1ab79d;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+label {
+    font-weight: 500;
+    color: #333;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    padding: 12px 15px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-control:focus {
+    border-color: #1ab79d;
+    box-shadow: 0 0 6px rgba(26, 183, 157, 0.3);
+}
+
+.btn-submit {
+    background: linear-gradient(to right, #1ab79d, #12d3c0);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    margin-top: 25px;
+    transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: linear-gradient(to right, #12d3c0, #1ab79d);
+}
+
+.alert {
+    border-radius: 8px;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.text-danger {
+    font-size: 0.9rem;
+}
+
+.wallet-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap; /* حتى يشتغل كويس على الموبايل */
+    margin-top: 60px;
+}
+
+
+
+
+@keyframes floatUpDown {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .floating-card {
+    animation: floatUpDown 3s ease-in-out infinite;
+  }
+
+  main
+    {
+        background-image: url("/images/money.jpg");
+        height: 900px;
+    
+       
+     
+      
+    }
+    
+  

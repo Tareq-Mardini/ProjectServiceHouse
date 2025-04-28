@@ -28,14 +28,14 @@
     </a>
     <ul style="margin-top:0px" class="side-menu top">
       <li>
-        <a href="">
+        <a href="{{route('Client.View.Account')}}">
           <i class='bx bx-user'></i>
           <span class="text">My Account</span>
         </a>
       </li>
       <ul>
         <li>
-          <a href="#">
+          <a href="{{route('view.chat.Suppliers')}}">
             <i class='bx bxs-message-dots'></i>
             <span class="text">Messages</span>
           </a>

@@ -52,7 +52,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="{{route('ViewChats')}}">
           <i class='bx bxs-message-dots'></i>
           <span class="text">Message</span>
         </a>
@@ -105,7 +105,7 @@
                     <tr>
                         <td>{{ $work->title }}</td>
 
-                        <td><img src="{{ Storage::url($work->thumbnail) }}" alt="Work Image" class="thumbnail-image"></td>
+                        <td><img style="width: 200px;height:120px;  " src="{{ Storage::url($work->thumbnail) }}" alt="Work Image" class="thumbnail-image"></td>
                         <td>{{ $work->price }}$</td>
                         <td>
                             <a href="{{ route('Supplier.Work.Info',$work->id) }}" style="margin-left: 5px;">

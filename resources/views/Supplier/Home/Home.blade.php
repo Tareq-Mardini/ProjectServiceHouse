@@ -15,20 +15,7 @@
   <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
   <link rel="preload" as="image" href="./assets/images/visitor/logo-3.png">
   <link rel="preload" as="image" href="./assets/images/visitor/logo.png">
-  <link rel="preload" as="image" href="./assets/images/hero-bg.svg">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-3.webp">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-4.jpg">
-  <link rel="preload" as="image" href="./assets/images/hero-shape-2.png">
-  <link rel="preload" as="image" href="./assets/images/category-1.svg">
-  <link rel="preload" as="image" href="./assets/images/category-2.svg">
-  <link rel="preload" as="image" href="./assets/images/category-3.svg">
-  <link rel="preload" as="image" href="./assets/images/category-5.png">
-  <link rel="preload" as="image" href="./assets/images/about-banner33.jpg">
-  <link rel="preload" as="image" href="./assets/images/blog-bg.svg">
-  <link rel="preload" as="image" href="./assets/images/blog-4.jpg">
-  <link rel="preload" as="image" href="./assets/images/blog-bg.svg">
-  <link rel="preload" as="image" href="./assets/images/blog-5.jpg">
-  <link rel="preload" as="image" href="./assets/images/blog-6.jpg">
+
   <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
   <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
   <title>Service House</title>
@@ -119,7 +106,7 @@
             <li>
               <div class="category-card" style="--color: 170, 75%, 41%">
                 <div class="card-icon">
-                  <img src="../assets/images/category-1.svg" width="40" height="40" loading="lazy"
+                  <img src="../assets/images/category-1.svg" width="40" height="40" 
                     alt="Online Degree Programs" class="img">
                 </div>
                 <h3 class="h3">
@@ -133,7 +120,7 @@
             <li>
               <div class="category-card" style="--color: 351, 83%, 61%">
                 <div class="card-icon">
-                  <img src="../assets/images/category-2.svg" width="40" height="40" loading="lazy"
+                  <img src="../assets/images/category-2.svg" width="40" height="40" 
                     alt="Non-Degree Programs" class="img">
                 </div>
                 <h3 class="h3">
@@ -147,7 +134,7 @@
             <li>
               <div class="category-card" style="--color: 229, 75%, 58%">
                 <div class="card-icon">
-                  <img src="../assets/images/category-3.svg" width="40" height="40" loading="lazy"
+                  <img src="../assets/images/category-3.svg" width="40" height="40" 
                     alt="Off-Campus Programs" class="img">
                 </div>
                 <h3 class="h3">
@@ -161,7 +148,7 @@
             <li>
               <div class="category-card" style="--color: 42, 94%, 55%">
                 <div class="card-icon">
-                  <img src="../assets/images/category-5.png" width="40" height="40" loading="lazy"
+                  <img src="../assets/images/category-5.png" width="40" height="40" 
                     alt="Hybrid Distance Programs" class="img">
                 </div>
                 <h3 class="h3">
@@ -179,10 +166,10 @@
         <div class="container">
           <figure class="about-banner">
             <div class="img-holder" style="--width: 520; --height: 370;">
-              <img src="../assets/images/about-banner33.jpg" width="520" height="370" loading="lazy" alt="about banner"
+              <img src="../assets/images/about-banner33.jpg" width="520" height="370"  alt="about banner"
                 class="img-cover">
             </div>
-            <img src="../assets/images/about-shape-3.png" width="722" height="528" loading="lazy" alt=""
+            <img src="../assets/images/about-shape-3.png" width="722" height="528" alt=""
               class="shape about-shape-3">
           </figure>
           <div class="about-content">
@@ -219,7 +206,7 @@
             <li>
               <div class="blog-card">
                 <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
-                  <img src="../assets/images/blog-4.jpg" width="370" height="370" loading="lazy"
+                  <img src="../assets/images/blog-4.jpg" width="370" height="370" 
                     alt="Become A Better Blogger: Content Planning" class="img-cover">
                 </figure>
                 <div class="card-content">
@@ -235,7 +222,7 @@
             <li>
               <div class="blog-card">
                 <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
-                  <img src="../assets/images/blog-5.jpg" width="370" height="370" loading="lazy"
+                  <img src="../assets/images/blog-5.jpg" width="370" height="370"
                     alt="Become A Better Blogger: Content Planning" class="img-cover">
                 </figure>
                 <div class="card-content">
@@ -251,7 +238,7 @@
             <li>
               <div class="blog-card">
                 <figure class="card-banner img-holder has-after" style="--width: 370; --height: 370;">
-                  <img src="../assets/images/blog-6.jpg" width="370" height="370" loading="lazy"
+                  <img src="../assets/images/blog-6.jpg" width="370" height="370"
                     alt="Become A Better Blogger: Content Planning" class="img-cover">
                 </figure>
                 <div class="card-content">
@@ -265,7 +252,7 @@
               </div>
             </li>
           </ul>
-          <img src="../assets/images/blog-shape.png" width="186" height="186" loading="lazy" alt=""
+          <img src="../assets/images/blog-shape.png" width="186" height="186"  alt=""
             class="shape blog-shape">
           <div>
             <a style="margin: auto; margin-top:20px" href="{{route('Servicehouse.Sections.Show.Supplier')}}" class="btn has-before"><span class="span">More Sections</span>

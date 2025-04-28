@@ -22,6 +22,17 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function sentMessages()
+    {
+        return $this->hasMany(CustomerService::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(CustomerService::class, 'receiver_id');
+    }
 }
 
 

@@ -45,19 +45,19 @@
                     </div>
                     <ul class="navbar-list">
                         <li class="navbar-item">
-                            <a href="{{route('ServiceHouse.Home.Supplier')}}" class="navbar-link" data-nav-link>Home</a>
+                            <a style="font-weight: bold;" href="{{route('ServiceHouse.Home.Supplier')}}" class="navbar-link" data-nav-link>Home</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="{{route('ServiceHouse.Home.Supplier')}}" class="navbar-link" data-nav-link>Benefits</a>
+                            <a style="font-weight: bold;" href="{{route('ServiceHouse.Home.Supplier')}}" class="navbar-link" data-nav-link>Benefits</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="{{route('ServiceHouse.Home.Supplier')}}" class="navbar-link" data-nav-link>About</a>
+                            <a style="font-weight: bold;" href="{{route('ServiceHouse.Home.Supplier')}}" class="navbar-link" data-nav-link>About</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="{{route('ServiceHouse.Home.Supplier')}}" class="navbar-link" data-nav-link>Sections</a>
+                            <a style="font-weight: bold;" href="{{route('ServiceHouse.Home.Supplier')}}" class="navbar-link" data-nav-link>Sections</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="{{route('ServiceHouse.Home.Supplier')}}" class="navbar-link" data-nav-link>Contact</a>
+                            <a style="font-weight: bold;" href="{{route('ServiceHouse.Home.Supplier')}}" class="navbar-link" data-nav-link>Contact</a>
                         </li>
                         <li class="navbar-item">
                             <button class="option-btn" id="customerBtn">

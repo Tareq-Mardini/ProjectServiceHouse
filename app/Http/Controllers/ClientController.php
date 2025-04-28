@@ -12,6 +12,7 @@ use App\Models\Supplier;
 use App\Models\Portfolio;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use App\Models\WorkExtra;
 
 class ClientController extends Controller
 {
@@ -42,7 +43,8 @@ class ClientController extends Controller
     {
         $works = Work::where('id', $id)->first();
         $image = WorkImage::where('work_id', $id)->get('image_path');
-        return view('Client.Home.WorkInfo', compact('works', 'image'));
+        $offers = WorkExtra::where('work_id', $id)->get();
+        return view('Client.Home.WorkInfo', compact('works', 'image','offers'));
     }
     //==========================================================================
     public function ViewPortfolio($id)

@@ -61,6 +61,8 @@ class AuthSupplierController extends Controller
             'status.in' => 'The status must be either student or employed.',
         ]);
         $validatedData['password'] = Hash::make($validatedData['password']);
+        $imagePath = 'images/works/multiple/istockphoto-2041572395-612x612.jpg';
+        $validatedData['image'] = $imagePath;
         $supplier = Supplier::create($validatedData);
         return redirect()->route('AuthLoginn');
     }

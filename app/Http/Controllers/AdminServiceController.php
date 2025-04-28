@@ -113,7 +113,7 @@ class AdminServiceController extends Controller
             session()->flash('success_restore_service', 'Success restore service.');
             return redirect()->back();
         } else {
-            session()->flash('fail_restore_service', 'fail restore service.');
+            session()->flash('fail_restore_service', 'Fail Restore Service because the Section in Archive.');
             return redirect()->back();
         }
     }

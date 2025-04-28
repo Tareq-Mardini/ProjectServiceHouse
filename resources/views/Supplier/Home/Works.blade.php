@@ -78,18 +78,15 @@
           <div class="content-section">
             <!-- صورة العمل -->
             <img src="{{ Storage::url($work->thumbnail) }}" alt="Work Thumbnail" class="work-thumbnail">
-
             <div class="text">
               <h3>{{ $work->title }}</h3>
               <p>price:
               <span style="display: inline; color:green; font-size:15px;">{{ $work->price }}<i class="fa fa-dollar-sign"></i></span>
               </p>
-
               <div class="info-supplier">
                 <img class="image-supplier" src="{{ Storage::url($work->supplier->image) }}" alt="Supplier Image">
                 <span class="supplier-name">{{ $work->supplier->name }}</span>
               </div>
-
               <a href="{{ route('Works.info.user', ['id' => $work->id]) }}">
                 <button class="info-button">View Info</button>
               </a>

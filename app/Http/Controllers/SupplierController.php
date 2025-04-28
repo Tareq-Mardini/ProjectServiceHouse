@@ -11,6 +11,7 @@ use Illuminate\Validation\Rule;
 use App\Models\Work;
 use App\Models\WorkImage;
 use App\Models\Portfolio;
+use App\Models\WorkExtra;
 //============================================================================================================
 
 class SupplierController extends Controller
@@ -128,7 +129,8 @@ class SupplierController extends Controller
     {
         $works = Work::where('id', $id)->first();
         $image = WorkImage::where('work_id', $id)->get('image_path');
-        return view('Supplier.Home.WorkInfo', compact('works', 'image'));
+        $offers = WorkExtra::where('work_id', $id)->get();
+        return view('Supplier.Home.WorkInfo', compact('works', 'image','offers'));
     }
     //============================================================================================================
     public function ViewPortfolio($id)

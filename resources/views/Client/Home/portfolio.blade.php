@@ -45,19 +45,19 @@
                     </div>
                     <ul class="navbar-list">
                         <li class="navbar-item">
-                            <a href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>Home</a>
+                            <a style="font-weight: bold;" href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>Home</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>Benefits</a>
+                            <a style="font-weight: bold;" href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>Benefits</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>About</a>
+                            <a style="font-weight: bold;" href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>About</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>Sections</a>
+                            <a style="font-weight: bold;" href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>Sections</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>Contact</a>
+                            <a style="font-weight: bold;" href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>Contact</a>
                         </li>
                         <li class="navbar-item">
                             <button style="width: 120px;" class="option-btn" id="customerBtn">
@@ -115,7 +115,7 @@
                                     <ul class="styled-list">
                                         @foreach ($portfolio->skills as $data)
                                         <li>
-                                            <i class="fas fa-tools icon"></i> <!-- أيقونة المهارات -->
+                                            <i class="fas fa-tools icon"></i>
                                             <strong class="item-title">{{$data->title}}:</strong>
                                             <span class="item-description">{{$data->description}}</span>
                                         </li>
@@ -128,7 +128,7 @@
                                     <ul class="styled-list">
                                         @foreach ($portfolio->Experiences as $data)
                                         <li>
-                                            <i class="fas fa-briefcase icon"></i> <!-- أيقونة الخبرة -->
+                                            <i class="fas fa-briefcase icon"></i>
                                             <strong class="item-title">{{$data->date}}:</strong>
                                             <span class="item-description">{{$data->description}}</span>
                                         </li>

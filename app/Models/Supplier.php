@@ -28,15 +28,40 @@ class Supplier extends Authenticatable
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
     public function portfolio()
-{
-    return $this->hasOne(Portfolio::class, 'supplier_id');
-}
+    {
+        return $this->hasOne(Portfolio::class, 'supplier_id');
+    }
 
-public function works()
-{
-    return $this->hasMany(Work::class, 'supplier_id', 'id');
-}
+    public function works()
+    {
+        return $this->hasMany(Work::class, 'supplier_id', 'id');
+    }
+    public function chats()
+    {
+        return $this->hasMany(Chat::class, 'sender_id');
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(CustomerService::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(CustomerService::class, 'receiver_id');
+    }
+
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class, 'user_id');
+    }
+
+    public function ordersReceived()
+    {
+        return $this->hasMany(Order::class, 'supplier_id');
+    }
 }

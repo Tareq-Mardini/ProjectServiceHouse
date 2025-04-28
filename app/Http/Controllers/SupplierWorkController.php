@@ -6,13 +6,14 @@ use App\Models\services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Work;
+use App\Models\WorkExtra;
 use App\Models\WorkImage;
 
 //========================================================================================
 
 class SupplierWorkController extends Controller
 {
-  
+
 
   //========================================================================================
   //عرض اعمال المقدم
@@ -30,10 +31,11 @@ class SupplierWorkController extends Controller
     $works = Work::where('supplier_id', $userId)
       ->where('id', $request->id)
       ->first();
-      $id_service=$works->service_id;
-      $name_service = services::where('id',$id_service)->first('name');
-      $image =WorkImage::where('work_id',$request->id)->get('image_path');
-    return view('Supplier.Home.Works.WorkInfo', compact('works','name_service','image'));
+    $id_service = $works->service_id;
+    $name_service = services::where('id', $id_service)->first('name');
+    $image = WorkImage::where('work_id', $request->id)->get('image_path');
+    $offers = WorkExtra::where('work_id', $request->id)->get();
+    return view('Supplier.Home.Works.WorkInfo', compact('works', 'name_service', 'image', 'offers'));
   }
   //========================================================================================
   public function CreateWork()
@@ -48,13 +50,16 @@ class SupplierWorkController extends Controller
       'service_id' => 'required|integer|exists:services,id',
       'title' => 'required|string|max:255',
       'description' => 'required|string',
-      'price' => 'required|numeric',
+      'price' => 'required',
       'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
       'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
       'youtube_link' => 'nullable|url',
       'Average_delivery_time' => 'nullable|string',
-      'Average_speed_of_response' => 'nullable|string'
+      'Average_speed_of_response' => 'nullable|string',
+      'extras.*.title' => 'nullable|string|max:255',
+      'extras.*.price' => 'nullable|numeric|min:0',
     ]);
+
     $imagePath = $request->file('thumbnail')->store('images/works', 'public');
     $userId = session('supplier_user_id');
     $work = Work::create([
@@ -68,13 +73,26 @@ class SupplierWorkController extends Controller
       'Average_delivery_time' => $request->input('Average_delivery_time'),
       'Average_speed_of_response' => $request->input('Average_speed_of_response'),
     ]);
+
     if ($request->hasFile('images')) {
       foreach ($request->file('images') as $image) {
         $path = $image->store('images/works/multiple', 'public');
         $work->images()->create(['image_path' => $path]);
       }
     }
-    session()->flash('Success_Create', 'Success Create Work'); 
+
+    if ($request->has('extras')) {
+      foreach ($request->input('extras') as $extra) {
+        if (!empty($extra['title']) && isset($extra['price'])) {
+          $work->extras()->create([
+            'title' => $extra['title'],
+            'price' => $extra['price'],
+          ]);
+        }
+      }
+    }
+
+    session()->flash('Success_Create', 'Success Create Work');
     return redirect()->route('Supplier.Show.Myworks');
   }
   //========================================================================================
@@ -99,7 +117,7 @@ class SupplierWorkController extends Controller
       'service_id' => 'required|integer|exists:services,id',
       'title' => 'required|string|max:255',
       'description' => 'required|string',
-      'price' => 'required|numeric',
+      'price' => 'required',
       'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
       'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
       'youtube_link' => 'nullable|url',
@@ -135,7 +153,7 @@ class SupplierWorkController extends Controller
       }
     }
     $work->save();
-    session()->flash('Success_Update', 'Success Update Work'); 
+    session()->flash('Success_Update', 'Success Update Work');
     return redirect()->route('Supplier.Show.Myworks');
   }
   //========================================================================================
@@ -152,7 +170,7 @@ class SupplierWorkController extends Controller
         $image->delete(); // حذف السجل المرتبط بالصورة من قاعدة البيانات
       }
       $work->forceDelete();
-      session()->flash('Success_Delete', 'Success Delete Work'); 
+      session()->flash('Success_Delete', 'Success Delete Work');
     } else {
       session()->flash('error_delete_work', 'Work not found.');
     }

@@ -48,7 +48,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="{{route('ViewChats')}}">
           <i class='bx bxs-message-dots'></i>
           <span class="text">Message</span>
         </a>

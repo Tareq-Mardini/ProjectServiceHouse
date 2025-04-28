@@ -99,7 +99,7 @@
             }
             @endphp
             <div class="container">
-                <div class="large-box">
+                <div style="margin-top: -10px;" class="large-box">
                     <div class="media-container">
                         @if($youtubeId)
                         <iframe src="https://www.youtube.com/embed/{{ $youtubeId }}" class="active" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -114,7 +114,7 @@
                     <div class="arrow right" onclick="nextMedia()">❯</div>
                 </div>
                 <div class="small-box">
-                    <h3 class="title">
+                    <h3 style="font-size: 22px;" class="title">
                         <i class='bx bx-show bx-flashing' style='color:#ee4962'></i>Work Information
                     </h3>
                     <div class="product-details">
@@ -144,20 +144,38 @@
                                 <i class="fa fa-folder-open" aria-hidden="true" style="margin-right: 8px;"></i> View Portfolio
                             </a>
                         </div>
-
-
                     </div>
-
-                </div>
-                <div class="discription detail">
-                    <span class="label">
-                        <h2 style="font-size: 19px;">Discription</h2>
-                    </span>
-                    <p style="font-size: 19px;">{!! nl2br(e($works->description)) !!}
-                    </p>
                 </div>
             </div>
-
+            <div class="offers-description-wrapper" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px;max-width: 1260px;width: 100%;padding: 20px;margin:auto;">
+                <!-- Extra Offers Box -->
+                @if ($offers->count())
+                <div class="extra-offers-section discription detail" style="flex: 1; min-width: 300px; border-radius: 15px; padding: 15px;">
+                    <h1 style="color: #ee4962; margin-bottom: 15px; text-align:center;font-size:22px">
+                        <i class='bx bx-gift' style='color:#ee4962'></i> Extra Offers
+                    </h1>
+                    @foreach ($offers as $offer)
+                    <div class="extra-offer-box" style="border: 1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 10px; background: #ffffffb5;">
+                        <h3 style="margin: 0; color: #333;font-size:17px;">
+                            <i class='bx bxs-star' style='color:#f5c518'></i> {{ $offer->title }}
+                        </h3>
+                        <p style="margin: 5px 0 0; color: #555;font-size:17px">
+                            <strong style="font-size:17px"><i class='bx bxs-dollar-circle' style='color:#1ab79d'></i> Price:</strong> {{ $offer->price }}$
+                        </p>
+                    </div>
+                    @endforeach
+                </div>
+                @endif
+                <!-- Description Box -->
+                <div class="discription detail" style="flex: 1; min-width: 300px; height:fit-content;">
+                    <span class="label">
+                        <h2 style="text-align:center;color:#ee4962;font-size:22px">
+                            <i class='bx bx-detail' style='color:#ee4962'></i> Description
+                        </h2>
+                    </span>
+                    <p style="font-size:17px">{!! nl2br(e($works->description)) !!}</p>
+                </div>
+            </div>
         </main>
     </section>
     <!-- CONTENT -->

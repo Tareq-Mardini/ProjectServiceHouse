@@ -16,6 +16,6 @@ class WorkImage extends Model
 
     public function work()
     {
-        return $this->belongsTo(Work::class); // علاقة `belongsTo` تعني أن الصورة تابعة للعمل.
+        return $this->belongsTo(Work::class);
     }
 }

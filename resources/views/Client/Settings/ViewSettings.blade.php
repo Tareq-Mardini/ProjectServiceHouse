@@ -36,7 +36,7 @@
 
       <ul>
         <li>
-          <a href="#">
+          <a href="{{route('view.chat.Suppliers')}}">
             <i class='bx bxs-message-dots'></i>
             <span class="text">Messages</span>
           </a>
