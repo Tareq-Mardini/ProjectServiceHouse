@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\services;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Work;
@@ -39,10 +40,15 @@ class SupplierWorkController extends Controller
   }
   //========================================================================================
   public function CreateWork()
-  {
+  {    $userId = session('supplier_user_id');
+    $TestWallet = Wallet::where('user_id', $userId)
+      ->where('role', 'supplier')->first();
+      if($TestWallet){
     $data = services::all();
-    return view('Supplier.Home.Works.Create', compact('data'));
-  }
+    return view('Supplier.Home.Works.Create', compact('data'));}
+    else {
+      session()->flash('error_Create', 'you have create wallet');
+            return redirect()->back();}}
   //========================================================================================
   public function StoreWork(Request $request)
   {
@@ -62,6 +68,9 @@ class SupplierWorkController extends Controller
 
     $imagePath = $request->file('thumbnail')->store('images/works', 'public');
     $userId = session('supplier_user_id');
+    $TestWallet = Wallet::where('user_id', $userId)
+      ->where('role', 'supplier')->first();
+      if($TestWallet){
     $work = Work::create([
       'service_id' => $request->input('service_id'),
       'supplier_id' => $userId,
@@ -95,6 +104,10 @@ class SupplierWorkController extends Controller
     session()->flash('Success_Create', 'Success Create Work');
     return redirect()->route('Supplier.Show.Myworks');
   }
+  else {
+    session()->flash('error_Create', 'you have create wallet');
+          return redirect()->back();}}
+  
   //========================================================================================
   public function EditeWork(Request $request)
   {

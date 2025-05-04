@@ -171,6 +171,11 @@
             </div>
         </main>
     </section>
+    @if(session('have_wallet'))
+    <script>
+        Notiflix.Notify.warning("{{ session('have_wallet') }}");
+    </script>
+    @endif
     <!-- CONTENT -->
     <script src="{{asset('js/Loading.js')}}"></script>
     <script src="{{asset('js/InfoWork.js')}}"></script>

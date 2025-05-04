@@ -56,6 +56,11 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::post('/send-message-admin', [CustomerServiceController::class, 'SendMessageFromAdminToClient'])->name('send.message.admin.ToClient');
     Route::get('admin/dashboard/CustomerService/Supplier/{supplierId}', [CustomerServiceController::class, 'ViewChatSupplier'])->name('ViewChatSupplierForAdmin');
     Route::post('/send-message--admin', [CustomerServiceController::class, 'SendMessageFromAdminToSupplier'])->name('send.message.admin.ToSupplier');
+
+
+    Route::get('admin/dashboard/transactions', [AdminController::class, 'ViewTransactions'])->name('ViewTransactions');
+    Route::get('admin/dashboard/orders', [AdminController::class, 'ViewOrders'])->name('ViewOrders');
+
 });
 
 //==================================================================================================================================================//
@@ -122,6 +127,15 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::get('/Supplier{wallet_id}', [WalletController::class, 'BalanceSupplier'])->name('Supplier.balance');
     Route::get('ServiceHouse/Supplier/Dashboard/MyWallet/Update', [WalletController::class, 'UpdateWalletSupplier'])->name('edit.wallet.supplier');
     Route::post('MyWallet/Update/Supplier', [WalletController::class, 'UpdateWalletPasswordSupplier'])->name('update.wallet.supplier');
+    Route::get('ServiceHouse/Supplier/Dashboard/Orders', [OrderController::class, 'ViewOrdersSupplier'])->name('View.Order.supplier');
+
+    Route::get('ServiceHouse/Supplier/Dashboard/Order/{id}', [OrderController::class, 'ViewDetailOrder'])->name('ViewOrderDetail');
+    Route::get('ServiceHouse/Supplier/Dashboard/Order/Acceptance/{id}', [OrderController::class, 'AcceptanceOrder'])->name('AcceptanceOrder');
+    Route::get('ServiceHouse/Supplier/Dashboard/Order/Rejection/{id}', [OrderController::class, 'RejectionOrder'])->name('RejectionOrder');
+    Route::get('ServiceHouse/Supplier/Dashboard/Order/Completed/{id}', [OrderController::class, 'completedOrder'])->name('completedOrder');
+    Route::post('ServiceHouse/Supplier/Dashboard/Order/Deliver', [OrderController::class, 'DeliveredOrder'])->name('DeliveredOrder');
+
+
 });
 //===================================================================================================================================================//
 
@@ -150,19 +164,12 @@ Route::middleware(ClientMiddleware::class)->group(function () {
     Route::get('/client{wallet_id}', [WalletController::class, 'Balance'])->name('client.balance');
     Route::get('ServiceHouse/Client/Settings/MyWallet/Update', [WalletController::class, 'Update'])->name('edit.wallet.clinet');
     Route::post('MyWallet/Update', [WalletController::class, 'UpdateWalletPassword'])->name('update.wallet.client');
-
-
-
-
-
-
     Route::get('ServiceHouse/Client/Section/Service/WorkInfo/order/{id}', [OrderController::class, 'Order'])->name('Order');
+    Route::post('MyWallet/order', [OrderController::class, 'CreateOrder'])->name('CreateOrder');
+    Route::get('ServiceHouse/Client/Settings/MyOrders', [OrderController::class, 'ViewOrdersClient'])->name('View.Order.clinet');
+    Route::get('ServiceHouse/Client/Settings/MyOrders/OrderInfo/{id}', [OrderController::class, 'ViewOrderInfoClient'])->name('View.Order.Info.clinet');
 
-
-
-
-    Route::post('MyWallet/order', [OrderController::class, 'test'])->name('test');
-
+    Route::get('ServiceHouse/Client/Settings/MyOrders/OrderInfo/Approved/{id}', [OrderController::class, 'ApprovedOrder'])->name('ApprovedOrder');
 
 });
 //===================================================================================================================================================//

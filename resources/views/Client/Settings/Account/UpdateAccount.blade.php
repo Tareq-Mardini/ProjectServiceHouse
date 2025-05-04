@@ -28,40 +28,8 @@
     <a href="#" class="logo">
       <img src="{{asset('images/visitor/logo-3.png')}}" width="150" height="100" alt="EduWeb logo" style="margin-left: 70px; margin-top:20px">
     </a>
-    <ul style="margin-top:0px" class="side-menu top">
-      <li>
-        <a href="{{route('Client.View.Account')}}">
-          <i class='bx bx-user'></i>
-          <span class="text">My Account</span>
-        </a>
-      </li>
-      <ul>
-        <li>
-          <a href="{{route('view.chat.Suppliers')}}">
-            <i class='bx bxs-message-dots'></i>
-            <span class="text">Messages</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class='bx bxs-cart'></i>
-            <span class="text">My Orders</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class='bx bxs-heart'></i> <!-- تم تعديل الأيقونة هنا -->
-            <span class="text">My Favourites</span>
-          </a>
-        </li>
-      </ul>
-      <li>
-        <a href="{{route('Logout.client')}}" class="logout">
-          <i class='bx bxs-log-out-circle'></i>
-          <span class="text">Logout</span>
-        </a>
-      </li>
-    </ul>
+    @include('Client.Settings.sidebar')
+
   </section>
   <!-- SIDEBAR -->
   <!-- CONTENT -->

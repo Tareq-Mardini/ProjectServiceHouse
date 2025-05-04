@@ -35,4 +35,9 @@ class Order extends Model
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');
     }
+
+    public function files()
+    {
+        return $this->hasMany(OrderFile::class);
+    }
 }

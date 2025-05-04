@@ -69,63 +69,83 @@
     <main>
 
         <body>
-            <div class="container" style="margin-top: 170px; display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
-
+            <div class="container" style="margin-top: 150px; display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
                 <!-- السعر الأساسي -->
-                @if ($offers->count())
-                <div class="card" style="flex: 1; min-width: 280px; background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0px 8px 20px rgba(0,0,0,0.08); text-align: center;">
-                    <h2 style="color:#ee4962; margin-bottom: 15px;">
-                        <i style="color: #1ab79d;" class='bx bxs-dollar-circle'></i> Base Price
-                    </h2>
-                    <div style="font-size: 24px; font-weight: bold;">
-                        <span id="basePrice">{{ $works->price }}$</span>
-                    </div>
-                </div>
-                @endif
-
+                <span style="display:none;" id="basePrice">{{ $works->price }}$</span>
                 <!-- العروض الإضافية -->
                 @if ($offers->count())
-                <div class="card" style="flex: 1; min-width: 300px; background: linear-gradient(135deg, #ffffff, #f0f0f0); border-radius: 20px; padding: 25px; box-shadow: 0px 8px 20px rgba(0,0,0,0.08); text-align: right; ">
+                <div class="card" style="flex: 1; min-width: 300px; background: linear-gradient(135deg, #ffffff, #f0f0f0); border-radius: 20px; padding: 25px; box-shadow: 0px 8px 20px rgba(0,0,0,0.08); text-align: right;">
+
                     <h2 style="color: #ee4962; text-align:center; margin-bottom: 20px;">
-                        <i style="color: #1ab79d;" class='bx bx-gift'></i> Additional offers
+                        <i style="color: #1ab79d;" class='bx bx-gift'></i> Additional Offers
                     </h2>
+
                     @foreach ($offers as $offer)
-                    <div style="border: 1px solid #ddd; border-radius: 15px; padding: 15px; margin-bottom: 15px; background: #fff; transition: 0.3s; display: flex; gap: 12px; align-items: flex-start; cursor: pointer;">
-                        <input type="checkbox" class="extra-offer-checkbox" value="{{ $offer->price }}" data-id="{{ $offer->id }}" style="transform: scale(1.3); accent-color: #ee4962;">
-                        <div>
-                            <strong style="font-size: 18px;"><i class='bx bxs-star' style='color:#f5c518'></i> {{ $offer->title }}</strong>
-                            <p style="margin: 5px 0 0; color: #666; font-size: 14px;">
-                                <i class='bx bxs-dollar-circle' style='color:#1ab79d'></i> {{ $offer->price }}$
+                    <div style="display: flex; align-items: center; background: #fff; border: 1px solid #ddd; border-radius: 15px; padding: 15px; margin-bottom: 15px; box-shadow: 0px 2px 8px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer;">
+
+                        <!-- الأيقونة مع التشيك بوكس -->
+                        <div style="display: flex; align-items: center; margin-left: 12px;">
+                            <input type="checkbox" class="extra-offer-checkbox" value="{{ $offer->price }}" data-id="{{ $offer->id }}" style="transform: scale(1.4); accent-color: #ee4962; margin-right: 20px;">
+                        </div>
+
+                        <!-- النصوص -->
+                        <div style="flex: 1; text-align: left;">
+                            <p style="margin: 4px 0 0; font-size: 14px; color: #666;">
+                                <i class='bx bxs-star' style="font-size: 20px; color: #f5c518;"></i>{{ $offer->title }}
                             </p>
+                            <p style="margin: 4px 0 0; font-size: 14px; color: #666;font-weight: bold ">
+                                <i class='bx bxs-dollar-circle' style="color:#1ab79d;font-size: 20px;"></i> {{ $offer->price }}$
+                            </p>
+
                         </div>
                     </div>
                     @endforeach
                 </div>
                 @endif
 
+                <style>
+                    input[type="text"]:focus,
+                    input[type="password"]:focus,
+                    textarea:focus {
+                        border-color: #1ab79d;
+                        outline: none;
+                        box-shadow: 0 0 5px #1ab79d66;
+                    }
+                </style>
                 <!-- السعر النهائي -->
                 <div class="card" style="flex: 1; min-width: 280px; background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0px 8px 20px rgba(0,0,0,0.08); text-align: center;">
                     <h2 style="color:#ee4962; margin-bottom: 15px;">
                         <i style="color: #1ab79d;" class='bx bx-calculator'></i> Total Price
                     </h2>
-                    <div style="font-size: 24px; font-weight: bold;">
-                        <span id="totalPrice">{{ $works->price }}$</span>
-                    </div>
+                    <form action="{{ route('CreateOrder') }}" method="POST" style="margin-top: 2px; max-width: 500px; margin-left:auto; margin-right:auto; background: #fff; padding: 30px; padding-top:0px; border-radius: 20px; box-shadow: 0px 8px 20px rgba(0,0,0,0.08);">
+                        @csrf
+                        <div style="font-size: 24px; font-weight: bold;">
+                            <span id="totalPrice">{{ $works->price }}$</span>
+                        </div>
+                        <input type="hidden" name="total_price" id="hiddenTotalPrice" value="{{ $works->price }}">
+                        <input type="hidden" name="id_supplier" value="{{ $works->supplier->id }}">
+                        <input type="hidden" name="id_work" value="{{ $works->id }}">
+                        <input  type="hidden" name="selected_offers" id="selectedOffers">
+                        <textarea required name="order_description" placeholder="Write your order description here..."
+                            style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; resize: vertical; min-height: 120px;"></textarea>
+                        <input required type="text" name="wallet_number" placeholder="Wallet Number" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px;">
+                        <input required type="password" name="wallet_password" placeholder="Wallet Password" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 10px;">
+                        @if(session('error_wallet'))
+                        <p style="color: red;margin-top:-10px">{{ session('error_wallet') }}</p>
+                        @endif
+                        @if(session('error_password'))
+                        <p style="color: red;margin-top:-10px">{{ session('error_password') }}</p>
+                        @endif
+                        @if(session('error_balance'))
+                        <p style="color: red;margin-top:-10px">{{ session('error_balance') }}</p>
+                        @endif
+                        <button type="submit" style="width: 100%; padding: 15px; background-color: #1ab79d; color: white; font-size: 18px; border: none; border-radius: 12px; transition: 0.3s;"><i class='bx bxs-cart' style="color: wihte; font-size: 24px;"></i> Buy</button>
+                    </form>
                 </div>
             </div>
 
             <!-- نموذج الدفع -->
-            <form action="{{ route('test') }}" method="POST" style="margin-top: 30px; max-width: 500px; margin-left:auto; margin-right:auto; background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0px 8px 20px rgba(0,0,0,0.08);">
-                @csrf
-                <input type="hidden" name="total_price" id="hiddenTotalPrice" value="{{ $works->price }}">
-                <input type="hidden" name="id_supplier" value="{{ $works->supplier->id }}">
-                <input type="hidden" name="id_work" value="{{ $works->id }}">
-                <input type="hidden" name="selected_offers" id="selectedOffers">
-                <input type="text" name="wallet_number" placeholder="Wallet Number" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px;">
-                <input type="text" name="order_description" placeholder="Order Description" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px;">
-                <input type="password" name="wallet_password" placeholder="Wallet Password" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 10px;">
-                <button type="submit" style="width: 100%; padding: 15px; background-color: #1ab79d; color: white; font-size: 18px; border: none; border-radius: 12px; transition: 0.3s;">أرسل</button>
-            </form>
+
 
             <!-- سكربت حساب السعر -->
             <script>

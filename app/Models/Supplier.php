@@ -64,4 +64,9 @@ class Supplier extends Authenticatable
     {
         return $this->hasMany(Order::class, 'supplier_id');
     }
+
+    public function receivedTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'receiver_id');
+    }
 }

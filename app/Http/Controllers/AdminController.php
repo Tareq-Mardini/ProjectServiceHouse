@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Order;
+use App\Models\OrderFile;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +19,7 @@ class AdminController extends Controller
 
     public function ViewAccount() {
         $data = Admin::first();
-        return view('dashboardd/setting', compact('data'));
+        return view('dashboard/MyAccount/Account', compact('data'));
     }
     
     public function EditAccount(Request $request) {
@@ -35,5 +38,16 @@ class AdminController extends Controller
             session()->flash('failed', 'failed edit account.');
             return redirect()->route('admin.setting');
         }
+    }
+
+    public function ViewTransactions(){
+        $info = Transaction::get();
+        return view('dashboard.Transactions.View',compact('info'));
+    }
+
+    public function ViewOrders(){
+        $info = Order::get();
+        $InfoFile = OrderFile::get();
+        return view('dashboard.Orders.View',compact('info','InfoFile'));
     }
 }

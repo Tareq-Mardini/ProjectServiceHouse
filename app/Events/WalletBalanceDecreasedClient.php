@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\Order;
+use App\Models\Transaction;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -21,7 +22,6 @@ class WalletBalanceDecreasedClient
      */
 
 
-
     public function __construct($number, $balance, $userId, $order_price, $id_supplier, $id_work, $selectedOffers, $order_description)
     {
         Wallet::where('wallet_number', $number)
@@ -37,13 +37,21 @@ class WalletBalanceDecreasedClient
             ->update([
                 'balance' => $order_price + $plus_price->balance
             ]);
-        Order::create([
+        $order = Order::create([
             'work_id' => $id_work,
             'client_id' => $userId,
             'supplier_id' => $id_supplier,
             'price' => $order_price,
             'order_description'=> $order_description,
             'selected_offers' => implode(',', $selectedOffers),
+        ]);
+        Transaction::create([
+            'order_id' => $order->id,
+            'sender_id' => $userId,
+            'receiver_id' => 0,
+            'receiver_role' => 'system',
+            'status' => 'The money is in the system',
+            'amount' => $order_price
         ]);
     }
 

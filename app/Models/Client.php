@@ -51,7 +51,17 @@ class Client extends Authenticatable
     }
 
     public function orders()
-{
-    return $this->hasMany(Order::class, 'client_id');
-}
+    {
+        return $this->hasMany(Order::class, 'client_id');
+    }
+
+    public function sentTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'sender_id');
+    }
+
+    public function receivedTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'receiver_id');
+    }
 }
