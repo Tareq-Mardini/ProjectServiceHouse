@@ -38,7 +38,6 @@ class WalletBalanceIncreasedSupplier
         ->first();
         if($WalletSystem){
             $WalletSystem->balance -= $finalAmount;
-            $WalletSystem->balance += $fee;
             $WalletSystem->save();
         }
         $ReleasedToSupplier = Order::where('id',$Approved->id)

@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{asset('css/SupplierWork.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <title>Service House</title>
 </head>
 
@@ -68,41 +70,72 @@
         </div>
     </header>
     <main>
+        <div class="container" style="margin-top: 160px;">
+            <h2 class="h2 section-title"><span class="span">Works <i class="fa fa-cogs" aria-hidden="true"></i>
+                </span></h2>
+            <div class="Section">
+                @foreach ($data as $work)
+                <div class="content-section">
+                    <!-- صورة العمل -->
+                    <img src="{{ Storage::url($work->thumbnail) }}" alt="Work Thumbnail" class="work-thumbnail">
 
-        <body>
-            <div class="container" style="margin-top: 160px;">
-                <h2 class="h2 section-title"><span class="span">Works <i class="fa fa-cogs" aria-hidden="true"></i>
-                    </span></h2>
-                <div class="Section">
-                    @foreach ($data as $work)
-                    <div class="content-section">
-                        <!-- صورة العمل -->
-                        <img src="{{ Storage::url($work->thumbnail) }}" alt="Work Thumbnail" class="work-thumbnail">
-
-                        <div class="text">
-                            <h3>{{ $work->title }}</h3>
-                            <p>price:
-                                <span style="display: inline; color:green; font-size:15px;">{{ $work->price }}<i class="fa fa-dollar-sign"></i></span>
-                            </p>
-
-                            <div class="info-supplier">
+                    <div class="text">
+                        <h3>{{ $work->title }}</h3>
+                        <p>price:
+                            <span style="display: inline; color:green; font-size:15px;">{{ $work->price }}<i class="fa fa-dollar-sign"></i></span>
+                        </p>
+                        <div class="info-supplier" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; align-items: center;">
                                 <img class="image-supplier" src="{{ Storage::url($work->supplier->image) }}" alt="Supplier Image">
                                 <span class="supplier-name">{{ $work->supplier->name }}</span>
                             </div>
-
-                            <a href="{{ route('Works.info.Client', ['id' => $work->id]) }}">
-                                <button class="info-button">View Info</button>
-                            </a>
+                            <!-- زر القلب -->
+                            <i class="fa fa-heart favorite-icon"
+                                data-work-id="{{ $work->id }}"
+                                style="color: {{ in_array($work->id, $favorites) ? 'red' : 'gray' }}; cursor: pointer;"
+                                title="Add to Favorites"></i>
                         </div>
+                        <a href="{{ route('Works.info.Client', ['id' => $work->id]) }}">
+                            <button class="info-button">View Info</button>
+                        </a>
                     </div>
-                    @endforeach
                 </div>
+                @endforeach
             </div>
-
+        </div>
     </main>
     <a href="#top" class="back-top-btn" aria-label="back top top" data-back-top-btn>
         <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
     </a>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const favoriteIcons = document.querySelectorAll('.favorite-icon');
+            favoriteIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const workId = this.dataset.workId;
+                    fetch(`/favorite/${workId}`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({})
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'added') {
+                                this.style.color = 'red';
+                                Notiflix.Notify.success("Added to favorites");
+                            } else if (data.status === 'removed') {
+                                this.style.color = 'gray';
+                                Notiflix.Notify.warning("Removed from favorites");
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            });
+        });
+    </script>
     <script src="{{asset('js/Loading.js')}}"></script>
     <script src="{{asset('js/visitor.js')}}" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

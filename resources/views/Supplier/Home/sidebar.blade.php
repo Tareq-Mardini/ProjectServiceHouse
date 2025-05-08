@@ -38,7 +38,7 @@
     <li>
         <a href="{{route('View.Order.supplier')}}">
             <i class='bx bxs-cart'></i>
-            <span class="text">Mange Order</span>
+            <span class="text">Manage Order</span>
         </a>
     </li>
     <li>

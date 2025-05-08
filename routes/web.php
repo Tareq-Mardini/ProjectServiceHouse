@@ -20,7 +20,7 @@ use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\CustomerServiceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WalletController;
-
+use App\Http\Controllers\FavoriteController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -168,9 +168,12 @@ Route::middleware(ClientMiddleware::class)->group(function () {
     Route::post('MyWallet/order', [OrderController::class, 'CreateOrder'])->name('CreateOrder');
     Route::get('ServiceHouse/Client/Settings/MyOrders', [OrderController::class, 'ViewOrdersClient'])->name('View.Order.clinet');
     Route::get('ServiceHouse/Client/Settings/MyOrders/OrderInfo/{id}', [OrderController::class, 'ViewOrderInfoClient'])->name('View.Order.Info.clinet');
-
     Route::get('ServiceHouse/Client/Settings/MyOrders/OrderInfo/Approved/{id}', [OrderController::class, 'ApprovedOrder'])->name('ApprovedOrder');
 
+
+
+    Route::post('/favorite/{id}', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
+    Route::get('ServiceHouse/Client/Settings/MyFavorite',[FavoriteController::class,'ViewFavorite'])->name('ViewFavorite');
 });
 //===================================================================================================================================================//
 

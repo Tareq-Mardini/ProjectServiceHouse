@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Favorite;
 use Illuminate\Http\Request;
 use App\Models\Section;
 use App\Models\services;
@@ -36,7 +37,15 @@ class ClientController extends Controller
     public function ViewWorks($id)
     {
         $data = Work::where('service_id', $id)->get();
-        return view('Client.Home.Works', compact('data'));
+        $userId = session('Client_user_id');
+        $favorites = [];
+        if ($userId) {
+            $favorites = Favorite::
+                where('client_id', $userId)
+                ->pluck('work_id')
+                ->toArray();
+        }
+        return view('Client.Home.Works', compact('data', 'favorites'));
     }
     //==========================================================================
     public function ViewinfoWorks($id)

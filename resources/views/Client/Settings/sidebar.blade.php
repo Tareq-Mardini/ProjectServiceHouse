@@ -32,7 +32,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{route('ViewFavorite')}}">
                 <i class='bx bxs-heart'></i>
                 <span class="text">My Favourites</span>
             </a>

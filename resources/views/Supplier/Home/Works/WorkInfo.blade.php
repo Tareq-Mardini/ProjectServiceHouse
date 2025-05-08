@@ -61,7 +61,7 @@
             @if($youtubeId)
             <iframe src="https://www.youtube.com/embed/{{ $youtubeId }}" class="active" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             @else
-            <img src="{{ Storage::url($works->thumbnail) }}" alt="Work Image">
+            <img src="{{ Storage::url($works->thumbnail) }}" alt="Work Image" class="active">
             @endif
             @foreach ($image as $image_path)
             <img src="{{ Storage::url($image_path->image_path) }}" alt="Work Image">

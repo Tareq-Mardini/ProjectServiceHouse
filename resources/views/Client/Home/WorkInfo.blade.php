@@ -89,7 +89,7 @@
                         @if($youtubeId)
                         <iframe src="https://www.youtube.com/embed/{{ $youtubeId }}" class="active" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         @else
-                        <img src="{{ Storage::url($works->thumbnail) }}" alt="Work Image">
+                        <img src="{{ Storage::url($works->thumbnail) }}" alt="Work Image" class="active">
                         @endif
                         @foreach ($image as $image_path)
                         <img src="{{ Storage::url($image_path->image_path) }}" alt="Work Image">
@@ -119,24 +119,76 @@
                             <span class="label"><i class="fa fa-bolt" style="margin-right: 5px; color: #fd7e14;"></i> Average Speed of Response</span>
                             <span class="value">{{ $works->Average_speed_of_response }}</span>
                         </div>
-                        <div class="detail">
+                        <div class=" detail">
                             <span class="label"><i class="fa fa-user" style="margin-right: 5px; color: #6c757d;"></i> Supplier</span>
-                            <span class="value">{{ $works->Supplier->name }}</span>
+                            <span class="value">{{ $works->Supplier->name }}
+                                <div class="portfolio-btn-container">
+                                    <button class="main-toggle-btn" onclick="toggleMenu()"><i class="fa fa-cog" style="margin-right: 5px; color: #6c757d;"></i>
+                                    </button>
+                                    <div  class="toggle-menu" id="toggleMenu">
+                                        <a href="{{ route('view.portfolio.Client', ['id' => $works->Supplier->id]) }}" class="portfolio-btn">
+                                            <i class="fa fa-folder-open" aria-hidden="true" style="margin-right: 8px;"></i> View Portfolio
+                                        </a>
+                                        <a href="{{ route('view.chat.Client', ['id' => $works->Supplier->id]) }}" class="portfolio-btn">
+                                            <i class='bx bx-message-dots'style="margin-right: 8px;"></i> Contact me
+                                        </a>
+                                        <a href="{{ route('Order', ['id' => $works->id]) }}" class="portfolio-btn">
+                                            <i class='bx bx-cart'style="margin-right: 8px;"></i> Buy Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </span>
                         </div>
-                        <div class="portfolio-btn-container" style="text-align: center; margin-top: 20px;">
-                            <a href="{{ route('view.portfolio.Client', ['id' => $works->Supplier->id]) }}"
-                                class="portfolio-btn">
-                                <i class="fa fa-folder-open" aria-hidden="true" style="margin-right: 8px;"></i> View Portfolio
-                            </a>
-                            <a href="{{ route('view.chat.Client', ['id' => $works->Supplier->id]) }}"
-                                class="portfolio-btn">
-                                <i class='bx bx-message-dots'></i> Contact me
-                            </a>
-                            <a href="{{ route('Order', ['id' => $works->id]) }}"
-                                class="portfolio-btn">
-                                <i class='bx bx-message-dots'></i> oreder me
-                            </a>
-                        </div>
+                        <style>
+                            .portfolio-btn-container {
+                                text-align: center;
+                                margin-top: 20px;
+                                position: relative;
+                                display: inline-block;
+                            }
+                            .toggle-menu {
+                                display: none;
+                                position: absolute;
+                                top: 100%;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                background-color: white;
+                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                                padding: 10px;
+                                border-radius: 8px;
+                                z-index: 999;
+                                min-width: 200px;
+                                flex-direction: column;
+                                gap: 10px;
+                            }
+                            .portfolio-btn {
+                                display: block;
+                                padding: 10px;
+                                text-decoration: none;
+                                border-radius: 6px;
+                                text-align: left;
+                                transition: background-color 0.3s ease;
+                                background: white;
+                                color: black;
+                            }
+                            .portfolio-btn:hover {
+                                background:rgb(255, 255, 255);
+                                
+                            }
+                        </style>
+                        <script>
+                            function toggleMenu() {
+                                const menu = document.getElementById('toggleMenu');
+                                menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+                            }
+                            document.addEventListener('click', function(event) {
+                                const menu = document.getElementById('toggleMenu');
+                                const button = document.querySelector('.main-toggle-btn');
+                                if (!menu.contains(event.target) && !button.contains(event.target)) {
+                                    menu.style.display = 'none';
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

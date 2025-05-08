@@ -50,4 +50,9 @@ class Work extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function FavoritedWork()
+    {
+        return $this->hasMany(Favorite::class,'work_id');
+    }
 }

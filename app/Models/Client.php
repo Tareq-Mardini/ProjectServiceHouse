@@ -64,4 +64,9 @@ class Client extends Authenticatable
     {
         return $this->hasMany(Transaction::class, 'receiver_id');
     }
+
+    public function FavoriteClient()
+    {
+        return $this->hasMany(Favorite::class, 'client_id');
+    }
 }

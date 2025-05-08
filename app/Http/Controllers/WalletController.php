@@ -131,23 +131,11 @@ class WalletController extends Controller
     }
     //=======================================================================================================================
 
-
-
-
-
-
-
-
-
-
-
     public function CreateWalletSupplier()
     {
         return view('Supplier.Home.Wallet.Create');
     }
-
-
-
+    //=======================================================================================================================
 
     public function StoreWalletSupplier(Request $request)
     {
@@ -185,9 +173,7 @@ class WalletController extends Controller
             return redirect()->route('View.wallet.supplier');
         }
     }
-
-
-
+    //=======================================================================================================================
 
 
     public function ViewWalletSupplier()
@@ -203,7 +189,7 @@ class WalletController extends Controller
         }
     }
 
-
+    //=======================================================================================================================
 
     public function BalanceSupplier($wallet_id)
     {
@@ -214,12 +200,7 @@ class WalletController extends Controller
         session()->flash('Balance', "The Balance is {$wallet->balance} $");
         return redirect()->route('View.wallet.supplier');
     }
-
-
-
-
-
-
+    //=======================================================================================================================
 
     public function UpdateWalletSupplier()
     {
@@ -231,6 +212,7 @@ class WalletController extends Controller
             return view('Supplier.Home.Wallet.Update', compact('existingWallet'));
         }
     }
+    //=======================================================================================================================
 
     public function UpdateWalletPasswordSupplier(Request $request)
     {
