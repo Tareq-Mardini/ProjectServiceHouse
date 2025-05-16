@@ -9,7 +9,9 @@ class OrderFile extends Model
     protected $fillable = [
         'order_id',
         'file_path',
-        'note'
+        'note',
+        'status',
+        'client_note'
     ];
 
     public function order()

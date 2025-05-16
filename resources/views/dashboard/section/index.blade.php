@@ -173,6 +173,11 @@
       Notiflix.Notify.success("{{ session('success_update') }}");
     </script>
     @endif
+    @if(session('fail_delete_section'))
+    <script>
+      Notiflix.Notify.failure("{{ session('fail_delete_section') }}");
+    </script>
+    @endif
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
 

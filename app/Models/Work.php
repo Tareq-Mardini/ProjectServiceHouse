@@ -53,6 +53,11 @@ class Work extends Model
 
     public function FavoritedWork()
     {
-        return $this->hasMany(Favorite::class,'work_id');
+        return $this->hasMany(Favorite::class, 'work_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{asset('css/visitor-sections.css')}}">
   <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
   <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
+  <link rel="stylesheet" href="{{asset('css/Search.css')}}">
   <title>Service House</title>
 </head>
 
@@ -69,9 +70,13 @@
     <div class="container" style="margin-top: 160px;">
       <h2 class="h2 section-title"><span class="span">Sections <i class="fa fa-sitemap" aria-hidden="true"></i>
         </span></h2>
+      <div class="search-container">
+        <input type="text" id="sectionSearch" placeholder="Search a section by name..." />
+        <ion-icon name="search-outline" class="search-icon"></ion-icon>
+      </div>
       <div class="Section">
         @foreach ($data as $section)
-        <div class="content-section">
+        <div class="content-section" data-name="{{ strtolower($section->name) }}">
           <img src="{{ asset($section->image) }}" alt="">
           <div class="text">
             <h3>{{$section->name}}</h3>
@@ -85,6 +90,21 @@
         @endforeach
       </div>
     </div>
+    <script>
+      const searchInput = document.getElementById('sectionSearch');
+      const sections = document.querySelectorAll('.content-section');
+      searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        sections.forEach(section => {
+          const name = section.dataset.name;
+          if (name.includes(query)) {
+            section.classList.remove('hidden');
+          } else {
+            section.classList.add('hidden');
+          }
+        });
+      });
+    </script>
   </main>
   <a href="#top" class="back-top-btn" aria-label="back top top" data-back-top-btn>
     <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>

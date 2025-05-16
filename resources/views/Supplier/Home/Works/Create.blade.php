@@ -43,135 +43,214 @@
     <main style="background-color: #eeeeee;">
       <div style="margin-top: -17px;" class="container ">
         <div class="form-container">
-          <div style="height: 140px ; width:300px; margin-left:auto;margin-right:auto;"><img src="{{asset('images/mange_work/work_form-removebg-preview-transformed.png')}}" style="height: 140px ; width:300px; margin-left:auto;margin-right:auto;" alt="">
+          <div style="height: 140px ; width:300px; margin-left:auto;margin-right:auto;">
+            <img src="{{asset('images/mange_work/work_form-removebg-preview-transformed.png')}}" style="height: 140px ; width:300px; margin-left:auto;margin-right:auto;" alt="">
           </div>
           <form action="{{ route('Works.Store.Supplier') }}" method="POST" enctype="multipart/form-data">
             @csrf
-
-            <!-- اختيار الخدمة -->
             <div class="form-group">
               <i class='bx bx-select-multiple' style='color:#1ab79d'></i>
               <label for="service_id">Service</label>
               <select name="service_id" id="service_id" required>
                 <option value="" selected disabled>Choose a Service</option>
                 @foreach ($data as $datas)
-                <option value="{{ $datas->id }}">{{ $datas->name }}</option>
+                <option value="{{ $datas->id }}" {{ old('service_id') == $datas->id ? 'selected' : '' }}>{{ $datas->name }}</option>
                 @endforeach
               </select>
+              @error('service_id')
+              <div style="color: red; font-size: 13px;">{{ $message }}</div>
+              @enderror
             </div>
-
             <div class="form-group">
               <i class='bx bx-captions' style='color:#1ab79d'></i>
               <label for="title">Title</label>
-              <input type="text" id="title" name="title" required placeholder="Enter Title">
+              <input type="text" id="title" name="title" required placeholder="Enter Title" value="{{ old('title') }}">
+              @error('title')
+              <div style="color: red; font-size: 13px;">{{ $message }}</div>
+              @enderror
             </div>
-
             <div class="form-group">
               <i class='bx bxs-edit-alt' style='color:#1ab79d'></i>
               <label for="description">Description</label>
-              <textarea id="description" name="description" rows="3" required placeholder="Enter Description"></textarea>
+              <textarea id="description" name="description" rows="3" required placeholder="Enter Description">{{ old('description') }}</textarea>
+              @error('description')
+              <div style="color: red; font-size: 13px;">{{ $message }}</div>
+              @enderror
             </div>
-
             <div class="form-group">
               <i class='bx bx-dollar-circle' style='color:#1ab79d'></i>
               <label for="price">Price</label>
-              <input type="number" id="price" name="price" required placeholder="Enter Price">
+              <input type="number" id="price" name="price" required placeholder="Enter Price" value="{{ old('price') }}">
+              @error('price')
+              <div style="color: red; font-size: 13px;">{{ $message }}</div>
+              @enderror
             </div>
-
             <div class="form-group">
               <i class='bx bx-time' style='color:#1ab79d'></i>
               <label for="average_delivery_time">Average Delivery Time</label>
-              <input type="text" id="average_delivery_time" name="Average_delivery_time" required placeholder="Enter Average Delivery Time">
+              <select id="average_delivery_time" name="Average_delivery_time" required>
+                <option value="">Select delivery time (in days)</option>
+                @for ($i = 1; $i <= 30; $i++)
+                  <option value="{{ $i }}" {{ old('Average_delivery_time') == $i ? 'selected' : '' }}>
+                  {{ $i }} day{{ $i > 1 ? 's' : '' }}
+                  </option>
+                  @endfor
+                  <option value="other" {{ old('Average_delivery_time') == 'other' ? 'selected' : '' }}>Other</option>
+              </select>
+              <input type="number" min="1" id="custom_delivery_time" name="custom_delivery_time"
+                placeholder="Enter delivery time in days"
+                style="display: none; margin-top: 10px;"
+                value="{{ old('custom_delivery_time') }}">
+              @error('Average_delivery_time')
+              <div style="color: red; font-size: 13px;">{{ $message }}</div>
+              @enderror
             </div>
-
             <div class="form-group">
               <i class='bx bx-time-five' style='color:#1ab79d'></i>
               <label for="average_speed_of_response">Average Speed of Response</label>
-              <input type="text" id="average_speed_of_response" name="Average_speed_of_response" required placeholder="Enter Average Speed of Response">
+              <select id="average_speed_of_response" name="Average_speed_of_response" required>
+                <option value="">Select response speed (in hours)</option>
+                @for ($i = 1; $i <= 24; $i++)
+                  <option value="{{ $i }}" {{ old('Average_speed_of_response') == $i ? 'selected' : '' }}>
+                  {{ $i }} hour{{ $i > 1 ? 's' : '' }}
+                  </option>
+                  @endfor
+                  <option value="other" {{ old('Average_speed_of_response') == 'other' ? 'selected' : '' }}>Other</option>
+              </select>
+              <input type="number" min="1" id="custom_response_speed" name="custom_response_speed"
+                placeholder="Enter response speed in hours"
+                style="display: none; margin-top: 10px;"
+                value="{{ old('custom_response_speed') }}">
+              @error('Average_speed_of_response')
+              <div style="color: red; font-size: 13px;">{{ $message }}</div>
+              @enderror
             </div>
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                const deliverySelect = document.getElementById('average_delivery_time');
+                const deliveryInput = document.getElementById('custom_delivery_time');
+                const responseSelect = document.getElementById('average_speed_of_response');
+                const responseInput = document.getElementById('custom_response_speed');
 
-            <!-- تحميل الصورة الأساسية -->
+                // Hidden fields to store final values
+                const deliveryHidden = document.createElement('input');
+                deliveryHidden.type = 'hidden';
+                deliveryHidden.name = 'Average_delivery_time';
+                deliverySelect.parentNode.appendChild(deliveryHidden);
+
+                const responseHidden = document.createElement('input');
+                responseHidden.type = 'hidden';
+                responseHidden.name = 'Average_speed_of_response';
+                responseSelect.parentNode.appendChild(responseHidden);
+
+                function updateFields() {
+                  if (deliverySelect.value === 'other') {
+                    deliveryInput.style.display = 'block';
+                    deliveryHidden.value = deliveryInput.value ? `${deliveryInput.value} days` : '';
+                  } else {
+                    deliveryInput.style.display = 'none';
+                    deliveryHidden.value = deliverySelect.value ? `${deliverySelect.value} days` : '';
+                  }
+
+                  if (responseSelect.value === 'other') {
+                    responseInput.style.display = 'block';
+                    responseHidden.value = responseInput.value ? `${responseInput.value} hours` : '';
+                  } else {
+                    responseInput.style.display = 'none';
+                    responseHidden.value = responseSelect.value ? `${responseSelect.value} hours` : '';
+                  }
+                }
+
+                // Initial state
+                updateFields();
+
+                // Event listeners
+                deliverySelect.addEventListener('change', updateFields);
+                deliveryInput.addEventListener('input', updateFields);
+                responseSelect.addEventListener('change', updateFields);
+                responseInput.addEventListener('input', updateFields);
+              });
+            </script>
+
             <div class="form-group">
               <i class='bx bx-photo-album' style='color:#1ab79d'></i>
               <label for="thumbnail">Thumbnail</label>
               <input type="file" id="thumbnail" name="thumbnail" required>
+              @error('thumbnail')
+              <div style="color: red; font-size: 13px;">{{ $message }}</div>
+              @enderror
             </div>
-
-            <!-- تحميل الصور المتعددة -->
             <div class="form-group">
               <i class='bx bx-select-multiple' style='color:#1ab79d'></i>
               <label for="images">Additional Images</label>
               <input type="file" id="images" name="images[]" multiple>
+              @error('images.*')
+              <div style="color: red; font-size: 13px;">{{ $message }}</div>
+              @enderror
             </div>
-
-            <!-- رابط اليوتيوب -->
             <div class="form-group">
               <i class='bx bxl-youtube' style='color:#1ab79d'></i>
               <label for="youtube_link">YouTube Link</label>
-              <input type="url" id="youtube_link" name="youtube_link" placeholder="https://www.youtube.com/watch?v=example">
+              <input type="url" id="youtube_link" name="youtube_link" placeholder="https://www.youtube.com/watch?v=example" value="{{ old('youtube_link') }}">
+              @error('youtube_link')
+              <div style="color: red; font-size: 13px;">{{ $message }}</div>
+              @enderror
             </div>
-
-            <!--  العروض الإضافية (الخصائص الإضافية) -->
             <div id="extra-container">
               <label style="font-weight: bold; color: #1ab79d;">Extra Offers</label>
-
               <div class="extra-item-wrapper">
                 <div class="form-group extra-item">
-
                   <i class='bx bx-cube' style='color:#1ab79d'></i>
                   <label>Title </label>
-                  <input type="text" name="extras[0][title]" placeholder="Extra Title">
+                  <input type="text" name="extras[0][title]" placeholder="Extra Title" value="{{ old('extras.0.title') }}">
+                  @error('extras.0.title')
+                  <div style="color: red; font-size: 13px;">{{ $message }}</div>
+                  @enderror
                 </div>
-
                 <div class="form-group">
-
                   <i class='bx bx-dollar' style='color:#1ab79d'></i>
                   <label>Price </label>
-                  <input type="number" step="0.01" name="extras[0][price]" placeholder="Extra Price">
+                  <input type="number" step="0.01" name="extras[0][price]" placeholder="Extra Price" value="{{ old('extras.0.price') }}">
+                  @error('extras.0.price')
+                  <div style="color: red; font-size: 13px;">{{ $message }}</div>
+                  @enderror
                 </div>
-
                 <div class="form-group">
                   <button style="border: #1ab79d;" type="button" class="btn-secondary" onclick="removeExtra(this)">❌</button>
                 </div>
               </div>
             </div>
-
             <div class="form-group">
               <button type="button" onclick="addExtra()" class="btn-primary" style="margin-top: 10px;">Add Extra Offer</button>
             </div>
-
             <button type="submit" class="btn-primary">Create Work</button>
           </form>
-
           <script>
             let extraIndex = 1;
 
             function addExtra() {
               const container = document.getElementById('extra-container');
-
               const wrapper = document.createElement('div');
               wrapper.classList.add('extra-item-wrapper');
-
               wrapper.innerHTML = `
-            <div class="form-group extra-item">
-                <i class='bx bx-cube' style='color:#1ab79d'></i>
-                <label>Title </label>
-                <input type="text" name="extras[${extraIndex}][title]" placeholder="Extra Title">
-            </div>
-
-            <div class="form-group">
-                <i class='bx bx-dollar' style='color:#1ab79d'></i>
-                <label>Price </label>
-                <input type="number" step="0.01" name="extras[${extraIndex}][price]" placeholder="Extra Price">
-            </div>
-
-            <div class="form-group">
-                <button style="border: #1ab79d;" type="button" class="btn-secondary" onclick="removeExtra(this)">❌</button>
-            </div>
+        <div class="form-group extra-item">
+          <i class='bx bx-cube' style='color:#1ab79d'></i>
+          <label>Title </label>
+          <input type="text" name="extras[${extraIndex}][title]" placeholder="Extra Title">
+        </div>
+        <div class="form-group">
+          <i class='bx bx-dollar' style='color:#1ab79d'></i>
+          <label>Price </label>
+          <input type="number" step="0.01" name="extras[${extraIndex}][price]" placeholder="Extra Price">
+        </div>
+        <div class="form-group">
+          <button style="border: #1ab79d;" type="button" class="btn-secondary" onclick="removeExtra(this)">❌</button>
+        </div>
         `;
               container.appendChild(wrapper);
               extraIndex++;
             }
+
             function removeExtra(button) {
               button.closest('.extra-item-wrapper').remove();
             }

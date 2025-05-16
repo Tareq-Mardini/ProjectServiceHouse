@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->string('file_path');
             $table->string('note')->nullable();
+            $table->string('status');
+            $table->string('client_note')->nullable();
             $table->timestamps();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });

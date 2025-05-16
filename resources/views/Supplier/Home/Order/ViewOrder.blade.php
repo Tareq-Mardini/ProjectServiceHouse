@@ -48,6 +48,7 @@
             <section id="orders">
                 <div class="orders-container">
                     @foreach ($info as $data)
+                    @if($data->client && $data->work)
                     <div class="order-card">
                         <div class="order-status 
                             @if($data->supplier_status == 'acceptance') bg-green 
@@ -78,6 +79,7 @@
                                 </li>
                             </ul>
                         </div>
+                        
                         <div class="profile-image">
                             <img src="{{ Storage::url($data->client->image) }}" alt="User Image">
                         </div>
@@ -86,7 +88,9 @@
                         <p class="price">Price: <span>${{ $data->price }} <i class="fa fa-dollar-sign"></i></span></p>
                         <a href="{{ url('ServiceHouse/Supplier/Dashboard/Order/' . $data->id) }}" class="details-button">View Details</a>
                     </div>
+                    @endif
                     @endforeach
+
                 </div>
             </section>
         </main>

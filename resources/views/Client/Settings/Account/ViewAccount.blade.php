@@ -38,6 +38,43 @@
       <div>
         <a style="color: white;" class="home-page" href="{{route('ServiceHouse.Home.Client')}}">Home Page <i class='bx bx-right-arrow-alt'></i> </a>
       </div>
+
+
+      <div>
+        <!-- الزر الذي يظهر الـ Modal -->
+        <div>
+          <a
+            style="color: white; background-color: red; padding: 10px 10px; border-radius: 5px; text-decoration: none; display: inline-block;"
+            class="home-page"
+            href="javascript:void(0)"
+            id="deleteAccountBtn">
+            Delete Account <i class="fa fa-trash"></i>
+          </a>
+        </div>
+
+        <!-- Modal -->
+        <div id="deleteAccountModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div style="color: red ;  font-size:18px" class="modal-header"><i class='bx bx-error-alt bx-tada' style='color:red ;margin-right: 3px;'></i>
+              Are you sure you want to delete your account?</div>
+            <div style="margin-top: 10px;" class="modal-body">
+              <p>This action cannot be undone. Please enter your password to confirm.</p>
+
+              <!-- نموذج الحذف -->
+              <form action="{{ route('Client.Delete.Account') }}" method="POST">
+                @csrf
+                <input style="width: 100%;" type="password" name="current_password" id="current_password" placeholder="Enter your password" required>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-danger" type="submit">Confirm Delete</button>
+              <button class="btn-secondary" id="cancelBtn" type="button">Cancel</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
     </nav>
     <!-- NAVBAR -->
     <!-- MAIN -->
@@ -87,6 +124,16 @@
   @if(session('Success_Update'))
   <script>
     Notiflix.Notify.success("{{ session('Success_Update') }}");
+  </script>
+  @endif
+  @if(session('wrong_delete_wallet'))
+  <script>
+    Notiflix.Notify.warning("{{ session('wrong_delete_wallet') }}");
+  </script>
+  @endif
+  @if(session('wrong_delete_order'))
+  <script>
+    Notiflix.Notify.warning("{{ session('wrong_delete_order') }}");
   </script>
   @endif
 </body>

@@ -57,7 +57,7 @@
       @endphp
       <div class="container">
         <div class="large-box">
-          <div  class="media-container">
+          <div class="media-container">
             @if($youtubeId)
             <iframe src="https://www.youtube.com/embed/{{ $youtubeId }}" class="active" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             @else
@@ -127,7 +127,54 @@
           <p style="font-size:17px">{!! nl2br(e($works->description)) !!}</p>
         </div>
       </div>
-
+      <div class="offers-description-wrapper" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px;">
+        <!-- Ratings Summary Box -->
+        <div class="extra-offers-section discription detail" style="flex: 1; min-width: 300px; max-width:50%; border-radius: 15px; padding: 20px; background: #ffffffb5;">
+          <h1 style="color: #ee4962; margin-bottom: 20px; text-align:center; font-size:24px">
+            <i class='bx bx-bar-chart-alt'></i> Ratings Summary
+          </h1>
+          @php
+          $averages = [
+          'quality' => $reviews->avg('quality'),
+          'communication' => $reviews->avg('communication'),
+          'timeliness' => $reviews->avg('timeliness'),
+          'satisfaction' => $reviews->avg('satisfaction'),
+          ];
+          $fields = [
+          'quality' => 'Work Quality',
+          'communication' => 'Communication',
+          'timeliness' => 'Timeliness',
+          'satisfaction' => 'Satisfaction',
+          ];
+          @endphp
+          @foreach($fields as $key => $label)
+          <div style="margin-bottom: 20px;">
+            <strong style="display: block; color: #333; font-size: 18px;">{{ $label }}</strong>
+            <div style="display: flex; align-items: center; gap: 6px; margin-top: 5px;">
+              @for($i = 1; $i <= 5; $i++)
+                <i class='bx bxs-star' style="font-size: 20px; color: {{ $i <= round($averages[$key]) ? '#f5c518' : '#ccc' }}"></i>
+                @endfor
+                <span style="color: #1ab79d; font-weight: bold; font-size: 17px;">{{ number_format($averages[$key], 1) }}/5</span>
+            </div>
+          </div>
+          @endforeach
+        </div>
+        <!-- Comments Box -->
+        <div class="discription detail" style="flex: 1; min-width: 300px;max-width:50%; border-radius: 15px; padding: 20px; background: #ffffffb5;">
+          <h1 style="color: #ee4962; margin-bottom: 20px; text-align:center; font-size:24px">
+            <i class='bx bx-comment-detail'></i> Client Comments
+          </h1>
+          @foreach($reviews as $review)
+          <div style="border-bottom: 1px solid #ddd; padding: 15px 0; display: flex; gap: 15px; align-items: flex-start;">
+            <img src="{{ Storage::url($review->client->image) }}" alt="User" style="width: 60px; height: 60px; border-radius: 50%;">
+            <div>
+              <p style="margin: 0; font-weight: bold; color: #1ab79d; font-size: 17px;">{{ $review->client->name }}</p>
+              <p style="margin: 5px 0; color: #333; font-size: 16px;">{{ $review->comment }}</p>
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </div>
     </main>
     <!-- MAIN -->
   </section>
@@ -136,5 +183,4 @@
   <script src="{{asset('js/InfoWork.js')}}"></script>
   <script src="{{asset('js/supplier-dashboard.js')}}"></script>
 </body>
-
 </html>

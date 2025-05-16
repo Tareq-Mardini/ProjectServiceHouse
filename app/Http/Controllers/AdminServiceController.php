@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Section;
 use App\Models\services;
 use App\Models\Service;
-
+use App\Models\Work;
 
 class AdminServiceController extends Controller
 {
@@ -94,6 +95,12 @@ class AdminServiceController extends Controller
     public function delete($id)
     {
     $services = services::find($id);
+    $TestWork = Work::where('service_id',$services->id)
+    ->first();
+    if($TestWork){
+        session()->flash('fail_delete_service', 'The service cannot be deleted because there are works assigned to the supplier.');  
+        return redirect()->back();
+    }
         $services->delete();
         session()->flash('success_delete_service', 'Success Delete service.');  
         return redirect()->route('admin.view.service');

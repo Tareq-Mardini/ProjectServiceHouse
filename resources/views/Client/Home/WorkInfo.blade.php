@@ -194,23 +194,7 @@
             </div>
             <div class="offers-description-wrapper" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px;max-width: 1260px;width: 100%;padding: 20px;margin:auto;">
                 <!-- Extra Offers Box -->
-                @if ($offers->count())
-                <div class="extra-offers-section discription detail" style="flex: 1; min-width: 300px; border-radius: 15px; padding: 15px;">
-                    <h1 style="color: #ee4962; margin-bottom: 15px; text-align:center;font-size:22px">
-                        <i class='bx bx-gift' style='color:#ee4962'></i> Extra Offers
-                    </h1>
-                    @foreach ($offers as $offer)
-                    <div class="extra-offer-box" style="border: 1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 10px; background: #ffffffb5;">
-                        <h3 style="margin: 0; color: #333;font-size:17px;">
-                            <i class='bx bxs-star' style='color:#f5c518'></i> {{ $offer->title }}
-                        </h3>
-                        <p style="margin: 5px 0 0; color: #555;font-size:17px">
-                            <strong style="font-size:17px"><i class='bx bxs-dollar-circle' style='color:#1ab79d'></i> Price:</strong> {{ $offer->price }}$
-                        </p>
-                    </div>
-                    @endforeach
-                </div>
-                @endif
+  
                 <!-- Description Box -->
                 <div class="discription detail" style="flex: 1; min-width: 300px; height:fit-content;">
                     <span class="label">
@@ -221,6 +205,78 @@
                     <p style="font-size:17px">{!! nl2br(e($works->description)) !!}</p>
                 </div>
             </div>
+
+
+
+
+
+
+
+
+<div class="offers-description-wrapper" style="display: flex; gap: 25px; flex-wrap: wrap; margin-top: 20px; max-width: 1300px; width: 100%; padding: 25px; margin: auto;">
+    
+    <!-- Ratings Summary Box -->
+    <div class="extra-offers-section discription detail" style="flex: 1; min-width: 320px; border-radius: 15px; padding: 20px; background: #ffffffb5;">
+        <h1 style="color: #ee4962; margin-bottom: 20px; text-align:center; font-size:24px">
+            <i class='bx bx-bar-chart-alt'></i> Ratings Summary
+        </h1>
+
+        @php
+            $averages = [
+                'quality' => $reviews->avg('quality'),
+                'communication' => $reviews->avg('communication'),
+                'timeliness' => $reviews->avg('timeliness'),
+                'satisfaction' => $reviews->avg('satisfaction'),
+            ];
+            $fields = [
+                'quality' => 'Work Quality',
+                'communication' => 'Communication',
+                'timeliness' => 'Timeliness',
+                'satisfaction' => 'Satisfaction',
+            ];
+        @endphp
+
+        @foreach($fields as $key => $label)
+            <div style="margin-bottom: 20px;">
+                <strong style="display: block; color: #333; font-size: 18px;">{{ $label }}</strong>
+                <div style="display: flex; align-items: center; gap: 6px; margin-top: 5px;">
+                    @for($i = 1; $i <= 5; $i++)
+                        <i class='bx bxs-star' style="font-size: 20px; color: {{ $i <= round($averages[$key]) ? '#f5c518' : '#ccc' }}"></i>
+                    @endfor
+                    <span style="color: #1ab79d; font-weight: bold; font-size: 17px;">{{ number_format($averages[$key], 1) }}/5</span>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    <!-- Comments Box -->
+    <div class="discription detail" style="flex: 1; min-width: 320px; border-radius: 15px; padding: 20px; background: #ffffffb5;">
+        <h1 style="color: #ee4962; margin-bottom: 20px; text-align:center; font-size:24px">
+            <i class='bx bx-comment-detail'></i> Client Comments
+        </h1>
+        
+        @foreach($reviews as $review)
+            <div style="border-bottom: 1px solid #ddd; padding: 15px 0; display: flex; gap: 15px; align-items: flex-start;">
+                <img src="{{ Storage::url($review->client->image) }}" alt="User" style="width: 60px; height: 60px; border-radius: 50%;">
+                <div>
+                    <p style="margin: 0; font-weight: bold; color: #1ab79d; font-size: 17px;">{{ $review->client->name }}</p>
+                    <p style="margin: 5px 0; color: #333; font-size: 16px;">{{ $review->comment }}</p>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
         </main>
     </section>
     @if(session('have_wallet'))

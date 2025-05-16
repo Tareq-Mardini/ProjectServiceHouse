@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('css/SupplierWork.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
+    <link rel="stylesheet" href="{{asset('css/Search.css')}}">
     <title>Service House</title>
 </head>
 
@@ -83,19 +84,24 @@
         </div>
     </header>
     <main>
+
         <body>
             <div class="container" style="margin-top: 160px;">
-                <h2 class="h2 section-title"><span class="span">Works <i class="fa fa-cogs" aria-hidden="true"></i>
-                    </span></h2>
+                <h2 class="h2 section-title"><span class="span">Works <i class="fa fa-cogs" aria-hidden="true"></i></span></h2>
+                <!-- 🔍 Search input -->
+                <div class="search-container">
+                    <input type="text" id="worksSearch" placeholder="Search a work by title..." />
+                    <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                </div>
+
                 <div class="Section">
                     @foreach ($data as $work)
-                    <div class="content-section">
-                        <!-- صورة العمل -->
+                    <div class="content-section" data-name="{{ strtolower($work->title) }}">
                         <img src="{{ Storage::url($work->thumbnail) }}" alt="Work Thumbnail" class="work-thumbnail">
                         <div class="text">
                             <h3>{{ $work->title }}</h3>
                             <p>price:
-                                <span style="display: inline; color:green; font-size:15px;">{{ $work->price }}<i class="fa fa-dollar-sign"></i></span>
+                                <span style="display: inline; color:green; font-size:15px;">{{ $work->price }} <i class="fa fa-dollar-sign"></i></span>
                             </p>
                             <div class="info-supplier">
                                 <img class="image-supplier" src="{{ Storage::url($work->supplier->image) }}" alt="Supplier Image">
@@ -110,6 +116,24 @@
                 </div>
             </div>
     </main>
+    <script>
+        const worksSearchInput = document.getElementById('worksSearch');
+        const works = document.querySelectorAll('.Section .content-section');
+
+        worksSearchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+
+            works.forEach(work => {
+                const name = work.dataset.name;
+                if (name.includes(query)) {
+                    work.classList.remove('hidden');
+                } else {
+                    work.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
     <a href="#top" class="back-top-btn" aria-label="back top top" data-back-top-btn>
         <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
     </a>

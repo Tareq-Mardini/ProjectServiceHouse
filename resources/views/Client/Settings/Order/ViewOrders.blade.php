@@ -45,6 +45,7 @@
     <main>
       <div class="modern-orders-grid">
         @foreach ($info as $data)
+        @if($data->work && $data->Supplier)
         <div class="order-card-modern">
           <img class="work-thumbnail-modern" src="{{ Storage::url($data->work->thumbnail) }}" alt="Work Thumbnail">
 
@@ -66,7 +67,7 @@
             </a>
           </div>
         </div>
-
+        @endif
         @endforeach
       </div>
 

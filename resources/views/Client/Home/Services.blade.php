@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('css/visitor-sections.css')}}">
     <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
+    <link rel="stylesheet" href="{{asset('css/Search.css')}}">
     <title>Service House</title>
 </head>
 
@@ -45,7 +46,7 @@
                         <a href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>About</a>
                     </li>
                     <li class="navbar-item">
-                        <a href="{{route('ServiceHouse.Home.Client')}}"class="navbar-link" data-nav-link>Sections</a>
+                        <a href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>Sections</a>
                     </li>
                     <li class="navbar-item">
                         <a href="{{route('ServiceHouse.Home.Client')}}" class="navbar-link" data-nav-link>Contact</a>
@@ -70,12 +71,14 @@
 
         <body>
             <div class="container" style="margin-top: 160px;">
-                <h2 class="h2 section-title"><span class="span">Services <i class="fa fa-briefcase" aria-hidden="true"></i>
-
-                    </span></h2>
+                <h2 class="h2 section-title"><span class="span">Services <i class="fa fa-briefcase" aria-hidden="true"></i></span></h2>
+                <div class="search-container">
+                    <input type="text" id="serviceSearch" placeholder="Search a service by name..." />
+                    <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                </div>
                 <div class="Section">
                     @foreach ($data as $service)
-                    <div class="content-section">
+                    <div class="content-section" data-name="{{ strtolower($service->name) }}">
                         <img src="{{ asset($service->image) }}" alt="">
                         <div class="text">
                             <h3>{{$service->name}}</h3>
@@ -89,6 +92,23 @@
                     @endforeach
                 </div>
             </div>
+            <script>
+                const serviceSearchInput = document.getElementById('serviceSearch');
+                const serviceSections = document.querySelectorAll('.Section .content-section');
+
+                serviceSearchInput.addEventListener('input', function() {
+                    const query = this.value.toLowerCase().trim();
+
+                    serviceSections.forEach(section => {
+                        const name = section.dataset.name;
+                        if (name.includes(query)) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                });
+            </script>
     </main>
     <a href="#top" class="back-top-btn" aria-label="back top top" data-back-top-btn>
         <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>

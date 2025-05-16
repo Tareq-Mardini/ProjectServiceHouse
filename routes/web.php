@@ -21,6 +21,7 @@ use App\Http\Controllers\CustomerServiceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ReviewController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -56,8 +57,6 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::post('/send-message-admin', [CustomerServiceController::class, 'SendMessageFromAdminToClient'])->name('send.message.admin.ToClient');
     Route::get('admin/dashboard/CustomerService/Supplier/{supplierId}', [CustomerServiceController::class, 'ViewChatSupplier'])->name('ViewChatSupplierForAdmin');
     Route::post('/send-message--admin', [CustomerServiceController::class, 'SendMessageFromAdminToSupplier'])->name('send.message.admin.ToSupplier');
-
-
     Route::get('admin/dashboard/transactions', [AdminController::class, 'ViewTransactions'])->name('ViewTransactions');
     Route::get('admin/dashboard/orders', [AdminController::class, 'ViewOrders'])->name('ViewOrders');
 
@@ -135,6 +134,7 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Supplier/Dashboard/Order/Completed/{id}', [OrderController::class, 'completedOrder'])->name('completedOrder');
     Route::post('ServiceHouse/Supplier/Dashboard/Order/Deliver', [OrderController::class, 'DeliveredOrder'])->name('DeliveredOrder');
 
+    Route::post('ServiceHouse/Supplier/Dashboard/Order/Deliver/finall', [OrderController::class, 'DeliveredOrderFinall'])->name('DeliveredOrderFinall');
 
 });
 //===================================================================================================================================================//
@@ -169,11 +169,14 @@ Route::middleware(ClientMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Client/Settings/MyOrders', [OrderController::class, 'ViewOrdersClient'])->name('View.Order.clinet');
     Route::get('ServiceHouse/Client/Settings/MyOrders/OrderInfo/{id}', [OrderController::class, 'ViewOrderInfoClient'])->name('View.Order.Info.clinet');
     Route::get('ServiceHouse/Client/Settings/MyOrders/OrderInfo/Approved/{id}', [OrderController::class, 'ApprovedOrder'])->name('ApprovedOrder');
-
-
-
     Route::post('/favorite/{id}', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
     Route::get('ServiceHouse/Client/Settings/MyFavorite',[FavoriteController::class,'ViewFavorite'])->name('ViewFavorite');
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::post('/client/delete-account', [ClientController::class, 'DeleteAccount'])->name('Client.Delete.Account');
+
+
+    Route::post('/client/Send/Note', [OrderController::class, 'SendNoteClient'])->name('SendNoteClient');
+
 });
 //===================================================================================================================================================//
 

@@ -63,7 +63,7 @@ class OrderController extends Controller
             ));
             session()->flash('success_order', 'Payment completed successfully');
             return redirect()->route('View.Order.clinet');
-            } else {
+          } else {
             session()->flash('error_balance', 'The balance is insufficient');
             return redirect()->back();
           }
@@ -115,7 +115,8 @@ class OrderController extends Controller
         ->first();
       $selectedOfferIds = explode(',', $TestOrder->selected_offers);
       $selectedOffers = WorkExtra::whereIn('id', $selectedOfferIds)->get();
-      return view('Supplier.Home.Order.DeliveredOrder', compact('TestOrder', 'selectedOffers'));
+      $OrderFile = OrderFile::where('order_id',$id)->get();
+      return view('Supplier.Home.Order.DeliveredOrder', compact('TestOrder', 'selectedOffers','OrderFile'));
     }
   }
   //=======================================================================================================================
@@ -193,8 +194,11 @@ class OrderController extends Controller
     if ($TestOrder) {
       $selectedOfferIds = explode(',', $TestOrder->selected_offers);
       $selectedOffers = WorkExtra::whereIn('id', $selectedOfferIds)->get();
-      $fileorder = OrderFile::where('order_id', $id)->get();
-      return view('Client.Settings.Order.DetailOrder', compact('TestOrder', 'selectedOffers', 'fileorder'));
+      $fileorder = OrderFile::where('order_id', $id)
+        ->where('status', 'Sample')->get();
+        $fileorderFinall = OrderFile::where('order_id', $id)
+        ->where('status', 'Finall')->get();
+      return view('Client.Settings.Order.DetailOrder', compact('TestOrder', 'selectedOffers', 'fileorder','fileorderFinall'));
     } else {
       return redirect()->back();
     }
@@ -205,14 +209,15 @@ class OrderController extends Controller
   {
     $request->validate([
       'id_order' => 'required|exists:orders,id',
-      'delivery_file' => 'required|file|mimes:zip,rar',
-      'delivery_note' => 'nullable|string|max:255',
+      'sample_file' => 'required|file|mimes:zip,rar',
+      'sample_note' => 'nullable|string|max:255',
     ]);
-    $filePath = $request->file('delivery_file')->store('order_deliveries', 'public');
+    $filePath = $request->file('sample_file')->store('order_samples', 'public');
     OrderFile::create([
       'order_id' => $request->id_order,
       'file_path' => $filePath,
-      'note' => $request->delivery_note,
+      'note' => $request->sample_note,
+      'status' => 'Sample',
     ]);
     session()->flash('DeliveredOrder', 'The request has been sent');
     return back()->with('success', 'Order delivered successfully.');
@@ -225,20 +230,62 @@ class OrderController extends Controller
     $Approved = Order::where('client_id', $userId)
       ->where('id', $id)->first();
     if ($Approved->order_status != 'approved') {
-      if ($Approved) {
-        Order::where('client_id', $userId)
-          ->where('id', $id)
-          ->update(['order_status' => 'approved']);
-        event(new WalletBalanceIncreasedSupplier(
-          $Approved
-        ));
-        session()->flash('approved_order', ' The order has been approved successfully. The payment has been released to the supplier');
-        return redirect()->back();
+      if ($Approved->supplier_status == 'completed') {
+        if ($Approved) {
+          Order::where('client_id', $userId)
+            ->where('id', $id)
+            ->update(['order_status' => 'approved']);
+          event(new WalletBalanceIncreasedSupplier(
+            $Approved
+          ));
+          session()->flash('approved_order', ' The order has been approved successfully, Please don’t forget to leave a review at the bottom of the page.');
+          return redirect()->back();
+        }
       }
     } else {
+      session()->flash('wrong_approved_order', 'The order has already been approved, You can only approve an order once.');
+      return redirect()->back();
+    }
+    if ($Approved->supplier_status != 'completed') {
+      session()->flash('not_completed_order', 'The order cannot be approved yet, Please wait until the supplier marks it as Completed before proceeding.');
       return redirect()->back();
     }
   }
   //=======================================================================================================================
 
+
+  public function DeliveredOrderFinall(Request $request)
+  {
+    $request->validate([
+      'id_order' => 'required|exists:orders,id',
+      'delivery_file' => 'required|file|mimes:zip,rar',
+      'delivery_note' => 'nullable|string|max:255',
+    ]);
+    $filePath = $request->file('delivery_file')->store('order_deliveries', 'public');
+    OrderFile::create([
+      'order_id' => $request->id_order,
+      'file_path' => $filePath,
+      'note' => $request->delivery_note,
+      'status' => 'Finall',
+    ]);
+    session()->flash('DeliveredOrder', 'The request has been sent');
+    return back()->with('success', 'Order delivered successfully.');
+  }
+
+
+
+
+
+  public function SendNoteClient(Request $request)
+  {
+    $request->validate([
+      'file_id' => 'required|exists:order_files,id',
+      'client_note' => 'nullable|string|max:255',
+    ]);
+    $orderFile = OrderFile::where('id', $request->file_id)->first();
+    $orderFile->client_note = $request->client_note;
+    $orderFile->save();
+    session()->flash('SendNote', 'Comment sent successfully');
+    return redirect()->back();
+  }
 }

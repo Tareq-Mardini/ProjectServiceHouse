@@ -69,4 +69,9 @@ class Supplier extends Authenticatable
     {
         return $this->hasMany(Transaction::class, 'receiver_id');
     }
+
+    public function reviews()
+    {
+        return $this->hasManyThrough(Review::class, Work::class);
+    }
 }

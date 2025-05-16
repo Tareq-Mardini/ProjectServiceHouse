@@ -228,12 +228,12 @@
         </nav>
         <!-- NAVBAR -->
         <!-- MAIN -->
-        <main style="padding:0px ;margin:0px;max-height: 598px;min-height: 598px;">
+        <main style="padding:0px ;margin:0px;max-height: 598px;min-height: 598px;overflow-y: hidden;">
             @php
             $receiverId = $supplier->id;
             @endphp
             <div class="container ">
-                <div id="chat-box" class="chat-box" style="margin-top: -33px;max-height: 530px; min-height: 530px;">
+                <div id="chat-box" class="chat-box" style="margin-top: -22px;max-height: 530px; min-height: 530px;">
                     <ul class="chat-list">
                         @foreach($messages as $message)
                         <li class="chat-bubble {{ $message->role === 'supplier' ?  'bubble-receiver' :'bubble-sender'  }} {{ $message->role === 'supplier' ?  'align-start text-left': 'align-end text-right'  }}">

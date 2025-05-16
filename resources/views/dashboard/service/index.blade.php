@@ -175,6 +175,11 @@
       Notiflix.Notify.success("{{ session('success_delete_service') }}");
     </script>
     @endif
+    @if(session('fail_delete_service'))
+    <script>
+      Notiflix.Notify.failure("{{ session('fail_delete_service') }}");
+    </script>
+    @endif
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
 
