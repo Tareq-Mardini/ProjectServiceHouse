@@ -229,6 +229,7 @@
         <!-- NAVBAR -->
         <!-- MAIN -->
         <main style="padding:0px ;margin:0px;max-height: 598px;min-height: 598px;overflow-y: hidden;">
+            
             @php
             $receiverId = $supplier->id;
             @endphp
@@ -285,6 +286,7 @@
                     <!-- معاينة الصورة -->
                     <div id="image-preview-container" style="margin-top: 10px;"></div>
                     <input type="hidden" name="id" id="receiver_id" value="{{ $receiverId }}">
+                    <input type="hidden" name="id_order" id="order_id" value="{{ $OrderId }}">
                 </form>
             </div>
 
@@ -469,6 +471,7 @@
                     scrollToBottom();
                 };
             </script>
+            
         </main>
         <!-- MAIN -->
     </section>

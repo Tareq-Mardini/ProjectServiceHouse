@@ -40,4 +40,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderFile::class);
     }
+
+        public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
 }

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Validate;
 use App\Models\Order;
 use App\Models\OrderFile;
+use App\Models\Chat;
 
 class OrderController extends Controller
 {
@@ -238,6 +239,7 @@ class OrderController extends Controller
           event(new WalletBalanceIncreasedSupplier(
             $Approved
           ));
+          Chat::where('order_id', $Approved->id)->delete();
           session()->flash('approved_order', ' The order has been approved successfully, Please don’t forget to leave a review at the bottom of the page.');
           return redirect()->back();
         }
@@ -252,7 +254,6 @@ class OrderController extends Controller
     }
   }
   //=======================================================================================================================
-
 
   public function DeliveredOrderFinall(Request $request)
   {
@@ -271,10 +272,7 @@ class OrderController extends Controller
     session()->flash('DeliveredOrder', 'The request has been sent');
     return back()->with('success', 'Order delivered successfully.');
   }
-
-
-
-
+  //=======================================================================================================================
 
   public function SendNoteClient(Request $request)
   {

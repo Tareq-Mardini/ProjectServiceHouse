@@ -118,7 +118,7 @@
                         You can send samples to the client before delivering the final work.
                     </div>
                     <div style="margin-top: 6px;" class="contact-buttons">
-                        <a href="{{ url('ServiceHouse/Supplier/Dashboard/chat/' . $TestOrder->client->id) }}" class="btn contact"><i class='bx bx-chat'></i> Chat</a>
+                        <a href="{{ url('ServiceHouse/Supplier/Dashboard/Chat/Client/' . $TestOrder->client->id . '/Order/' . $TestOrder->id) }}" class="btn contact"><i class='bx bx-chat'></i> Chat</a>
                     </div>
                 </div>
                 <div class="submit-delivery sample-mode">

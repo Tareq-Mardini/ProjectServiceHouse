@@ -127,7 +127,7 @@
             Want to see progress? You can request samples before receiving the final delivery.
           </div>
           <div class="contact-buttons" style="margin-top: 10px;">
-            <a href="{{ url('ServiceHouse/Client/Settings/Chat/Supplier/' . $TestOrder->supplier->id) }}" class="btn contact"><i class='bx bx-chat'></i> Chat</a>
+            <a href="{{ url('ServiceHouse/Client/Settings/Chat/Supplier/' . $TestOrder->supplier->id . '/Order/' . $TestOrder->id) }}"class="btn contact"><i class='bx bx-chat'></i> Chat</a>
           </div>
         </div>
         <!-- Order Status Section -->

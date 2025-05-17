@@ -60,7 +60,8 @@ class ChatsController extends Controller
             'message' => $request->input('message'),
             'role' => 'client',
             'seen' => false,
-            'image' => $imagePath
+            'image' => $imagePath,
+            'order_id' => $request->id_order,
         ]);
 
         event(new SendClientMessage($chat));
@@ -84,25 +85,29 @@ class ChatsController extends Controller
     }
     //===========================================================================================================================================
     //هاد الفانكشن مشان بس اكبس على محادثة زبون معين يعرض الرسائل المحادثة
-    public function ViewChatClient($clientId)
+    public function ViewChatClient(Request $request)
     {
+        $clientId = $request->client_id;
+        $OrderId = $request->order_id;
         $supplierId = session('supplier_user_id');
         $client = Client::findOrFail($clientId);
 
-        $messages = Chat::where(function ($query) use ($supplierId, $clientId) {
+        $messages = Chat::where(function ($query) use ($supplierId, $clientId, $OrderId) {
             $query->where('sender_id', $supplierId)
                 ->where('receiver_id', $clientId)
-                ->where('role', 'supplier');
+                ->where('role', 'supplier')
+                ->where('order_id',$OrderId);
         })
-            ->orWhere(function ($query) use ($supplierId, $clientId) {
+            ->orWhere(function ($query) use ($supplierId, $clientId, $OrderId) {
                 $query->where('sender_id', $clientId)
                     ->where('receiver_id', $supplierId)
-                    ->where('role', '!=', 'supplier');
+                    ->where('role', '!=', 'supplier')
+                    ->where('order_id',$OrderId);
             })
             ->orderBy('created_at', 'asc')
             ->get();
 
-        return view('Supplier.Home.Chat.ViewChatClient', compact('client', 'messages'));
+        return view('Supplier.Home.Chat.ViewChatClient', compact('client', 'messages', 'OrderId'));
     }
     //===========================================================================================================================================
     // هاد التابع بخزن الرسالة يلي بعتها السبلاير للزبون بجدول التشات وكمان بيستدعي الايفينت مشان ترسل البيانات للطرف الثاني يلي عامل اشتراك 
@@ -132,7 +137,8 @@ class ChatsController extends Controller
             'message' => $request->input('message'),
             'role' => 'supplier',
             'seen' => false,
-            'image' => $imagePath
+            'image' => $imagePath,
+            'order_id' => $request->id_order,
         ]);
 
         event(new SendSupplierMessage($chat));
@@ -159,21 +165,24 @@ class ChatsController extends Controller
     public function ViewChatSupplier(Request $request)
     {
         $clientId = session('Client_user_id');
-        $supplierId = $request->id;
+        $supplierId = $request->supplier_id;
+        $OrderId = $request->order_id;
         $supplier = Supplier::findOrFail($supplierId);
-        $messages = Chat::where(function ($query) use ($supplierId, $clientId) {
+        $messages = Chat::where(function ($query) use ($supplierId, $clientId, $OrderId) {
             $query->where('sender_id', $clientId)
                 ->where('receiver_id', $supplierId)
-                ->where('role', 'client');
+                ->where('role', 'client')
+                ->where('order_id', $OrderId);
         })
-            ->orWhere(function ($query) use ($supplierId, $clientId) {
+            ->orWhere(function ($query) use ($supplierId, $clientId, $OrderId) {
                 $query->where('sender_id', $supplierId)
                     ->where('receiver_id', $clientId)
-                    ->where('role', 'supplier');
+                    ->where('role', 'supplier')
+                    ->where('order_id', $OrderId);
             })
             ->orderBy('created_at', 'asc')
             ->get();
-        return view('Client.Settings.Chat.ViewChatSupplier', compact('supplier', 'messages'));
+        return view('Client.Settings.Chat.ViewChatSupplier', compact('supplier', 'messages', 'OrderId'));
     }
     //===========================================================================================================================================
 

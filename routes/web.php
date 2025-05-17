@@ -22,6 +22,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -59,7 +60,6 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::post('/send-message--admin', [CustomerServiceController::class, 'SendMessageFromAdminToSupplier'])->name('send.message.admin.ToSupplier');
     Route::get('admin/dashboard/transactions', [AdminController::class, 'ViewTransactions'])->name('ViewTransactions');
     Route::get('admin/dashboard/orders', [AdminController::class, 'ViewOrders'])->name('ViewOrders');
-
 });
 
 //==================================================================================================================================================//
@@ -113,10 +113,15 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::get('ServiceHouse/logout-supplier', [AuthLogin::class, 'LogoutSupplier'])->name('Logout.supplier');
     Route::get('ServiceHouse/Supplier/Section/Service/work/info{id}', [SupplierController::class, 'ViewinfoWorks'])->name('Works.info.user');
     Route::get('ServiceHouse/Supplier/Section/Service/WorkInfo/portfolio{id}', [SupplierController::class, 'ViewPortfolio'])->name('view.portfolio.user');
-// هاد الراوت مشان نعرض كلشي عنا اسماء زبائن متواصلين معنا 
+    // هاد الراوت مشان نعرض كلشي عنا اسماء زبائن متواصلين معنا 
     Route::get('ServiceHouse/Supplier/Dashboard/chat/clients', [ChatsController::class, 'ViewChats'])->name('ViewChats');
-// هاد الراوت مشان اعرض محادثة الزبون معين بعد ما اكبس على اسمو وبعدين بس ينعرض كمان بس يبعت الزبون رسالة منقدر نشوفها بالوقت الحقيقي
-    Route::get('ServiceHouse/Supplier/Dashboard/chat/{clientId}', [ChatsController::class, 'ViewChatClient'])->name('ViewChatClient');
+    // هاد الراوت مشان اعرض محادثة الزبون معين بعد ما اكبس على اسمو وبعدين بس ينعرض كمان بس يبعت الزبون رسالة منقدر نشوفها بالوقت الحقيقي
+
+
+
+    Route::get('ServiceHouse/Supplier/Dashboard/Chat/Client/{client_id}/Order/{order_id}', [ChatsController::class, 'ViewChatClient'])->name('ViewChatClient');
+
+
     Route::post('/send-message-supplier', [ChatsController::class, 'SendMessageFromSupplierToClient'])->name('send.message.supplier');
     Route::get('ServiceHouse/Supplier/Dashboard/CustomerService', [CustomerServiceController::class, 'communicationSupplier'])->name('view.communication.supplier');
     Route::post('/send-message-Supplier-To-Admin', [CustomerServiceController::class, 'SendMessageFromSupplierToAdmin'])->name('send.message.FromSupplier.To.Admin');
@@ -135,7 +140,6 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::post('ServiceHouse/Supplier/Dashboard/Order/Deliver', [OrderController::class, 'DeliveredOrder'])->name('DeliveredOrder');
 
     Route::post('ServiceHouse/Supplier/Dashboard/Order/Deliver/finall', [OrderController::class, 'DeliveredOrderFinall'])->name('DeliveredOrderFinall');
-
 });
 //===================================================================================================================================================//
 
@@ -155,7 +159,7 @@ Route::middleware(ClientMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Client/Section/Service/WorkInfo/chat{id}', [ChatsController::class, 'ViewChat'])->name('view.chat.Client');
     Route::post('/send-message', [ChatsController::class, 'SendMessageFromClientToSupplier'])->name('send.message');
     Route::get('ServiceHouse/Client/Settings/Chats/Suppliers', [ChatsController::class, 'ViewChatsForClient'])->name('view.chat.Suppliers');
-    Route::get('ServiceHouse/Client/Settings/Chat/Supplier/{id}', [ChatsController::class, 'ViewChatSupplier'])->name('view.chat.supplier');
+    Route::get('ServiceHouse/Client/Settings/Chat/Supplier/{supplier_id}/Order/{order_id}', [ChatsController::class, 'ViewChatSupplier'])->name('view.chat.supplier');
     Route::get('ServiceHouse/Client/Settings/CustomerService', [CustomerServiceController::class, 'communication'])->name('view.communication');
     Route::post('/send-message-Client-To-Admin', [CustomerServiceController::class, 'SendMessageFromClientToAdmin'])->name('send.message.To.Admin');
     Route::get('ServiceHouse/Client/Settings/MyWallet', [WalletController::class, 'ViewWallet'])->name('View.wallet.clinet');
@@ -170,13 +174,11 @@ Route::middleware(ClientMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Client/Settings/MyOrders/OrderInfo/{id}', [OrderController::class, 'ViewOrderInfoClient'])->name('View.Order.Info.clinet');
     Route::get('ServiceHouse/Client/Settings/MyOrders/OrderInfo/Approved/{id}', [OrderController::class, 'ApprovedOrder'])->name('ApprovedOrder');
     Route::post('/favorite/{id}', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
-    Route::get('ServiceHouse/Client/Settings/MyFavorite',[FavoriteController::class,'ViewFavorite'])->name('ViewFavorite');
+    Route::get('ServiceHouse/Client/Settings/MyFavorite', [FavoriteController::class, 'ViewFavorite'])->name('ViewFavorite');
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::post('/client/delete-account', [ClientController::class, 'DeleteAccount'])->name('Client.Delete.Account');
 
 
     Route::post('/client/Send/Note', [OrderController::class, 'SendNoteClient'])->name('SendNoteClient');
-
 });
 //===================================================================================================================================================//
-

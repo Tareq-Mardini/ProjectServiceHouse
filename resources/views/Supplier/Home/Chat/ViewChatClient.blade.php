@@ -94,6 +94,7 @@
         </div>
         <div id="image-preview-container"></div>
         <input type="hidden" name="id" id="receiver_id" value="{{ $client->id }}">
+        <input type="hidden" name="id_order" id="order_id" value="{{ $OrderId }}">
       </form>
       <!-- Pusher -->
       <script src="https://js.pusher.com/7.0/pusher.min.js"></script>

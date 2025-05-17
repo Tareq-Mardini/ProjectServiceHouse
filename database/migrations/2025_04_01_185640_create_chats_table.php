@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id(); // id column
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('receiver_id');
+            $table->unsignedBigInteger('order_id');
             $table->enum('role', ['client', 'supplier','admin']);
             $table->text('message')->nullable();
             $table->string('image')->nullable();
             $table->boolean('seen')->default(false);
             $table->timestamps();
-
         });
 
     }

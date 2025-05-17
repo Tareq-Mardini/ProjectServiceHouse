@@ -12,6 +12,7 @@ class Chat extends Model
     protected $fillable = [
         'sender_id',
         'receiver_id',
+        'order_id',
         'message',
         'role',
         'seen',
@@ -22,7 +23,6 @@ class Chat extends Model
         return $this->belongsTo(Client::class, 'sender_id');
     }
 
-    
     public function receiver()
     {
         return $this->belongsTo(Client::class, 'receiver_id');
@@ -37,7 +37,7 @@ class Chat extends Model
     {
         return $this->belongsTo(Supplier::class, 'sender_id', 'id')->select(['id', 'name', 'picture']);
     }
-     
+
     public function receiverSellerProfile()
     {
         return $this->belongsTo(Client::class, 'receiver_id', 'id')->select(['id', 'name', 'picture']);
@@ -46,5 +46,10 @@ class Chat extends Model
     public function senderSellerProfile()
     {
         return $this->belongsTo(Client::class, 'sender_id', 'id')->select(['id', 'name', 'picture']);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
     }
 }
