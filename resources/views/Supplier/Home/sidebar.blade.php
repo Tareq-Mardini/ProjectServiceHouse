@@ -18,12 +18,6 @@
         </a>
     </li>
     <li>
-        <a href="{{route('ViewChats')}}">
-            <i class='bx bxs-message-dots'></i>
-            <span class="text">Message</span>
-        </a>
-    </li>
-    <li>
         <a href="{{route('view.communication.supplier')}}">
             <i class='bx bxs-phone'></i>
             <span class="text">Customer Service</span>

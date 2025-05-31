@@ -5,14 +5,7 @@
             <span class="text">My Account</span>
         </a>
     </li>
-
     <ul>
-        <li>
-            <a href="{{route('view.chat.Suppliers')}}">
-                <i class='bx bxs-message-dots'></i>
-                <span class="text">Messages</span>
-            </a>
-        </li>
         <li>
             <a href="{{route('view.communication')}}">
                 <i class='bx bxs-phone'></i>

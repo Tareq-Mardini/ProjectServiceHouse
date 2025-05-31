@@ -133,6 +133,16 @@
         Notiflix.Notify.success("{{ session('Success_Update') }}");
     </script>
     @endif
+    @if(session('fail_order'))
+    <script>
+        Notiflix.Notify.failure("{{ session('fail_order') }}");
+    </script>
+    @endif
+    @if(session('fail_wallet'))
+    <script>
+        Notiflix.Notify.failure("{{ session('fail_wallet') }}");
+    </script>
+    @endif
 </body>
 
 </html>

@@ -67,7 +67,7 @@
     </div>
   </header>
   <main>
-    <div class="container" style="margin-top: 160px;">
+    <div class="container" style="margin-top: 130px;">
       <h2 class="h2 section-title"><span class="span">Sections <i class="fa fa-sitemap" aria-hidden="true"></i>
         </span></h2>
       <div class="search-container">

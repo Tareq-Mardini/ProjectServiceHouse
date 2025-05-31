@@ -22,6 +22,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\SupplierDashboardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,7 +38,15 @@ Route::post('admin/login', [AdminLogin::class, 'checkLogin'])->name('admin.check
 
 //هدول الاسطر يلي تحت هنن لعمليات الادمن مشان طلعن كلن بكبس على السهم (هدول للأكتور الأدمن) ^_^
 Route::middleware(AdminMiddleware::class)->group(function () {
-    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
+
+
+
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+
+
+
     Route::resource('admin/dashboard/section', AdminSection::class);
     Route::get('admin/dashboard/setting', [AdminController::class, 'ViewAccount'])->name('admin.setting');
     Route::put('admin/dashboard/setting', [AdminController::class, 'EditAccount'])->name('admin.edit.account');
@@ -89,7 +99,14 @@ Route::post('ServiceHouse/Register/Client', [AuthClientController::class, 'Store
 // هلأ لح نشتغل على الراوتات مقدمين الخدمات ^_^
 Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Supplier', [SupplierController::class, 'View'])->name('ServiceHouse.Home.Supplier');
-    Route::get('ServiceHouse/Supplier/Dashboard', [SupplierController::class, 'ViewDashboard'])->name('ServiceHouse.Supplier.Dashboard');
+
+
+
+    Route::get('ServiceHouse/Supplier/Dashboard', [SupplierDashboardController::class, 'ViewDashboard'])->name('ServiceHouse.Supplier.Dashboard');
+
+
+
+    
     Route::get('ServiceHouse/Supplier/Sections', [SupplierController::class, 'ShowSections'])->name('Servicehouse.Sections.Show.Supplier');
     Route::get('ServiceHouse/Supplier/Section/Services/{id}', [SupplierController::class, 'ShowServices'])->name('Servicehouse.Services.Show.Supplier');
     Route::get('ServiceHouse/Supplier/Section/Service/{id}/works', [SupplierController::class, 'ViewWorks'])->name('Works.Show.Supplier');
@@ -113,15 +130,7 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::get('ServiceHouse/logout-supplier', [AuthLogin::class, 'LogoutSupplier'])->name('Logout.supplier');
     Route::get('ServiceHouse/Supplier/Section/Service/work/info{id}', [SupplierController::class, 'ViewinfoWorks'])->name('Works.info.user');
     Route::get('ServiceHouse/Supplier/Section/Service/WorkInfo/portfolio{id}', [SupplierController::class, 'ViewPortfolio'])->name('view.portfolio.user');
-    // هاد الراوت مشان نعرض كلشي عنا اسماء زبائن متواصلين معنا 
-    Route::get('ServiceHouse/Supplier/Dashboard/chat/clients', [ChatsController::class, 'ViewChats'])->name('ViewChats');
-    // هاد الراوت مشان اعرض محادثة الزبون معين بعد ما اكبس على اسمو وبعدين بس ينعرض كمان بس يبعت الزبون رسالة منقدر نشوفها بالوقت الحقيقي
-
-
-
     Route::get('ServiceHouse/Supplier/Dashboard/Chat/Client/{client_id}/Order/{order_id}', [ChatsController::class, 'ViewChatClient'])->name('ViewChatClient');
-
-
     Route::post('/send-message-supplier', [ChatsController::class, 'SendMessageFromSupplierToClient'])->name('send.message.supplier');
     Route::get('ServiceHouse/Supplier/Dashboard/CustomerService', [CustomerServiceController::class, 'communicationSupplier'])->name('view.communication.supplier');
     Route::post('/send-message-Supplier-To-Admin', [CustomerServiceController::class, 'SendMessageFromSupplierToAdmin'])->name('send.message.FromSupplier.To.Admin');
@@ -156,9 +165,7 @@ Route::middleware(ClientMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Client/Settings/MyAccount', [ClientController::class, 'ViewAccount'])->name('Client.View.Account');
     Route::get('ServiceHouse/Client/Settings/MyAccount/Update', [ClientController::class, 'UpdateAccount'])->name('Client.Update.Account');
     Route::post('/update-Account-client', [ClientController::class, 'EditAccount'])->name('Client.Edit.Account');
-    Route::get('ServiceHouse/Client/Section/Service/WorkInfo/chat{id}', [ChatsController::class, 'ViewChat'])->name('view.chat.Client');
     Route::post('/send-message', [ChatsController::class, 'SendMessageFromClientToSupplier'])->name('send.message');
-    Route::get('ServiceHouse/Client/Settings/Chats/Suppliers', [ChatsController::class, 'ViewChatsForClient'])->name('view.chat.Suppliers');
     Route::get('ServiceHouse/Client/Settings/Chat/Supplier/{supplier_id}/Order/{order_id}', [ChatsController::class, 'ViewChatSupplier'])->name('view.chat.supplier');
     Route::get('ServiceHouse/Client/Settings/CustomerService', [CustomerServiceController::class, 'communication'])->name('view.communication');
     Route::post('/send-message-Client-To-Admin', [CustomerServiceController::class, 'SendMessageFromClientToAdmin'])->name('send.message.To.Admin');

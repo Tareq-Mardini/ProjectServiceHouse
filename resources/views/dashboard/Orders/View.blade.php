@@ -107,6 +107,7 @@
                     </thead>
                     <tbody>
                         @foreach ($info as $data)
+                        
                         @php
                         $rowClass = '';
                         switch ($data->order_status) {
@@ -121,6 +122,7 @@
                         break;
                         }
                         @endphp
+                        @if($data->Client && $data->supplier)
                         <tr class="{{ $rowClass }}">
                             <td class="align-middle">{{ $data->id }}</td>
                             <td class="align-middle">{{ $data->client->name }}</td>
@@ -129,6 +131,7 @@
                             <td class="align-middle">{{ $data->supplier_status }}</td>
                             <td class="align-middle">{{ $data->payment_status }}</td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
