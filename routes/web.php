@@ -149,6 +149,11 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::post('ServiceHouse/Supplier/Dashboard/Order/Deliver', [OrderController::class, 'DeliveredOrder'])->name('DeliveredOrder');
 
     Route::post('ServiceHouse/Supplier/Dashboard/Order/Deliver/finall', [OrderController::class, 'DeliveredOrderFinall'])->name('DeliveredOrderFinall');
+
+    
+
+
+
 });
 //===================================================================================================================================================//
 
