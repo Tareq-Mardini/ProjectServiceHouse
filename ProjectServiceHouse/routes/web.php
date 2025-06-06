@@ -23,6 +23,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\SupplierDashboardController;
 
 Route::get('/', function () {
@@ -190,6 +191,7 @@ Route::middleware(ClientMiddleware::class)->group(function () {
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::post('/client/delete-account', [ClientController::class, 'DeleteAccount'])->name('Client.Delete.Account');
 
+    Route::get('/recommend/{client_id}', [RecommendationController::class, 'getRecommendations'])->name('getRecommend');
 
     Route::post('/client/Send/Note', [OrderController::class, 'SendNoteClient'])->name('SendNoteClient');
 });

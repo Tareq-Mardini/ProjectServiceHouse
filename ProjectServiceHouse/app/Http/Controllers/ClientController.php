@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\ClientService;
+use App\Models\ClientServiceViews;
 use App\Models\Favorite;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -28,7 +30,8 @@ class ClientController extends Controller
     public function ShowSections()
     {
         $data = Section::all();
-        return view('Client.Home.Sections', compact('data'));
+        $clientId = session('Client_user_id');
+        return view('Client.Home.Sections', compact('data','clientId'));
     }
     //==========================================================================
     public function ShowServices($id)
@@ -47,6 +50,13 @@ class ClientController extends Controller
                 ->pluck('work_id')
                 ->toArray();
         }
+
+        $userId = session('Client_user_id');
+        ClientServiceViews::firstOrCreate([
+                'client_id' => $userId,
+                'service_id' => $id,
+        ]);
+        
         return view('Client.Home.Works', compact('data', 'favorites'));
     }
     //==========================================================================
@@ -59,6 +69,7 @@ class ClientController extends Controller
             ->where('work_id', $works->id)
             ->latest()
             ->get();
+
         return view('Client.Home.WorkInfo', compact('works', 'image', 'offers', 'reviews'));
     }
     //==========================================================================

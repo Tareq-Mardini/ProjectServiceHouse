@@ -31,4 +31,8 @@ return [
         ],
     ],
 
+    'aiornot' => [
+        'key' => env('AIORNOT_API_KEY'),
+    ],
+
 ];

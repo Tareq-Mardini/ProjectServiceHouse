@@ -89,6 +89,7 @@
         </div>
         @endforeach
       </div>
+      <a href="{{ route('getRecommend', ['client_id' => $clientId]) }}"> Recommendations </a>
     </div>
     <script>
       const searchInput = document.getElementById('sectionSearch');
