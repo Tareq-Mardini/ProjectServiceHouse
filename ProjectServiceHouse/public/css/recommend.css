@@ -1,0 +1,227 @@
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-in-up {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.8s ease-in forwards;
+        }
+
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+
+        .recommend-container {
+            max-width: 1100px;
+            margin: 140px auto 60px;
+            padding: 0 20px;
+        }
+
+        .recommend-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .recommend-empty {
+            text-align: center;
+            font-size: 1.1rem;
+            background: #f0f4f8;
+            padding: 15px 20px;
+            border-radius: 12px;
+            color: #666;
+        }
+
+        .recommend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .recommend-card {
+            background-color: rgb(240, 243, 235);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .recommend-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommend-card-body {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .recommend-icon {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .recommend-card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .recommend-card-desc {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+
+        .recommend-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: white;
+            background-color: #1ab79d;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .recommend-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .floating-recommend-btn {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: #1ab79d;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 24px;
+            box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 9999;
+        }
+
+        .floating-recommend-btn:hover {
+            width: 160px;
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            color: #fff;
+            justify-content: flex-start;
+            padding-left: 20px;
+        }
+
+        .floating-recommend-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .floating-recommend-btn:hover i {
+            transform: rotate(10deg);
+            margin-right: 10px;
+        }
+
+        .recommend-text {
+            display: none;
+            font-size: 16px;
+            vertical-align: middle;
+            color: #1ab79d;
+        }
+
+        .floating-recommend-btn:hover .recommend-text {
+            display: inline;
+        }
+
+            .recommend-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .recommend-card {
+        background-color: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+        text-align: left;
+    }
+
+    .recommend-card:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .recommend-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .recommend-card-body {
+        padding: 16px;
+    }
+
+    .recommend-card-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .recommend-icon {
+        font-size: 22px;
+        margin-right: 8px;
+        color: #ee4962;
+    }
+
+    .recommend-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #1ab79d;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .recommend-btn:hover {
+        background-color: #d63f57;
+    }
+
+    .recommend-empty {
+        color: #666;
+    }

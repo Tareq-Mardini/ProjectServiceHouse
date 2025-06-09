@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="{{asset('css/visitor-sections.css')}}">
   <link rel="icon" href="{{asset('images/visitor/logo-3.png')}}" type="image/png">
   <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
-    <link rel="stylesheet" href="{{asset('css/Search.css')}}">
+  <link rel="stylesheet" href="{{asset('css/Search.css')}}">
+  <link rel="stylesheet" href="{{asset('css/recommend.css')}}">
   <title>Service House</title>
 </head>
 
@@ -89,7 +90,9 @@
         </div>
         @endforeach
       </div>
-      <a href="{{ route('getRecommend', ['client_id' => $clientId]) }}"> Recommendations </a>
+      <a href="{{ route('getRecommend', ['client_id' => $clientId]) }}" class="floating-recommend-btn" title="Recommendations">
+        <i class="fas fa-magic"></i> <span class="recommend-text">Recommend</span>
+      </a>
     </div>
     <script>
       const searchInput = document.getElementById('sectionSearch');

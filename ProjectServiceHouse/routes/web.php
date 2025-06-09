@@ -115,7 +115,8 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Supplier/Dashboard/Myworks/InfoWork/{id}', [SupplierWorkController::class, 'ViewWorkInfo'])->name('Supplier.Work.Info');
     Route::get('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class, 'CreateWork'])->name('Works.Create.Supplier');
     Route::post('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class, 'StoreWork'])->name('Works.Store.Supplier');
-    Route::post('ServiceHouse/Supplier/Dashboard/Myworks/Update', [SupplierWorkController::class, 'EditeWork'])->name('Supplier.Edite.Myworks');
+    Route::get('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Edit', [SupplierWorkController::class, 'EditeWork'])->name('Supplier.Edite.Myworks');
+
     Route::put('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Update', [SupplierWorkController::class, 'UpdateWork'])->name('Supplier.Update.Myworks');
     Route::delete('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Delete', [SupplierWorkController::class, 'DeleteWork'])->name('Supplier.Delete.Work');
     Route::get('ServiceHouse/Supplier/Dashboard/MyPortfolio/Create', [SupplierPortfolioController::class, 'Create'])->name('Supplier.Create.Portfolio');

@@ -62,11 +62,9 @@
               <a href="{{ route('Supplier.Work.Info',$work->id) }}" style="margin-left: 5px;">
                 <button class="btn btn-secondary"><i class='bx bx-show' style="color:#ffffff;"></i> View</button>
               </a>
-              <form action="{{ route('Supplier.Edite.Myworks') }}" method="POST" style="display:inline;">
-                @csrf
-                <input type="hidden" name="id" value="{{ $work->id }}">
-                <button type="submit" class="btn btn-primary"><i class='bx bx-edit-alt'></i> Update</button>
-              </form>
+              <a href="{{ route('Supplier.Edite.Myworks', ['id' => $work->id]) }}" class="btn btn-primary" style="display: inline; font-size:14px">
+                <i class='bx bx-edit-alt'></i> Update
+              </a>
               <a href="javascript:void(0);" onclick="confirmDelete({{ $work->id }})" class="btn btn-danger" style="margin-left: 5px ; font-size:14px">
                 <i class='bx bx-trash'></i> Delete
               </a>

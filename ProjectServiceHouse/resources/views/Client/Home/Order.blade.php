@@ -125,7 +125,7 @@
                         <input type="hidden" name="total_price" id="hiddenTotalPrice" value="{{ $works->price }}">
                         <input type="hidden" name="id_supplier" value="{{ $works->supplier->id }}">
                         <input type="hidden" name="id_work" value="{{ $works->id }}">
-                        <input  type="hidden" name="selected_offers" id="selectedOffers">
+                        <input type="hidden" name="selected_offers" id="selectedOffers">
                         <textarea required name="order_description" placeholder="Write your order description here..."
                             style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; resize: vertical; min-height: 120px;"></textarea>
                         <input required type="text" name="wallet_number" placeholder="Wallet Number" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px;">
@@ -143,11 +143,6 @@
                     </form>
                 </div>
             </div>
-
-            <!-- نموذج الدفع -->
-
-
-            <!-- سكربت حساب السعر -->
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const basePrice = parseFloat(document.getElementById('basePrice').textContent);
