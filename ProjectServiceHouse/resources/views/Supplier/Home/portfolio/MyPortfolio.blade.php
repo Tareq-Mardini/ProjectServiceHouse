@@ -108,7 +108,7 @@
                                     <ul class="styled-list">
                                         @foreach ($portfolio->Experiences as $data)
                                         <li>
-                                            <i class="fas fa-briefcase icon"></i> <!-- أيقونة الخبرة -->
+                                            <i class="fas fa-briefcase icon"></i>
                                             <strong class="item-title">{{$data->date}}:</strong>
                                             <span class="item-description">{{$data->description}}</span>
                                         </li>
@@ -121,7 +121,7 @@
                                     <ul class="styled-list">
                                         @foreach ($portfolio->educations as $data)
                                         <li>
-                                            <i class="fas fa-graduation-cap icon"></i> <!-- أيقونة التعليم -->
+                                            <i class="fas fa-graduation-cap icon"></i>
                                             <strong class="item-title">{{$data->date}}:</strong>
                                             <span class="item-description">{{$data->description}}</span>
                                         </li>
@@ -132,7 +132,7 @@
                                 <div id="language" class="tab-pane">
                                     <h3 class="section-title">Languages</h3>
                                     <p class="styled-paragraph">
-                                        <i class="fas fa-globe icon"></i> <!-- أيقونة اللغات -->
+                                        <i class="fas fa-globe icon"></i>
                                         {{$portfolio->language}}
                                     </p>
                                 </div>
@@ -195,6 +195,222 @@
                         @endforeach
                     </div>
                 </section>
+                <!-- Floating Icon Button -->
+                <div class="suggestion-fab" onclick="openSuggestedServicesModal()" title="Suggested Services">
+                    💡
+                </div>
+
+                <!-- Modal -->
+                <div id="suggested-services-modal" class="modal-hidden">
+                    <div class="modal-content-box">
+                        <span class="modal-close-button" onclick="closeSuggestedServicesModal()">&times;</span>
+                        <h2 class="modal-title">🔍 Suggested <span style="color: #ee4962;">Services</span></h2>
+
+                        @php $suggested = session('suggested_services'); @endphp
+
+                        @if($suggested && count($suggested) > 0)
+                        <div class="services-grid">
+                            @foreach($suggested as $item)
+                            <div class="service-card">
+                                @if($item['service']->image)
+                                <img src="{{ asset($item['service']->image) }}" alt="{{ $item['service']->name }}">
+                                @else
+                                <img src="https://via.placeholder.com/300x200?text=No+Image" alt="No Image">
+                                @endif
+                                <h3 class="service-name">{{ $item['service']->name }}</h3>
+                            </div>
+                            @endforeach
+                        </div>
+                        @else
+                        <p class="no-services-message">No suggested services available right now.</p>
+                        @endif
+                    </div>
+                </div>
+
+                <!-- Styles -->
+                <style>
+                    .modal-hidden {
+                        display: none !important;
+                    }
+
+                    /* Floating button */
+                    .suggestion-fab {
+                        position: fixed;
+                        bottom: 24px;
+                        right: 24px;
+                        width: 60px;
+                        height: 60px;
+                        background-color:rgb(131, 196, 185);
+                        color: #fff;
+                        font-size: 26px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+                        cursor: pointer;
+                        transition: background-color 0.3s, transform 0.2s;
+                        z-index: 10000;
+                    }
+
+                    .suggestion-fab:hover {
+                        background-color: #169a83;
+                        transform: scale(1.05);
+                    }
+
+                    #suggested-services-modal {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.6);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 9999;
+                        animation: fadeIn 0.3s ease forwards;
+                    }
+
+                    .modal-content-box {
+                        background: #ffffff;
+                        padding: 24px;
+                        width: 90%;
+                        max-width: 800px;
+                        border-radius: 16px;
+                        position: relative;
+                        max-height: 85vh;
+                        overflow-y: auto;
+                        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                        transform: scale(0.9);
+                        animation: scaleIn 0.3s ease forwards;
+                    }
+
+                    .modal-closing .modal-content-box {
+                        animation: scaleOut 0.2s ease forwards;
+                    }
+
+                    .modal-closing {
+                        animation: fadeOut 0.2s ease forwards;
+                    }
+
+                    @keyframes fadeIn {
+                        from {
+                            opacity: 0;
+                        }
+
+                        to {
+                            opacity: 1;
+                        }
+                    }
+
+                    @keyframes fadeOut {
+                        from {
+                            opacity: 1;
+                        }
+
+                        to {
+                            opacity: 0;
+                        }
+                    }
+
+                    @keyframes scaleIn {
+                        from {
+                            transform: scale(0.9);
+                        }
+
+                        to {
+                            transform: scale(1);
+                        }
+                    }
+
+                    @keyframes scaleOut {
+                        from {
+                            transform: scale(1);
+                        }
+
+                        to {
+                            transform: scale(0.9);
+                        }
+                    }
+
+                    .modal-close-button {
+                        position: absolute;
+                        top: 12px;
+                        right: 16px;
+                        font-size: 28px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        color: #333;
+                    }
+
+                    .modal-title {
+                        font-size: 24px;
+                        font-weight: 600;
+                        margin-bottom: 20px;
+                        text-align: center;
+                        color: #1ab79d;
+                    }
+
+                    .services-grid {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 16px;
+                        justify-content: center;
+                    }
+
+                    .service-card {
+                        width: 180px;
+                        background: #f8f8f8;
+                        padding: 12px;
+                        border-radius: 12px;
+                        text-align: center;
+                        transition: transform 0.2s ease;
+                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+                    }
+
+                    .service-card:hover {
+                        transform: translateY(-4px);
+                    }
+
+                    .service-card img {
+                        width: 100%;
+                        height: 120px;
+                        object-fit: cover;
+                        border-radius: 8px;
+                    }
+
+                    .service-name {
+                        margin-top: 10px;
+                        font-size: 16px;
+                        font-weight: 500;
+                        color: #333;
+                    }
+
+                    .no-services-message {
+                        text-align: center;
+                        font-size: 16px;
+                        color: #666;
+                    }
+                </style>
+
+                <!-- Script -->
+                <script>
+                    function openSuggestedServicesModal() {
+                        const modal = document.getElementById('suggested-services-modal');
+                        modal.classList.remove('modal-hidden');
+                        modal.classList.remove('modal-closing');
+                    }
+
+                    function closeSuggestedServicesModal() {
+                        const modal = document.getElementById('suggested-services-modal');
+                        modal.classList.add('modal-closing');
+                        setTimeout(() => {
+                            modal.classList.add('modal-hidden');
+                        }, 200);
+                    }
+                </script>
+
                 <script src="{{asset('js/supplier-dashboard.js')}}"></script>
             </main>
             <script src="{{asset('js/Loading.js')}}"></script>

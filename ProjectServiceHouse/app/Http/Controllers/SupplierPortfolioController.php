@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use App\Models\Supplier;
 use App\Models\Work;
+use App\Models\services;
 
 class SupplierPortfolioController extends Controller
 {
@@ -16,48 +17,20 @@ class SupplierPortfolioController extends Controller
     //===================================================================================
     public function store(Request $request)
     {
-        $request->validate(
-            [
-                'about_me' => 'required|string|max:500',
-                'language' => 'nullable|string|max:100',
-                'skills_title.*' => 'nullable|required_with:skills_description.*|string|max:255',
-                'skills_description.*' => 'nullable|required_with:skills_title.*|string|max:500',
-                'experiences_date.*' => 'nullable|required_with:experiences_description.*|date',
-                'experiences_description.*' => 'nullable|required_with:experiences_date.*|string|max:500',
-                'educations_date.*' => 'nullable|required_with:educations_description.*|date',
-                'educations_description.*' => 'nullable|required_with:educations_date.*|string|max:500',
-                'galleries_title.*' => 'nullable|required_with:galleries_platform.*,galleries_link.*|string|max:255',
-                'galleries_platform.*' => 'nullable|required_with:galleries_title.*,galleries_link.*|string|max:100',
-                'galleries_link.*' => 'nullable|required_with:galleries_title.*,galleries_platform.*|url',
-                'galleries_thumbnail.*' => 'nullable|required_with:galleries_title.*,galleries_platform.*,galleries_link.*|image|max:2048',
-            ],
-            [
-                'about_me.required' => 'The "About Me" field is required.',
-                'about_me.max' => 'The "About Me" field must not exceed 500 characters.',
-                'language.max' => 'The language field must not exceed 100 characters.',
-                'skills_title.*.required_with' => 'The skill title is required when the description is provided.',
-                'skills_title.*.max' => 'The skill title must not exceed 255 characters.',
-                'skills_description.*.required_with' => 'The skill description is required when the title is provided.',
-                'skills_description.*.max' => 'The skill description must not exceed 500 characters.',
-                'experiences_date.*.required_with' => 'The experience date is required when the description is provided.',
-                'experiences_date.*.date' => 'The experience date must be a valid date.',
-                'experiences_description.*.required_with' => 'The experience description is required when the date is provided.',
-                'experiences_description.*.max' => 'The experience description must not exceed 500 characters.',
-                'educations_date.*.required_with' => 'The education date is required when the description is provided.',
-                'educations_date.*.date' => 'The education date must be a valid date.',
-                'educations_description.*.required_with' => 'The education description is required when the date is provided.',
-                'educations_description.*.max' => 'The education description must not exceed 500 characters.',
-                'galleries.*.title.required_with' => 'The gallery title is required when the platform or link is provided.',
-                'galleries.*.title.max' => 'The gallery title must not exceed 255 characters.',
-                'galleries.*.platform.required_with' => 'The platform is required when the gallery title or link is provided.',
-                'galleries.*.platform.max' => 'The platform name must not exceed 100 characters.',
-                'galleries.*.link.required_with' => 'The link is required when the gallery title or platform is provided.',
-                'galleries.*.link.url' => 'The link must be a valid URL.',
-                'galleries.*.thumbnail.required_with' => 'The thumbnail image is required when the gallery title, platform, and link are provided.',
-                'galleries.*.thumbnail.image' => 'The thumbnail must be an image file.',
-                'galleries.*.thumbnail.max' => 'The thumbnail image size must not exceed 2MB.',
-            ]
-        );
+        $request->validate([
+            'about_me' => 'required|string|max:500',
+            'language' => 'nullable|string|max:100',
+            'skills_title.*' => 'nullable|required_with:skills_description.*|string|max:255',
+            'skills_description.*' => 'nullable|required_with:skills_title.*|string|max:500',
+            'experiences_date.*' => 'nullable|required_with:experiences_description.*|date',
+            'experiences_description.*' => 'nullable|required_with:experiences_date.*|string|max:500',
+            'educations_date.*' => 'nullable|required_with:educations_description.*|date',
+            'educations_description.*' => 'nullable|required_with:educations_date.*|string|max:500',
+            'galleries_title.*' => 'nullable|required_with:galleries_platform.*,galleries_link.*|string|max:255',
+            'galleries_platform.*' => 'nullable|required_with:galleries_title.*,galleries_link.*|string|max:100',
+            'galleries_link.*' => 'nullable|required_with:galleries_title.*,galleries_platform.*|url',
+            'galleries_thumbnail.*' => 'nullable|required_with:galleries_title.*,galleries_platform.*,galleries_link.*|image|max:2048',
+        ]);
 
         $userId = session('supplier_user_id');
         $portfolio = Portfolio::create([
@@ -65,18 +38,19 @@ class SupplierPortfolioController extends Controller
             'about_me' => $request->input('about_me'),
             'language' => $request->input('language'),
         ]);
-        if ($request->has('skills_title') && count($request->input('skills_title')) > 0) {
+
+        if ($request->has('skills_title')) {
             foreach ($request->input('skills_title') as $index => $title) {
                 if ($title && $request->input('skills_description')[$index]) {
                     $portfolio->skills()->create([
                         'title' => $title,
-                        'description' => $request->input('skills_description')[$index] ?? null,
+                        'description' => $request->input('skills_description')[$index],
                     ]);
                 }
             }
         }
 
-        if ($request->has('experiences_date') && count($request->input('experiences_date')) > 0) {
+        if ($request->has('experiences_date')) {
             foreach ($request->input('experiences_date') as $index => $date) {
                 if ($date && $request->input('experiences_description')[$index]) {
                     $portfolio->experiences()->create([
@@ -87,7 +61,7 @@ class SupplierPortfolioController extends Controller
             }
         }
 
-        if ($request->has('educations_date') && count($request->input('educations_date')) > 0) {
+        if ($request->has('educations_date')) {
             foreach ($request->input('educations_date') as $index => $date) {
                 if ($date && $request->input('educations_description')[$index]) {
                     $portfolio->educations()->create([
@@ -98,9 +72,9 @@ class SupplierPortfolioController extends Controller
             }
         }
 
-        if ($request->has('galleries') && count($request->input('galleries')) > 0) {
+        if ($request->has('galleries')) {
             foreach ($request->input('galleries') as $index => $gallery) {
-                if ($gallery['title'] && $gallery['platform'] && $gallery['link']) {
+                if (!empty($gallery['title']) && !empty($gallery['platform']) && !empty($gallery['link'])) {
                     $thumbnailPath = null;
                     if ($request->hasFile("galleries.$index.thumbnail") && $request->file("galleries.$index.thumbnail")->isValid()) {
                         $thumbnailPath = $request->file("galleries.$index.thumbnail")->store('images/works/multiple', 'public');
@@ -114,9 +88,63 @@ class SupplierPortfolioController extends Controller
                 }
             }
         }
-        session()->flash('Success_Create', 'Success Create Portfolio');  
+
+        $combinedText = $portfolio->about_me ?? '';
+
+        foreach ($portfolio->skills as $skill) {
+            $combinedText .= ' ' . ($skill->title ?? '') . ' ' . ($skill->description ?? '');
+        }
+
+        foreach ($portfolio->experiences as $exp) {
+            $combinedText .= ' ' . ($exp->description ?? '');
+        }
+
+        foreach ($portfolio->educations as $edu) {
+            $combinedText .= ' ' . ($edu->description ?? '');
+        }
+
+        foreach ($portfolio->galleries as $gallery) {
+            $combinedText .= ' ' . ($gallery->title ?? '');
+        }
+        $services = services::get();
+
+        $matchedServices = [];
+
+        foreach ($services as $service) {
+            $matchCount = 0;
+            $totalCount = 0;
+            $serviceText = strtolower($service->name . ' ' . $service->description);
+
+            $words = explode(' ', strtolower($combinedText));
+            $uniqueWords = array_unique(array_filter($words));
+
+            $totalCount = count($uniqueWords);
+
+            foreach ($uniqueWords as $word) {
+                if (strlen($word) > 2 && str_contains($serviceText, $word)) {
+                    $matchCount++;
+                }
+            }
+
+            if ($matchCount > 0) {
+                $percent = ($matchCount / $totalCount) * 100;
+                $matchedServices[] = [
+                    'service' => $service,
+                    'match_percent' => round($percent, 1),
+                ];
+            }
+        }
+
+        usort($matchedServices, function ($a, $b) {
+            return $b['match_percent'] <=> $a['match_percent'];
+        });
+
+        session()->put('suggested_services', array_slice($matchedServices, 0, 5));
+
+        session()->flash('Success_Create', 'Success Create Portfolio');
         return redirect()->route('Supplier.View.Portfolio');
     }
+
     //===================================================================================
     public function editPortfolio()
     {
@@ -198,7 +226,65 @@ class SupplierPortfolioController extends Controller
             }
         }
         $portfolio->save();
-        session()->flash('Success_Update', 'Success Update Portfolio'); 
+
+
+
+        $combinedText = $portfolio->about_me ?? '';
+
+        foreach ($portfolio->skills as $skill) {
+            $combinedText .= ' ' . ($skill->title ?? '') . ' ' . ($skill->description ?? '');
+        }
+
+        foreach ($portfolio->experiences as $exp) {
+            $combinedText .= ' ' . ($exp->description ?? '');
+        }
+
+        foreach ($portfolio->educations as $edu) {
+            $combinedText .= ' ' . ($edu->description ?? '');
+        }
+
+        foreach ($portfolio->galleries as $gallery) {
+            $combinedText .= ' ' . ($gallery->title ?? '');
+        }
+        $services = services::get();
+
+        $matchedServices = [];
+
+        foreach ($services as $service) {
+            $matchCount = 0;
+            $totalCount = 0;
+            $serviceText = strtolower($service->name . ' ' . $service->description);
+
+            $words = explode(' ', strtolower($combinedText));
+            $uniqueWords = array_unique(array_filter($words));
+
+            $totalCount = count($uniqueWords);
+
+            foreach ($uniqueWords as $word) {
+                if (strlen($word) > 2 && str_contains($serviceText, $word)) {
+                    $matchCount++;
+                }
+            }
+
+            if ($matchCount > 0) {
+                $percent = ($matchCount / $totalCount) * 100;
+                $matchedServices[] = [
+                    'service' => $service,
+                    'match_percent' => round($percent, 1),
+                ];
+            }
+        }
+
+        usort($matchedServices, function ($a, $b) {
+            return $b['match_percent'] <=> $a['match_percent'];
+        });
+
+        session()->put('suggested_services', array_slice($matchedServices, 0, 5));
+
+
+
+
+        session()->flash('Success_Update', 'Success Update Portfolio');
         return redirect()->route('Supplier.View.Portfolio');
     }
     //===================================================================================
@@ -213,14 +299,15 @@ class SupplierPortfolioController extends Controller
         if (!$portfolio) {
             return view('Supplier.Home.portfolio.MyPortfolioNull');
         }
-        return view('Supplier.Home.portfolio.MyPortfolio', compact('portfolio','data','works'));
+        return view('Supplier.Home.portfolio.MyPortfolio', compact('portfolio', 'data', 'works'));
     }
     //=====================================================================================
-    public function DeletePortfolio(){
+    public function DeletePortfolio()
+    {
         $userId = session('supplier_user_id');
         $portfolio = Portfolio::where('supplier_id', $userId)->first();
         $portfolio->delete();
-        session()->flash('Success_Delete', 'Success Delete Portfolio'); 
+        session()->flash('Success_Delete', 'Success Delete Portfolio');
         return redirect()->route('Supplier.View.Portfolio');
     }
 }

@@ -61,6 +61,7 @@ class AuthLogin extends Controller
 
     public function LogoutSupplier()
     {
+        session()->forget('suggested_services');
         Auth::guard('Supplier')->logout();
         return redirect()->route('AuthLoginn')->with('success', 'Logged out successfully.');
     }
