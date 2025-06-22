@@ -39,15 +39,7 @@ Route::post('admin/login', [AdminLogin::class, 'checkLogin'])->name('admin.check
 
 //هدول الاسطر يلي تحت هنن لعمليات الادمن مشان طلعن كلن بكبس على السهم (هدول للأكتور الأدمن) ^_^
 Route::middleware(AdminMiddleware::class)->group(function () {
-
-
-
-
-Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-
-
-
-
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('admin/dashboard/section', AdminSection::class);
     Route::get('admin/dashboard/setting', [AdminController::class, 'ViewAccount'])->name('admin.setting');
     Route::put('admin/dashboard/setting', [AdminController::class, 'EditAccount'])->name('admin.edit.account');
@@ -100,14 +92,7 @@ Route::post('ServiceHouse/Register/Client', [AuthClientController::class, 'Store
 // هلأ لح نشتغل على الراوتات مقدمين الخدمات ^_^
 Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Supplier', [SupplierController::class, 'View'])->name('ServiceHouse.Home.Supplier');
-
-
-
     Route::get('ServiceHouse/Supplier/Dashboard', [SupplierDashboardController::class, 'ViewDashboard'])->name('ServiceHouse.Supplier.Dashboard');
-
-
-
-    
     Route::get('ServiceHouse/Supplier/Sections', [SupplierController::class, 'ShowSections'])->name('Servicehouse.Sections.Show.Supplier');
     Route::get('ServiceHouse/Supplier/Section/Services/{id}', [SupplierController::class, 'ShowServices'])->name('Servicehouse.Services.Show.Supplier');
     Route::get('ServiceHouse/Supplier/Section/Service/{id}/works', [SupplierController::class, 'ViewWorks'])->name('Works.Show.Supplier');
@@ -116,7 +101,6 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class, 'CreateWork'])->name('Works.Create.Supplier');
     Route::post('ServiceHouse/Supplier/Dashboard/Myworks/Create', [SupplierWorkController::class, 'StoreWork'])->name('Works.Store.Supplier');
     Route::get('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Edit', [SupplierWorkController::class, 'EditeWork'])->name('Supplier.Edite.Myworks');
-
     Route::put('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Update', [SupplierWorkController::class, 'UpdateWork'])->name('Supplier.Update.Myworks');
     Route::delete('ServiceHouse/Supplier/Dashboard/Myworks/{id}/Delete', [SupplierWorkController::class, 'DeleteWork'])->name('Supplier.Delete.Work');
     Route::get('ServiceHouse/Supplier/Dashboard/MyPortfolio/Create', [SupplierPortfolioController::class, 'Create'])->name('Supplier.Create.Portfolio');
@@ -143,19 +127,12 @@ Route::middleware(SupplierMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Supplier/Dashboard/MyWallet/Update', [WalletController::class, 'UpdateWalletSupplier'])->name('edit.wallet.supplier');
     Route::post('MyWallet/Update/Supplier', [WalletController::class, 'UpdateWalletPasswordSupplier'])->name('update.wallet.supplier');
     Route::get('ServiceHouse/Supplier/Dashboard/Orders', [OrderController::class, 'ViewOrdersSupplier'])->name('View.Order.supplier');
-
     Route::get('ServiceHouse/Supplier/Dashboard/Order/{id}', [OrderController::class, 'ViewDetailOrder'])->name('ViewOrderDetail');
     Route::get('ServiceHouse/Supplier/Dashboard/Order/Acceptance/{id}', [OrderController::class, 'AcceptanceOrder'])->name('AcceptanceOrder');
     Route::get('ServiceHouse/Supplier/Dashboard/Order/Rejection/{id}', [OrderController::class, 'RejectionOrder'])->name('RejectionOrder');
     Route::get('ServiceHouse/Supplier/Dashboard/Order/Completed/{id}', [OrderController::class, 'completedOrder'])->name('completedOrder');
     Route::post('ServiceHouse/Supplier/Dashboard/Order/Deliver', [OrderController::class, 'DeliveredOrder'])->name('DeliveredOrder');
-
     Route::post('ServiceHouse/Supplier/Dashboard/Order/Deliver/finall', [OrderController::class, 'DeliveredOrderFinall'])->name('DeliveredOrderFinall');
-
-    
-
-
-
 });
 //===================================================================================================================================================//
 
@@ -191,9 +168,7 @@ Route::middleware(ClientMiddleware::class)->group(function () {
     Route::get('ServiceHouse/Client/Settings/MyFavorite', [FavoriteController::class, 'ViewFavorite'])->name('ViewFavorite');
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::post('/client/delete-account', [ClientController::class, 'DeleteAccount'])->name('Client.Delete.Account');
-
     Route::get('/recommend/{client_id}', [RecommendationController::class, 'getRecommendations'])->name('getRecommend');
-
     Route::post('/client/Send/Note', [OrderController::class, 'SendNoteClient'])->name('SendNoteClient');
 });
 //===================================================================================================================================================//

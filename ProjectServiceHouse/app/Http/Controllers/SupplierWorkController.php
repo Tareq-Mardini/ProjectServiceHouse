@@ -108,7 +108,7 @@ class SupplierWorkController extends Controller
     $thumbnail = $request->file('thumbnail');
     $apiKey = config('services.aiornot.key');
 
-    $response = Http::timeout(1000)->withHeaders([
+    $response = Http::timeout(6000)->withHeaders([
       'Authorization' => "Bearer $apiKey",
     ])->attach(
       'object',
@@ -219,7 +219,7 @@ class SupplierWorkController extends Controller
       $thumbnail = $request->file('thumbnail');
       $apiKey = config('services.aiornot.key');
 
-      $response = Http::timeout(1000)->withHeaders([
+      $response = Http::timeout(3000)->withHeaders([
         'Authorization' => "Bearer $apiKey",
       ])->attach(
         'object',

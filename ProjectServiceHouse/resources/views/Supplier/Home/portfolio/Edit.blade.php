@@ -25,12 +25,12 @@
 <body>
     <!-- SIDEBAR -->
     <section id="sidebar">
-    <a href="#" class="logo">
-      <img src="{{asset('images/visitor/logo-3.png')}}" width="150" height="100" alt="EduWeb logo" style="margin-left: 70px; margin-top:20px">
-    </a>
-    @include('Supplier.Home.sidebar')
+        <a href="#" class="logo">
+            <img src="{{asset('images/visitor/logo-3.png')}}" width="150" height="100" alt="EduWeb logo" style="margin-left: 70px; margin-top:20px">
+        </a>
+        @include('Supplier.Home.sidebar')
 
-  </section>
+    </section>
     <!-- SIDEBAR -->
     <!-- CONTENT -->
     <section id="content">
@@ -51,16 +51,17 @@
         <!-- MAIN -->
         <main>
             <div class="container">
-
                 <form action="{{ route('Supplier.Update.Portfolio') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="about_me"><i class='bx bx-user-voice'></i> About Me</label>
                         <textarea name="about_me" id="about_me" placeholder="Write something about yourself..." required>{{ old('about_me', $portfolio->about_me) }}</textarea>
+                        @error('about_me')<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                     </div>
                     <div class="form-group">
                         <label for="language"><i class='bx bx-globe'></i> Language</label>
                         <input type="text" name="language" id="language" placeholder="Enter a language (e.g., English, Spanish)" value="{{ old('language', $portfolio->language) }}" required />
+                        @error('language')<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                     </div>
                     <hr>
                     <!-- Skills Section -->
@@ -72,8 +73,10 @@
                         <div class="skill">
                             <label for="skills_title_{{ $index }}">Title</label>
                             <input type="text" name="skills_title[]" id="skills_title_{{ $index }}" value="{{ $skill->title }}" placeholder="Skill title (e.g., Web Development)" required />
+                            @error('skills_title.' . $index)<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                             <label for="skills_description_{{ $index }}">Description</label>
                             <textarea name="skills_description[]" id="skills_description_{{ $index }}" placeholder="Brief description of the skill" required>{{ $skill->description }}</textarea>
+                            @error('skills_description.' . $index)<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                         </div>
                         @php
                         $count = $count + 1;
@@ -91,8 +94,10 @@
                         <div class="education">
                             <label for="educations_date_{{ $index }}">Date</label>
                             <input type="date" name="educations_date[]" id="educations_date_{{ $index }}" value="{{ $education->date }}" required />
+                            @error('educations_date.' . $index)<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                             <label for="educations_description_{{ $index }}">Description</label>
                             <textarea name="educations_description[]" id="educations_description_{{ $index }}" placeholder="Describe your education" required>{{ $education->description }}</textarea>
+                            @error('educations_description.' . $index)<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                         </div>
                         @php
                         $count2 = $count2 + 1;
@@ -110,8 +115,10 @@
                         <div class="experience">
                             <label for="experiences_date_{{ $index }}">Date</label>
                             <input type="date" name="experiences_date[]" id="experiences_date_{{ $index }}" value="{{ $experience->date }}" required />
+                            @error('experiences_date.' . $index)<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                             <label for="experiences_description_{{ $index }}">Description</label>
                             <textarea name="experiences_description[]" id="experiences_description_{{ $index }}" placeholder="Describe your experience" required>{{ $experience->description }}</textarea>
+                            @error('experiences_description.' . $index)<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                         </div>
                         @php
                         $count3 = $count3 + 1;
@@ -129,6 +136,7 @@
                         <div class="gallery">
                             <label for="galleries_title_{{ $index }}">Title</label>
                             <input type="text" name="galleries[{{ $index }}][title]" id="galleries_title_{{ $index }}" value="{{ $gallery->title }}" placeholder="Gallery title" required />
+                            @error('galleries.' . $index . '.title')<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                             <label for="galleries_platform_{{ $index }}">Platform</label>
                             <select name="galleries[{{ $index }}][platform]" id="galleries_platform_{{ $index }}" required>
                                 <option value="GitHub" {{ $gallery->platform == 'GitHub' ? 'selected' : '' }}>GitHub</option>
@@ -141,10 +149,13 @@
                                 <option value="Sketchfab" {{ $gallery->platform == 'Sketchfab' ? 'selected' : '' }}>Sketchfab</option>
                                 <option value="Pinterest" {{ $gallery->platform == 'Pinterest' ? 'selected' : '' }}>Pinterest</option>
                             </select>
+                            @error('galleries.' . $index . '.platform')<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                             <label for="galleries_link_{{ $index }}">Link</label>
                             <input type="url" name="galleries[{{ $index }}][link]" id="galleries_link_{{ $index }}" value="{{ $gallery->link }}" placeholder="Gallery link" required />
+                            @error('galleries.' . $index . '.link')<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                             <label for="galleries_thumbnail_{{ $index }}">Thumbnail</label>
                             <input type="file" name="galleries[{{ $index }}][thumbnail]" id="galleries_thumbnail_{{ $index }}" accept="image/*" />
+                            @error('galleries.' . $index . '.thumbnail')<div style="color: red;" class="text-danger">{{ $message }}</div>@enderror
                             <button type="button" class="remove-item" style="display:none;" disabled>Delete ✖</button>
                         </div>
                         @php

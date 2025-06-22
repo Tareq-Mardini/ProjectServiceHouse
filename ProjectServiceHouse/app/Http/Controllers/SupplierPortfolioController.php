@@ -20,18 +20,33 @@ class SupplierPortfolioController extends Controller
         $request->validate([
             'about_me' => 'required|string|max:500',
             'language' => 'nullable|string|max:100',
+
             'skills_title.*' => 'nullable|required_with:skills_description.*|string|max:255',
             'skills_description.*' => 'nullable|required_with:skills_title.*|string|max:500',
-            'experiences_date.*' => 'nullable|required_with:experiences_description.*|date',
+
+            'experiences_date.*' => [
+                'nullable',
+                'required_with:experiences_description.*',
+                'date',
+                'before_or_equal:' . now()->subYears(18)->toDateString(),
+                'after_or_equal:' . now()->subYears(100)->toDateString(),
+            ],
             'experiences_description.*' => 'nullable|required_with:experiences_date.*|string|max:500',
-            'educations_date.*' => 'nullable|required_with:educations_description.*|date',
+
+            'educations_date.*' => [
+                'nullable',
+                'required_with:educations_description.*',
+                'date',
+                'before_or_equal:' . now()->subYears(18)->toDateString(),
+                'after_or_equal:' . now()->subYears(100)->toDateString(),
+            ],
             'educations_description.*' => 'nullable|required_with:educations_date.*|string|max:500',
+
             'galleries_title.*' => 'nullable|required_with:galleries_platform.*,galleries_link.*|string|max:255',
             'galleries_platform.*' => 'nullable|required_with:galleries_title.*,galleries_link.*|string|max:100',
             'galleries_link.*' => 'nullable|required_with:galleries_title.*,galleries_platform.*|url',
             'galleries_thumbnail.*' => 'nullable|required_with:galleries_title.*,galleries_platform.*,galleries_link.*|image|max:2048',
         ]);
-
         $userId = session('supplier_user_id');
         $portfolio = Portfolio::create([
             'supplier_id' => $userId,
@@ -139,9 +154,10 @@ class SupplierPortfolioController extends Controller
             return $b['match_percent'] <=> $a['match_percent'];
         });
 
-        session()->put('suggested_services', array_slice($matchedServices, 0, 5));
+        session()->put('suggested_services', array_slice($matchedServices, 0, 10));
 
         session()->flash('Success_Create', 'Success Create Portfolio');
+        
         return redirect()->route('Supplier.View.Portfolio');
     }
 
@@ -161,18 +177,36 @@ class SupplierPortfolioController extends Controller
     public function updatePortfolio(Request $request)
     {
         $validated = $request->validate([
+
             'about_me' => 'required|string|max:500',
             'language' => 'nullable|string|max:100',
+
             'skills_title.*' => 'nullable|required_with:skills_description.*|string|max:255',
             'skills_description.*' => 'nullable|required_with:skills_title.*|string|max:500',
-            'experiences_date.*' => 'nullable|required_with:experiences_description.*|date',
+
+            'experiences_date.*' => [
+                'nullable',
+                'required_with:experiences_description.*',
+                'date',
+                'before_or_equal:' . now()->subYears(18)->toDateString(),
+                'after_or_equal:' . now()->subYears(100)->toDateString(),
+            ],
             'experiences_description.*' => 'nullable|required_with:experiences_date.*|string|max:500',
-            'educations_date.*' => 'nullable|required_with:educations_description.*|date',
+
+            'educations_date.*' => [
+                'nullable',
+                'required_with:educations_description.*',
+                'date',
+                'before_or_equal:' . now()->subYears(18)->toDateString(),
+                'after_or_equal:' . now()->subYears(100)->toDateString(),
+            ],
             'educations_description.*' => 'nullable|required_with:educations_date.*|string|max:500',
+
             'galleries.*.title' => 'string',
             'galleries.*.platform' => 'string',
             'galleries.*.link' => 'url',
             'galleries.*.thumbnail' => 'image|nullable',
+
         ],);
 
         $userId = session('supplier_user_id');
@@ -227,8 +261,6 @@ class SupplierPortfolioController extends Controller
         }
         $portfolio->save();
 
-
-
         $combinedText = $portfolio->about_me ?? '';
 
         foreach ($portfolio->skills as $skill) {
@@ -266,7 +298,7 @@ class SupplierPortfolioController extends Controller
                 }
             }
 
-            if ($matchCount > 0) {
+            if ($matchCount >= 2) {
                 $percent = ($matchCount / $totalCount) * 100;
                 $matchedServices[] = [
                     'service' => $service,
@@ -279,11 +311,7 @@ class SupplierPortfolioController extends Controller
             return $b['match_percent'] <=> $a['match_percent'];
         });
 
-        session()->put('suggested_services', array_slice($matchedServices, 0, 5));
-
-
-
-
+        session()->put('suggested_services', array_slice($matchedServices, 0, 10));
         session()->flash('Success_Update', 'Success Update Portfolio');
         return redirect()->route('Supplier.View.Portfolio');
     }

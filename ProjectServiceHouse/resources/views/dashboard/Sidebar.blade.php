@@ -28,6 +28,11 @@
             <span>My Account</span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.ViewCustomerService')}}">
+            <i class="fas fa-user"></i>
+            <span>Customer Service</span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('ViewTransactions')}}">
         <i class="fas fa-money-check-alt"></i>
         <span>Transactions</span></a>
