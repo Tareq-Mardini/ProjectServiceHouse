@@ -47,10 +47,7 @@ def recommend(client_id):
         if df.empty:
             return jsonify({"error": "No data available"}), 404
 
-        # Ensure service_id is string to avoid type mismatch
         df['service_id'] = df['service_id'].astype(str)
-
-        # Build user-item matrix
         df['viewed'] = 1
         user_item = df.pivot_table(index='client_id', columns='service_id', values='viewed', fill_value=0)
 
@@ -66,23 +63,32 @@ def recommend(client_id):
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
 
         # Top 5 similar users (excluding self)
-        top_similar_users = [i for i, _ in sim_scores if i != user_idx][:5]
+        top_similar_users = [i for i, score in sim_scores if i != user_idx and score > 0][:5]
+
+        if not top_similar_users:
+            return jsonify({
+                "client_id": client_id,
+                "recommendations": [],
+                "message": "No similar users found. No recommendations available."
+            }), 200
+
         similar_user_ids = [user_item.index[i] for i in top_similar_users]
 
-        # Services client already viewed
         client_services = set(df[df['client_id'] == client_id]['service_id'])
 
-        # Services viewed by similar users, excluding those client already viewed
         similar_views = df[df['client_id'].isin(similar_user_ids)].copy()
         similar_views = similar_views[~similar_views['service_id'].isin(client_services)]
 
-        # Convert service_id column to Series for value_counts
-        service_series = pd.Series(similar_views['service_id'])
+        if similar_views.empty:
+            return jsonify({
+                "client_id": client_id,
+                "recommendations": [],
+                "message": "Similar users found, but no new services to recommend."
+            }), 200
 
-        # Get the top 5 recommended services
+        service_series = pd.Series(similar_views['service_id'])
         recommended_services = service_series.value_counts().head(5).index.tolist()
 
-        # Convert to int if possible
         recommendations = []
         for sid in recommended_services:
             try:
@@ -105,7 +111,6 @@ def recommend(client_id):
     except Exception as e:
         app.logger.error(f"Recommendation failed: {e}")
         return jsonify({"error": "Internal server error"}), 500
-
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

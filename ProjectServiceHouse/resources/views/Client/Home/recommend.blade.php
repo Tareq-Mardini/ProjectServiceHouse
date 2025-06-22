@@ -24,7 +24,8 @@
     <header class="header" data-header>
         <div class="container">
             <a href="#" class="logo">
-                <img src="{{asset('images/visitor/logo-3.png')}}" width="150" height="40" alt="EduWeb logo" style="margin-left: 70px;">
+                <img src="{{asset('images/visitor/logo-3.png')}}" width="150" height="40" alt="EduWeb logo"
+                    style="margin-left: 70px;">
             </a>
             <nav class="navbar" data-navbar>
                 <div class="wrapper">
@@ -75,44 +76,39 @@
                 Recommendations
             </h2>
 
-            @if(empty($recommendations) || !is_array($recommendations))
-            <div style="font-size: 15px;margin-top:10px" class="recommend-empty animate-fade-in">No recommendations found.</div>
-            @else
+            @if($services)
             <div style="margin-top: 10px;" class="recommend-grid animate-fade-in">
-                @foreach($recommendations as $item)
-                @php
-                $serviceId = is_array($item)
-                ? ($item['service_id'] ?? $item['id'] ?? $item)
-                : $item;
-                $serviceModel = \App\Models\Services::find((int)$serviceId);
-                @endphp
-
-                @if($serviceModel)
+                @foreach($services as $service)
                 <div class="recommend-card">
                     {{-- صورة الخدمة --}}
-                    @if($serviceModel->image)
-                    <img src="{{ asset($serviceModel->image) }}" alt="{{ $serviceModel->name }}" class="recommend-image">
+                    @if($service->image)
+                    <img src="{{ asset($service->image) }}" alt="{{ $service->name }}" class="recommend-image">
                     @else
-                    <div class="recommend-image" style="background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #aaa;">
+                    <div class="recommend-image"
+                        style="background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #aaa;">
                         No Image Available
                     </div>
                     @endif
 
                     <div class="recommend-card-body">
                         <h1 class="recommend-card-title">
-                            <i class='bx bx-bulb recommend-icon'></i> {{ $serviceModel->name }}
+                            <i class='bx bx-bulb recommend-icon'></i> {{ $service->name }}
                         </h1>
 
-                        <a href="{{ route('Works.Show.Client', ['id' => $serviceModel->id, 'clientid' => $clientId]) }}" class="recommend-btn">
+                        <a href="{{ route('Works.Show.Client', ['id' => $service->id, 'clientid' => $clientId]) }}"
+                            class="recommend-btn">
                             View Details
                         </a>
                     </div>
                 </div>
-                @endif
                 @endforeach
             </div>
-            @endif
         </div>
+
+        @else
+        <div style="font-size: 15px;margin-top:10px" class="recommend-empty animate-fade-in">No recommendations found.
+        </div>
+        @endif
 
     </main>
     <a href="#top" class="back-top-btn" aria-label="back top top" data-back-top-btn>

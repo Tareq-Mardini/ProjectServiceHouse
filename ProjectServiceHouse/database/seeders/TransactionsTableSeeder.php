@@ -22,9 +22,9 @@ class TransactionsTableSeeder extends Seeder
 
         $now = Carbon::now();
 
-        for ($i = 1; $i <= 200; $i++) {
+        for ($i = 1; $i <= 40; $i++) {
             DB::table('transactions')->insert([
-                'order_id' => rand(1,1),
+                'order_id' => rand(1,40),
                 'sender_id' => rand(1, 2),
                 'receiver_id' => rand(1,2),
                 'receiver_role' => $receiverRoles[array_rand($receiverRoles)],
